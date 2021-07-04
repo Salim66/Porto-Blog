@@ -21,14 +21,15 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+
+
 //Users login and register page
-Route::get('login', [App\Http\Controllers\AdminController::class, 'adminRegisterLogin'])->name('admin.login');
+Route::get('login', [App\Http\Controllers\Backend\AdminController::class, 'adminRegisterLogin'])->name('admin.login');
+
+//User Register
+Route::post('register', [App\Http\Controllers\Auth\RegisterController::class, 'register'])->name('user.register');
+//User Login
+Route::post('login', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('user.login');
 
 // Dashboard
-Route::get('dashboard', [App\Http\Controllers\AdminController::class, 'adminDashboard'])->name('admin.dashboard');
-
-
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('dashboard', [App\Http\Controllers\Backend\AdminController::class, 'adminDashboard'])->name('admin.dashboard');

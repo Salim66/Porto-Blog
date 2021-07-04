@@ -33,8 +33,77 @@
 <script src="{{ asset('backend/assets/')}}/js/datepicker/date-picker/datepicker.custom.js"></script>
 <script src="{{ asset('backend/assets/')}}/js/chat-menu.js"></script>
 <!-- Plugins JS Ends-->
+<!-- Plugins JS start-->
+<script src="{{ asset('backend/assets/')}}/js/notify/bootstrap-notify.min.js"></script>
+<script src="{{ asset('backend/assets/')}}/js/notify/notify-script.js"></script>
+<script src="{{ asset('backend/assets/')}}/js/chat-menu.js"></script>
+<!-- Plugins JS Ends-->
 <!-- Theme js-->
 <script src="{{ asset('backend/assets/')}}/js/script.js"></script>
 <script src="{{ asset('backend/assets/')}}/js/theme-customizer/customizer.js"></script>
 <!-- login js-->
 <!-- Plugin used-->
+
+<!--Notification-->
+    @if(Session::has('success'))
+    <script>
+        $.notify({
+            message:'{{ Session::get("success") }}'
+        },
+        {
+            type:'primary',
+            allow_dismiss:false,
+            newest_on_top:false ,
+            mouse_over:false,
+            showProgressbar:false,
+            spacing:10,
+            timer:2000,
+            placement:{
+                from:'top',
+                align:'right'
+            },
+            offset:{
+                x:30,
+                y:30
+            },
+            delay:1000 ,
+            z_index:10000,
+            animate:{
+                enter:'animated bounce',
+                exit:'animated bounce'
+            }
+        });
+    </script>
+    @endif
+
+    @if(Session::has('error'))
+    <script>
+        $.notify({
+            message:'{{ Session::get("error") }}'
+        },
+        {
+            type:'primary',
+            allow_dismiss:false,
+            newest_on_top:false ,
+            mouse_over:false,
+            showProgressbar:true,
+            spacing:10,
+            timer:2000,
+            placement:{
+                from:'top',
+                align:'right'
+            },
+            offset:{
+                x:30,
+                y:30
+            },
+            delay:1000 ,
+            z_index:10000,
+            animate:{
+                enter:'animated bounce',
+                exit:'animated bounce'
+            }
+        });
+    </script>
+    @endif
+<!--!Notification-->

@@ -57,16 +57,19 @@
                       <div>
 
 
-                        <form class="theme-form">
+                        <form class="theme-form" action="{{ route('user.login') }}" method="POST">
+                            @csrf
                           <h4>LOGIN</h4>
                           <h6>Enter your Username and Password</h6>
                           <div class="form-group">
-                            <label class="col-form-label pt-0">Your Name</label>
-                            <input class="form-control" type="text" required="">
+                            <label class="col-form-label pt-0">Your Email</label>
+                            <input class="form-control" type="text" name="email" required="">
+                            <span class="text-danger text-left d-block">{{ (@$errors->has('email'))? @$errors->first('email') : ''}}</span>
                           </div>
                           <div class="form-group">
                             <label class="col-form-label">Password</label>
-                            <input class="form-control" type="password" required="">
+                            <input class="form-control" type="password" name="password" required="">
+                            <span class="text-danger text-left d-block">{{ (@$errors->has('password'))? @$errors->first('password') : ''}}</span>
                           </div>
                           <div class="checkbox p-0">
                             <input id="checkbox1" type="checkbox">
@@ -109,27 +112,31 @@
                         </div>
                         <div>
 
-                          <form class="theme-form" accept="{{ route('register') }}" method="POST">
+                          <form class="theme-form needs-validation" action="{{ route('user.register') }}" method="POST"  novalidate="">
                             @csrf
                             <h4 class="text-center">NEW USER</h4>
                             <h6 class="text-center">Enter your Username and Password For Signup</h6>
                             <div class="form-row">
                               <div class="col-md-12">
                                 <div class="form-group">
-                                  <input class="form-control" name="name" type="text" placeholder="Full Name">
+                                  <input class="form-control" id="validationCustom01" name="name" type="text" placeholder="Full Name" required="">
+                                  <span class="text-danger text-left d-block">{{ (@$errors->has('name'))? @$errors->first('name') : ''}}</span>
                                 </div>
                               </div>
                               <div class="col-md-12">
                                 <div class="form-group">
-                                  <input class="form-control" name="email" type="email" placeholder="E-mail">
+                                  <input class="form-control" name="email" type="email" placeholder="E-mail" required="">
+                                  <span class="text-danger text-left d-block">{{ (@$errors->has('email'))? @$errors->first('email') : ''}}</span>
                                 </div>
                               </div>
                             </div>
                             <div class="form-group">
-                              <input class="form-control" name="password" type="Password" placeholder="Password">
+                              <input class="form-control" name="password" type="Password" placeholder="Password" required="">
+                              <span class="text-danger text-left d-block">{{ (@$errors->has('password'))? @$errors->first('password') : ''}}</span>
                             </div>
                             <div class="form-group">
-                              <input class="form-control" name="password_confirmation" type="password" placeholder="Confirm Password">
+                              <input class="form-control" name="password_confirmation" type="password" placeholder="Confirm Password" required="">
+                              <span class="text-danger text-left d-block">{{ (@$errors->has('password_confirmation'))? @$errors->first('password_confirmation') : ''}}</span>
                             </div>
                             <div class="form-row">
                               <div class="col-sm-4">
@@ -182,11 +189,107 @@
     <!-- Plugins JS start-->
     <script src="{{ asset('backend/assets/')}}/js/login.js"></script>
     <!-- Plugins JS Ends-->
+    <!-- Plugins JS start-->
+    <script src="{{ asset('backend/assets/')}}/js/notify/bootstrap-notify.min.js"></script>
+    <script src="{{ asset('backend/assets/')}}/js/notify/notify-script.js"></script>
+    <script src="{{ asset('backend/assets/')}}/js/chat-menu.js"></script>
+    <!-- Plugins JS Ends-->
     <!-- Theme js-->
     <script src="{{ asset('backend/assets/')}}/js/script.js"></script>
     <script src="{{ asset('backend/assets/')}}/js/theme-customizer/customizer.js"></script>
+
     <!-- login js-->
     <!-- Plugin used-->
+    @if(Session::has('success'))
+    <script>
+        $.notify({
+            message:'{{ Session::get("success") }}'
+        },
+        {
+            type:'primary',
+            allow_dismiss:false,
+            newest_on_top:false ,
+            mouse_over:false,
+            showProgressbar:false,
+            spacing:10,
+            timer:2000,
+            placement:{
+                from:'top',
+                align:'right'
+            },
+            offset:{
+                x:30,
+                y:30
+            },
+            delay:1000 ,
+            z_index:10000,
+            animate:{
+                enter:'animated bounce',
+                exit:'animated bounce'
+            }
+        });
+    </script>
+    @endif
+    @if(Session::has('warning'))
+    <script>
+        $.notify({
+            message:'{{ Session::get("warning") }}'
+        },
+        {
+            type:'warning',
+            allow_dismiss:false,
+            newest_on_top:false ,
+            mouse_over:false,
+            showProgressbar:false,
+            spacing:10,
+            timer:3000,
+            placement:{
+                from:'top',
+                align:'right'
+            },
+            offset:{
+                x:30,
+                y:30
+            },
+            delay:1000 ,
+            z_index:10000,
+            animate:{
+                enter:'animated bounce',
+                exit:'animated bounce'
+            }
+        });
+    </script>
+    @endif
+    @if(Session::has('error'))
+    <script>
+        $.notify({
+            message:'{{ Session::get("error") }}'
+        },
+        {
+            type:'danger',
+            allow_dismiss:false,
+            newest_on_top:false ,
+            mouse_over:false,
+            showProgressbar:false,
+            spacing:10,
+            timer:2000,
+            placement:{
+                from:'top',
+                align:'right'
+            },
+            offset:{
+                x:30,
+                y:30
+            },
+            delay:1000 ,
+            z_index:10000,
+            animate:{
+                enter:'animated bounce',
+                exit:'animated bounce'
+            }
+        });
+    </script>
+    @endif
   </body>
 
 <!-- Mirrored from admin.pixelstrap.com/poco/ltr/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 03 Jul 2021 14:48:25 GMT -->
