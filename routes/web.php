@@ -36,5 +36,14 @@ Route::middleware(['auth'])->group(function () {
 
     // Dashboard
     Route::get('dashboard', [App\Http\Controllers\Backend\AdminController::class, 'adminDashboard'])->name('admin.dashboard');
+
+    //Users
+    Route::prefix('users')->group(function () {
+        Route::resource('/', 'App\Http\Controllers\Backend\UserController');
+        Route::post('/admin-add', 'App\Http\Controllers\Backend\UserController@add');
+    });
+
+    // Route::post('/admin-add', 'App\Http\Controllers\Backend\UserController@add');
+
 });
 

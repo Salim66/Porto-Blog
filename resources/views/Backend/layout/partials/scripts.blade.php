@@ -36,11 +36,15 @@
 <!-- Plugins JS start-->
 <script src="{{ asset('backend/assets/')}}/js/notify/bootstrap-notify.min.js"></script>
 <script src="{{ asset('backend/assets/')}}/js/notify/notify-script.js"></script>
+<script src="{{ asset('backend/assets/')}}/js/datatable/datatables/jquery.dataTables.min.js"></script>
+<script src="{{ asset('backend/assets/')}}/js/datatable/datatables/datatable.custom.js"></script>
 <script src="{{ asset('backend/assets/')}}/js/chat-menu.js"></script>
+<script src="{{ asset('backend/assets/')}}/js/form-validation-custom.js"></script>
 <!-- Plugins JS Ends-->
 <!-- Theme js-->
 <script src="{{ asset('backend/assets/')}}/js/script.js"></script>
 <script src="{{ asset('backend/assets/')}}/js/theme-customizer/customizer.js"></script>
+<script src="{{ asset('backend/assets/')}}/js/custom/custom.js"></script>
 <!-- login js-->
 <!-- Plugin used-->
 

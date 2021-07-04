@@ -10,9 +10,9 @@
         </li>
         <li><a class="bar-icons" href="javascript:void(0)"><i class="fas fa-users"></i><span>Users Manage</span></a>
           <ul class="iconbar-mainmenu custom-scrollbar">
-            <li class="iconbar-header">Admin</li>
-            <li><a href="index.html">User List</a></li>
-            <li><a href="index.html">User Add</a></li>
+            <li class="iconbar-header">Users</li>
+            <li><a href="{{ route('index') }}">User List</a></li>
+            <li><a href="{{ route('create') }}">User Add</a></li>
           </ul>
         </li>
         <li><a class="bar-icons" href="javascript:void(0)"><i class="fas fa-user"></i><span>User Profile</span></a>

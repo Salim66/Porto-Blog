@@ -27,10 +27,10 @@
           </li>
 
 
-          <li class="onhover-dropdown"> <span class="media user-header"><img class="img-fluid" src="{{ asset('backend/assets/')}}/images/dashboard/user.png" alt=""></span>
+          <li class="onhover-dropdown"> <span class="media user-header"><img class="img-fluid shadow" src="{{ URL::to('') }}/uploads/users/{{ Auth::user()->photo }}" alt="User Photo" onerror="this.src='{{ asset("uploads/users/avatar3.png") }}'" style="width: 50px !important; height: 50px; border-radius: 50%; border: 1px solid #9900ff"></span>
             <ul class="onhover-show-div profile-dropdown">
               <li class="gradient-primary">
-                <h5 class="f-w-600 mb-0">Elana Saint</h5><span>Web Designer</span>
+                <h5 class="f-w-600 mb-0">{{ Auth::user()->name }}</h5><span>{{ Auth::user()->user_type }}</span>
               </li>
               <li><i data-feather="user"> </i>Profile</li>
               <li><i data-feather="message-square"> </i>Inbox</li>

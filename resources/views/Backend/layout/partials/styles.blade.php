@@ -18,6 +18,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/')}}/css/date-picker.css">
 <link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/')}}/css/prism.css">
 <link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/')}}/css/pe7-icon.css">
+<link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/')}}/css/datatables.css">
 <!-- Plugins css Ends-->
 <!-- Bootstrap css-->
 <link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/')}}/css/bootstrap.css">
