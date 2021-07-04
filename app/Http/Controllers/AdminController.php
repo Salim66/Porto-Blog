@@ -6,6 +6,15 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+
+    /**
+     * Admin Register Login page
+     */
+    public function adminRegisterLogin(){
+        return view('Backend.users.login');
+    }
+
+
     /**
      * Admin dashboard show
      */
