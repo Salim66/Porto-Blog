@@ -31,5 +31,10 @@ Route::post('register', [App\Http\Controllers\Auth\RegisterController::class, 'r
 //User Login
 Route::post('login', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('user.login');
 
-// Dashboard
-Route::get('dashboard', [App\Http\Controllers\Backend\AdminController::class, 'adminDashboard'])->name('admin.dashboard');
+
+Route::middleware(['auth'])->group(function () {
+
+    // Dashboard
+    Route::get('dashboard', [App\Http\Controllers\Backend\AdminController::class, 'adminDashboard'])->name('admin.dashboard');
+});
+
