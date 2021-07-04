@@ -71,8 +71,8 @@
                             <input class="form-control" type="password" name="password" required="">
                             <span class="text-danger text-left d-block">{{ (@$errors->has('password'))? @$errors->first('password') : ''}}</span>
                           </div>
-                          <div class="checkbox p-0">
-                            <input id="checkbox1" type="checkbox">
+                          <div class="p-0">
+                            <input id="checkbox1" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                             <label for="checkbox1">Remember me</label>
                           </div>
                           <div class="form-group form-row mt-3 mb-0">
