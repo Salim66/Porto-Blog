@@ -32,7 +32,7 @@
               <li class="gradient-primary">
                 <h5 class="f-w-600 mb-0">{{ Auth::user()->name }}</h5><span>{{ Auth::user()->user_type }}</span>
               </li>
-              <li><i data-feather="user"> </i>Profile</li>
+              <li><a href="{{ route('profile.view') }}"><i data-feather="user"> </i>Profile</a></li>
               <li><i data-feather="message-square"> </i>Inbox</li>
               <li><i data-feather="settings"> </i>Settings</li>
               <li><i data-feather="lock"> </i>
