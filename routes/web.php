@@ -57,5 +57,13 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/update-password', 'App\Http\Controllers\Backend\UserController@updatePassword')->name('user.update.password');
     });
 
+    Route::prefix('categories')->group(function () {
+        Route::get('/view', 'App\Http\Controllers\Backend\CategoryController@view')->name('categorires.view');
+        Route::get('/add', 'App\Http\Controllers\Backend\CategoryController@add')->name('categorires.add');
+        Route::post('/store', 'App\Http\Controllers\Backend\CategoryController@store')->name('categorires.store');
+        Route::get('/edit/{id}', 'App\Http\Controllers\Backend\CategoryController@edit')->name('categorires.edit');
+        Route::post('/update', 'App\Http\Controllers\Backend\CategoryController@update')->name('categorires.update');
+    });
+
 });
 

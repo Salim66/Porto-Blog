@@ -30,6 +30,13 @@
             <li><a href="{{ route('user.change.password') }}">Change Password</a></li>
           </ul>
         </li>
+        <li><a class="bar-icons" href="javascript:void(0)"><i class="fab fa-cuttlefish"></i><span>Categories</span></a>
+          <ul class="iconbar-mainmenu custom-scrollbar">
+            <li class="iconbar-header">Categories</li>
+            <li><a href="{{ route('categorires.view') }}">Category List</a></li>
+            <li><a href="{{ route('categorires.add') }}">Add Category</a></li>
+          </ul>
+        </li>
       </ul>
     </div>
   </div>

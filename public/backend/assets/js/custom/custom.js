@@ -756,6 +756,255 @@
                 });
             }
         });
+
+        // Category store
+        $("#category_Add").on("submit", function (e) {
+            e.preventDefault();
+            let name = $(".c_name").val();
+
+            if (name == "" || name == null) {
+                $.notify(
+                    {
+                        message: "Category name is required !",
+                    },
+                    {
+                        type: "danger",
+                        allow_dismiss: false,
+                        newest_on_top: false,
+                        mouse_over: false,
+                        showProgressbar: false,
+                        spacing: 10,
+                        timer: 2000,
+                        placement: {
+                            from: "top",
+                            align: "right",
+                        },
+                        offset: {
+                            x: 30,
+                            y: 30,
+                        },
+                        delay: 1000,
+                        z_index: 10000,
+                        animate: {
+                            enter: "animated bounce",
+                            exit: "animated bounce",
+                        },
+                    }
+                );
+            } else {
+                $.ajax({
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf_token"]').attr(
+                            "content"
+                        ),
+                    },
+                    method: "POST",
+                    url: "/categories/store",
+                    data: new FormData(this),
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        // console.log(response);
+                        $(".c_name").val("");
+                        $(".c_parent_id").val("");
+
+                        $.notify(
+                            {
+                                message: response.success,
+                            },
+                            {
+                                type: "primary",
+                                allow_dismiss: false,
+                                newest_on_top: false,
+                                mouse_over: false,
+                                showProgressbar: false,
+                                spacing: 10,
+                                timer: 2000,
+                                placement: {
+                                    from: "top",
+                                    align: "right",
+                                },
+                                offset: {
+                                    x: 30,
+                                    y: 30,
+                                },
+                                delay: 1000,
+                                z_index: 10000,
+                                animate: {
+                                    enter: "animated bounce",
+                                    exit: "animated bounce",
+                                },
+                            }
+                        );
+                    },
+                    error: function (response) {
+                        $.notify(
+                            {
+                                message: response.error,
+                            },
+                            {
+                                type: "danger",
+                                allow_dismiss: false,
+                                newest_on_top: false,
+                                mouse_over: false,
+                                showProgressbar: false,
+                                spacing: 10,
+                                timer: 2000,
+                                placement: {
+                                    from: "top",
+                                    align: "right",
+                                },
+                                offset: {
+                                    x: 30,
+                                    y: 30,
+                                },
+                                delay: 1000,
+                                z_index: 10000,
+                                animate: {
+                                    enter: "animated bounce",
+                                    exit: "animated bounce",
+                                },
+                            }
+                        );
+                    },
+                });
+            }
+        });
+
+        // Edit category model show with data
+        $(".edit_category").click(function (e) {
+            e.preventDefault();
+            let edit_id = $(this).attr("edit_id");
+
+            $.ajax({
+                url: "/categories/edit/" + edit_id,
+                type: "GET",
+                success: function (data) {
+                    console.log(data);
+                    $(".c_name").val(data.name);
+                    $(".parent_id").val(data.parent_id);
+                    $(".edit_id").val(data.id);
+
+                    $("#edit_category").modal("show");
+                },
+            });
+        });
+
+        // update category
+        $("#category_edit").on("submit", function (e) {
+            e.preventDefault();
+            let name = $(".c_name").val();
+            let parent_id = $(".parent_id").val();
+            // console.log(name + " " + parent_id);
+
+            if (name == "" || name == null) {
+                $.notify(
+                    {
+                        message: "Category name is reqired!",
+                    },
+                    {
+                        type: "warning",
+                        allow_dismiss: false,
+                        newest_on_top: false,
+                        mouse_over: false,
+                        showProgressbar: false,
+                        spacing: 10,
+                        timer: 2000,
+                        placement: {
+                            from: "top",
+                            align: "right",
+                        },
+                        offset: {
+                            x: 30,
+                            y: 30,
+                        },
+                        delay: 1000,
+                        z_index: 10000,
+                        animate: {
+                            enter: "animated bounce",
+                            exit: "animated bounce",
+                        },
+                    }
+                );
+            } else {
+                $.ajax({
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf_token"]').attr(
+                            "content"
+                        ),
+                    },
+                    method: "POST",
+                    url: "/categories/update",
+                    data: new FormData(this),
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        // console.log(response);
+                        $(".c_name").val("");
+                        $(".parent_id").val("");
+
+                        $.notify(
+                            {
+                                message: response.success,
+                            },
+                            {
+                                type: "primary",
+                                allow_dismiss: false,
+                                newest_on_top: false,
+                                mouse_over: false,
+                                showProgressbar: false,
+                                spacing: 10,
+                                timer: 2000,
+                                placement: {
+                                    from: "top",
+                                    align: "right",
+                                },
+                                offset: {
+                                    x: 30,
+                                    y: 30,
+                                },
+                                delay: 1000,
+                                z_index: 10000,
+                                animate: {
+                                    enter: "animated bounce",
+                                    exit: "animated bounce",
+                                },
+                            }
+                        );
+                    },
+                    error: function (response) {
+                        $.notify(
+                            {
+                                message: response.error,
+                            },
+                            {
+                                type: "danger",
+                                allow_dismiss: false,
+                                newest_on_top: false,
+                                mouse_over: false,
+                                showProgressbar: false,
+                                spacing: 10,
+                                timer: 2000,
+                                placement: {
+                                    from: "top",
+                                    align: "right",
+                                },
+                                offset: {
+                                    x: 30,
+                                    y: 30,
+                                },
+                                delay: 1000,
+                                z_index: 10000,
+                                animate: {
+                                    enter: "animated bounce",
+                                    exit: "animated bounce",
+                                },
+                            }
+                        );
+                    },
+                });
+            }
+        });
     });
 })(jQuery);
 
