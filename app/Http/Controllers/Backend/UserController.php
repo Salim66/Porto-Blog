@@ -130,17 +130,6 @@ class UserController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
-    /**
      * User status update
      */
     public function updateUserStatus(Request $request){
@@ -186,6 +175,22 @@ class UserController extends Controller
             'msg' => 'Something is wrong! plase try again! '
         ]);
        }
+    }
+
+    /**
+      * User destroy
+      */
+      public function destroy($id){
+        $data = User::find($id);
+
+          if($data != null){
+              $data->delete();
+
+              return redirect()->back()->with('success', 'User delete successfully ):');
+          }else {
+              return redirect()->back()->with('error', 'Something is wrong! plase try again!');
+
+          }
     }
 
 

@@ -49,7 +49,11 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <a title="Edit User" edit_id="{{ $data->id }}" class="btn btn-info-gradien btn-pill edit_user"><i class="fas fa-user-edit text-white"></i></a>
+                                            <form style="display: inline;" action="{{ route('users.destroy', $data->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button title="User Delete" delete_id="{{ $data->id }}" type="submit" id="delete" class="btn btn-danger-gradien btn-pill"><i class="fas fa-trash text-white"></i></button>
+                                            </form>
 
                                         </td>
                                     </tr>
