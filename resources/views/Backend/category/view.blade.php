@@ -32,7 +32,7 @@
 
                                             <div class="media-body text-center switch-sm">
                                                 <label class="switch">
-                                                <input type="checkbox" class="user_status_update" data_id="{{ $data->id }}" @if($data->status == true) checked="" @endif><span class="switch-state"></span>
+                                                <input type="checkbox" class="category_status_update" data_id="{{ $data->id }}" @if($data->status == true) checked="" @endif><span class="switch-state"></span>
                                                 </label>
                                             </div>
 

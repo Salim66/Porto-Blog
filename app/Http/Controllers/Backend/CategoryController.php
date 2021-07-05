@@ -12,7 +12,7 @@ class CategoryController extends Controller
      * Category list view
      */
     public function view(){
-        $all_data = Category::where('status', true)->latest()->get();
+        $all_data = Category::where('trash', false)->latest()->get();
         return view('Backend.category.view', [
             'all_data' => $all_data
         ]);
@@ -77,4 +77,23 @@ class CategoryController extends Controller
             ]);
         }
     }
+
+    /**
+     * Category status update
+     */
+    public function statusUpdate(Request $request){
+        $data = Category::where('id', $request->id)->update([
+            'status' => $request->status,
+        ]);
+
+        if($data == true){
+            return response()->json([
+                'success' => 'Category Status updated successfully ): '
+            ]);
+        }else {
+         return response()->json([
+             'error' => 'Something is wrong! plase try again! '
+         ]);
+        }
+     }
 }

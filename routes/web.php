@@ -58,11 +58,13 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::prefix('categories')->group(function () {
-        Route::get('/view', 'App\Http\Controllers\Backend\CategoryController@view')->name('categorires.view');
-        Route::get('/add', 'App\Http\Controllers\Backend\CategoryController@add')->name('categorires.add');
-        Route::post('/store', 'App\Http\Controllers\Backend\CategoryController@store')->name('categorires.store');
-        Route::get('/edit/{id}', 'App\Http\Controllers\Backend\CategoryController@edit')->name('categorires.edit');
-        Route::post('/update', 'App\Http\Controllers\Backend\CategoryController@update')->name('categorires.update');
+        Route::get('/view', 'App\Http\Controllers\Backend\CategoryController@view')->name('categories.view');
+        Route::get('/add', 'App\Http\Controllers\Backend\CategoryController@add')->name('categories.add');
+        Route::post('/store', 'App\Http\Controllers\Backend\CategoryController@store')->name('categories.store');
+        Route::get('/edit/{id}', 'App\Http\Controllers\Backend\CategoryController@edit')->name('categories.edit');
+        Route::post('/update', 'App\Http\Controllers\Backend\CategoryController@update')->name('categories.update');
+        Route::post('/status-update', 'App\Http\Controllers\Backend\CategoryController@statusUpdate')->name('categorires.status.update');
+        Route::get('/trash', 'App\Http\Controllers\Backend\CategoryController@statusUpdate')->name('categories.trash');
     });
 
 });

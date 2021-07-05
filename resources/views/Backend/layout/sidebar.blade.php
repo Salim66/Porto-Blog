@@ -33,8 +33,9 @@
         <li><a class="bar-icons" href="javascript:void(0)"><i class="fab fa-cuttlefish"></i><span>Categories</span></a>
           <ul class="iconbar-mainmenu custom-scrollbar">
             <li class="iconbar-header">Categories</li>
-            <li><a href="{{ route('categorires.view') }}">Category List</a></li>
-            <li><a href="{{ route('categorires.add') }}">Add Category</a></li>
+            <li><a href="{{ route('categories.view') }}">Category List</a></li>
+            <li><a href="{{ route('categories.add') }}">Add Category</a></li>
+            <li><a class="user_trash_list" href="{{ route('categories.trash') }}">Trash List <span class="text-danger">({{ $total_category_trash }})</span></a></li>
           </ul>
         </li>
       </ul>
