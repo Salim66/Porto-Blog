@@ -109,8 +109,8 @@ class CategoryController extends Controller
     }
 
 
-      /**
-     * User trash update
+    /**
+     * Category trash update
      */
     public function trashUpdate(Request $request){
         $data = Category::where('id', $request->id)->update([
@@ -127,4 +127,20 @@ class CategoryController extends Controller
          ]);
         }
      }
+
+     /**
+      * Category destroy
+      */
+      public function destroy($id){
+          $data = Category::find($id);
+
+            if($data != null){
+                $data->delete();
+
+                return redirect()->back()->with('success', 'Category delete successfully ):');
+            }else {
+                return redirect()->back()->with('error', 'Something is wrong! plase try again!');
+
+            }
+      }
 }

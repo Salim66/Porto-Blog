@@ -20,6 +20,8 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/')}}/css/pe7-icon.css">
 <link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/')}}/css/datatables.css">
 <link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/')}}/css/dropzone.css">
+<link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/')}}/css/sweetalert2.css">
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- Plugins css Ends-->
 <!-- Bootstrap css-->
 <link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/')}}/css/bootstrap.css">

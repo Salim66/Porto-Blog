@@ -45,7 +45,13 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <a title="Edit Category" edit_id="{{ $data->id }}" class="btn btn-info-gradien btn-pill edit_category"><i class="fas fa-user-edit text-white"></i></a>
+                                            {{-- <a title="Delete Category" delete_id="{{ $data->id }}" class="btn btn-danger-gradien btn-pill delete_category"><i class="fas fa-trash text-white"></i></a> --}}
+
+                                            <form style="display: inline;" action="{{ route('categories.destroy', $data->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button delete_id="{{ $data->id }}" type="submit" id="delete" class="btn btn-danger-gradien btn-pill"><i class="fas fa-trash text-white"></i></button>
+                                            </form>
 
                                         </td>
                                     </tr>

@@ -44,7 +44,9 @@
 <script src="{{ asset('backend/assets/')}}/js/chat-menu.js"></script>
 <script src="{{ asset('backend/assets/')}}/js/form-validation-custom.js"></script>
 <script src="{{ asset('backend/assets/')}}/js/dropzone/dropzone.js"></script>
-<script src="{{ asset('backend/assets/')}}s/js/dropzone/dropzone-script.js"></script>
+<script src="{{ asset('backend/assets/')}}/js/dropzone/dropzone-script.js"></script>
+<script src="{{ asset('backend/assets/')}}/js/sweet-alert/sweetalert.min.js"></script>
+<script src="{{ asset('backend/assets/')}}/js/sweet-alert/app.js"></script>
 <!-- Plugins JS Ends-->
 <!-- Theme js-->
 <script src="{{ asset('backend/assets/')}}/js/script.js"></script>
