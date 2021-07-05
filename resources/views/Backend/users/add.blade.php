@@ -50,7 +50,7 @@
                       <input
                         class="form-control f_password"
                         id="validationCustom02"
-                        type="text"
+                        type="password"
                         name="password"
                         placeholder="Last name"
                         required=""
@@ -61,7 +61,7 @@
                       <input
                         class="form-control f_con_password"
                         id="validationCustom02"
-                        type="text"
+                        type="password"
                         name="password_confirmation"
                         placeholder="Last name"
                         required=""

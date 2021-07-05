@@ -635,6 +635,127 @@
                 },
             });
         });
+
+        // User change password
+        $("#change_password").on("submit", function (e) {
+            e.preventDefault();
+            let old_pass = $(".old_password").val();
+            let new_pass = $(".new_password").val();
+            // console.log(old_pass + " " + new_pass);
+
+            if (
+                old_pass == "" ||
+                old_pass == null ||
+                new_pass == "" ||
+                new_pass == null
+            ) {
+                $.notify(
+                    {
+                        message: "Please fill all the field!",
+                    },
+                    {
+                        type: "warning",
+                        allow_dismiss: false,
+                        newest_on_top: false,
+                        mouse_over: false,
+                        showProgressbar: false,
+                        spacing: 10,
+                        timer: 2000,
+                        placement: {
+                            from: "top",
+                            align: "right",
+                        },
+                        offset: {
+                            x: 30,
+                            y: 30,
+                        },
+                        delay: 1000,
+                        z_index: 10000,
+                        animate: {
+                            enter: "animated bounce",
+                            exit: "animated bounce",
+                        },
+                    }
+                );
+            } else {
+                $.ajax({
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf_token"]').attr(
+                            "content"
+                        ),
+                    },
+                    method: "POST",
+                    url: "/profile/update-password",
+                    data: new FormData(this),
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        // console.log(response);
+                        $(".old_password").val("");
+                        $(".new_password").val("");
+
+                        $.notify(
+                            {
+                                message: response.success,
+                            },
+                            {
+                                type: "primary",
+                                allow_dismiss: false,
+                                newest_on_top: false,
+                                mouse_over: false,
+                                showProgressbar: false,
+                                spacing: 10,
+                                timer: 2000,
+                                placement: {
+                                    from: "top",
+                                    align: "right",
+                                },
+                                offset: {
+                                    x: 30,
+                                    y: 30,
+                                },
+                                delay: 1000,
+                                z_index: 10000,
+                                animate: {
+                                    enter: "animated bounce",
+                                    exit: "animated bounce",
+                                },
+                            }
+                        );
+                    },
+                    error: function (response) {
+                        $.notify(
+                            {
+                                message: response.error,
+                            },
+                            {
+                                type: "danger",
+                                allow_dismiss: false,
+                                newest_on_top: false,
+                                mouse_over: false,
+                                showProgressbar: false,
+                                spacing: 10,
+                                timer: 2000,
+                                placement: {
+                                    from: "top",
+                                    align: "right",
+                                },
+                                offset: {
+                                    x: 30,
+                                    y: 30,
+                                },
+                                delay: 1000,
+                                z_index: 10000,
+                                animate: {
+                                    enter: "animated bounce",
+                                    exit: "animated bounce",
+                                },
+                            }
+                        );
+                    },
+                });
+            }
+        });
     });
 })(jQuery);
 

@@ -53,6 +53,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/view', 'App\Http\Controllers\Backend\UserController@viewProfile')->name('profile.view');
         Route::get('/edit/{id}', 'App\Http\Controllers\Backend\UserController@editProfile')->name('profile.edit');
         Route::post('/update', 'App\Http\Controllers\Backend\UserController@updateProfile')->name('profile.update');
+        Route::get('/change-password', 'App\Http\Controllers\Backend\UserController@changePassword')->name('user.change.password');
+        Route::post('/update-password', 'App\Http\Controllers\Backend\UserController@updatePassword')->name('user.update.password');
     });
 
 });

@@ -257,4 +257,40 @@ class UserController extends Controller
             ]);
         }
     }
+
+    /**
+     * User change password page
+     */
+    public function changePassword(){
+        return view('Backend.users.change-password');
+    }
+
+    /**
+     * User update password
+     */
+    public function updatePassword(Request $request){
+        // find user has or not
+        $data = User::where('id', Auth::id())->first();
+
+        // user data successfully get or not
+        if($data != null){
+            // check password match or not
+            if (Auth::attempt(['email' => $data->email, 'password' => $request->old_password])) {
+                $data->password = password_hash($request->new_password, PASSWORD_DEFAULT);
+                $data->update();
+
+                return response()->json([
+                    'success' => 'Password successfully updated ): '
+                ]);
+            } else {
+                return response()->json([
+                    'error' => 'Sorry! your password and email do not match our record.'
+                ]);
+            }
+        }else {
+            return response()->json([
+                'error' => 'Something is wrong! plase try again! '
+            ]);
+        }
+    }
 }
