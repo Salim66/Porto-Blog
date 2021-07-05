@@ -474,6 +474,167 @@
                 });
             }
         });
+
+        // user profile edit
+        $(".edit_profile").click(function (e) {
+            e.preventDefault();
+            let edit_id = $(this).attr("edit_id");
+
+            $.ajax({
+                url: "/profile/edit/" + edit_id,
+                type: "GET",
+                success: function (data) {
+                    console.log(data);
+                    $(".id").val(data.id);
+                    $(".f_name").val(data.name);
+                    $(".f_email").val(data.email);
+                    $(".f_cell").val(data.cell);
+                    $(".f_address").val(data.address);
+                    $(".user_type").val(data.user_type);
+                    $(".f_photo_val").attr(
+                        "src",
+                        "uploads/users/" + data.photo
+                    );
+                    $(".f_photo_show").attr(
+                        "src",
+                        "/uploads/users/" + data.photo
+                    );
+
+                    $("#edit_user_prifile").modal("show");
+                },
+            });
+        });
+
+        //User image load
+        $(document).on("change", "#image_file", function (e) {
+            e.preventDefault();
+            let image_url = URL.createObjectURL(e.target.files[0]);
+            $("#user_photo").attr("src", image_url);
+        });
+
+        // user edit data show modal admin purpose
+        $(".edit_user").click(function (e) {
+            e.preventDefault();
+            let edit_id = $(this).attr("edit_id");
+
+            $.ajax({
+                url: "/users/admin-edit-data/" + edit_id,
+                type: "GET",
+                success: function (data) {
+                    $(".f_name").val(data.name);
+                    $(".f_email").val(data.email);
+                    $(".user_type").val(data.user_type);
+                    $(".id").val(data.id);
+
+                    $("#edit_users").modal("show");
+                },
+            });
+        });
+
+        // user profile update
+        $("#uase_profile_edit").on("submit", function (e) {
+            e.preventDefault();
+            let name = $(".f_name").val();
+            let email = $(".f_email").val();
+            let cell = $(".f_cell").val();
+            let address = $(".f_address").val();
+            let user_type = $(".user_type").val();
+            // console.log(
+            //     id +
+            //         " " +
+            //         name +
+            //         " " +
+            //         email +
+            //         " " +
+            //         cell +
+            //         " " +
+            //         address +
+            //         " " +
+            //         photo +
+            //         " " +
+            //         user_type
+            // );
+
+            $.ajax({
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf_token"]').attr(
+                        "content"
+                    ),
+                },
+                method: "POST",
+                url: "/profile/update",
+                data: new FormData(this),
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    // console.log(response);
+                    // $(".f_name").val("");
+                    // $(".f_email").val("");
+                    // $(".user_type").val("");
+                    // $(".f_address").val("");
+                    // $(".f_cell").val("");
+                    // $(".f_photo_val").val("");
+                    $.notify(
+                        {
+                            message: response.success,
+                        },
+                        {
+                            type: "primary",
+                            allow_dismiss: false,
+                            newest_on_top: false,
+                            mouse_over: false,
+                            showProgressbar: false,
+                            spacing: 10,
+                            timer: 2000,
+                            placement: {
+                                from: "top",
+                                align: "right",
+                            },
+                            offset: {
+                                x: 30,
+                                y: 30,
+                            },
+                            delay: 1000,
+                            z_index: 10000,
+                            animate: {
+                                enter: "animated bounce",
+                                exit: "animated bounce",
+                            },
+                        }
+                    );
+                },
+                error: function (response) {
+                    $.notify(
+                        {
+                            message: response.error,
+                        },
+                        {
+                            type: "danger",
+                            allow_dismiss: false,
+                            newest_on_top: false,
+                            mouse_over: false,
+                            showProgressbar: false,
+                            spacing: 10,
+                            timer: 2000,
+                            placement: {
+                                from: "top",
+                                align: "right",
+                            },
+                            offset: {
+                                x: 30,
+                                y: 30,
+                            },
+                            delay: 1000,
+                            z_index: 10000,
+                            animate: {
+                                enter: "animated bounce",
+                                exit: "animated bounce",
+                            },
+                        }
+                    );
+                },
+            });
+        });
     });
 })(jQuery);
 

@@ -19,7 +19,7 @@
         <li><a class="bar-icons" href="javascript:void(0)"><i class="fas fa-user"></i><span>User Profile</span></a>
           <ul class="iconbar-mainmenu custom-scrollbar">
             <li class="iconbar-header">Profile</li>
-            <li><a href="index.html">View Profile</a></li>
+            <li><a href="{{ route('profile.view') }}">View Profile</a></li>
             <li><a href="index.html">Change Password</a></li>
           </ul>
         </li>

@@ -48,7 +48,12 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/admin-trash-update', 'App\Http\Controllers\Backend\UserController@updateUserTrash');
     });
 
-    // Route::post('/admin-add', 'App\Http\Controllers\Backend\UserController@add');
+    // User profile
+    Route::prefix('profile')->group(function () {
+        Route::get('/view', 'App\Http\Controllers\Backend\UserController@viewProfile')->name('profile.view');
+        Route::get('/edit/{id}', 'App\Http\Controllers\Backend\UserController@editProfile')->name('profile.edit');
+        Route::post('/update', 'App\Http\Controllers\Backend\UserController@updateProfile')->name('profile.update');
+    });
 
 });
 

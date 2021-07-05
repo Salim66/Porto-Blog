@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -185,5 +186,75 @@ class UserController extends Controller
             'msg' => 'Something is wrong! plase try again! '
         ]);
        }
+    }
+
+
+    /**
+     * User Profile veiw
+     */
+    public function viewProfile(){
+        $data = User::find(Auth::id());
+        return view('Backend.users.profile', [
+            'data' => $data
+        ]);
+    }
+
+    /**
+     * User Profile edit
+     */
+    public function editProfile($id){
+       $data = User::find($id);
+       return response()->json($data);
+    }
+
+    /**
+     * User profile update
+     */
+    public function updateProfile(Request $request){
+        //get all data
+        $id        = $request->id;
+        $name      = $request->name;
+        $email     = $request->email;
+        $cell      = $request->cell;
+        $address   = $request->address;
+        $user_type = $request->user_type;
+        $photo   = $request->photo;
+
+        // check user has or not
+        $data = User::find($id);
+
+        //photo upload
+        $unique_image_file = '';
+        if($request->hasFile('photo')){
+            $image = $request->file('photo');
+            $unique_image_file = md5(time().rand()).'.'.$image->getClientOriginalExtension();
+            $image->move(public_path('uploads/users/'), $unique_image_file);
+            if(file_exists('uploads/users/'.$data->photo) && !empty($data->photo)){
+                unlink('uploads/users/'.$data->photo);
+            }
+        }else {
+           $unique_image_file = $data->photo;
+        }
+
+
+
+        if($data != NULL){
+            $data->user_type = $user_type;
+            $data->name = $name;
+            $data->slug = str_replace(' ', '-', $name);
+            $data->email = $email;
+            $data->cell = $cell;
+            $data->address = $address;
+            $data->photo = $unique_image_file;
+            $data->update();
+
+            return response()->json([
+                'success' => 'User profile updated successfully ): '
+            ]);
+        }else {
+            return response()->json([
+                'error' => 'User not found!'
+            ]);
+        }
     }
 }

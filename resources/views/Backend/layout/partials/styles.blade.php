@@ -19,6 +19,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/')}}/css/prism.css">
 <link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/')}}/css/pe7-icon.css">
 <link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/')}}/css/datatables.css">
+<link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/')}}/css/dropzone.css">
 <!-- Plugins css Ends-->
 <!-- Bootstrap css-->
 <link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/')}}/css/bootstrap.css">
@@ -27,3 +28,4 @@
 <link id="color" rel="stylesheet" href="{{ asset('backend/assets/')}}/css/color-1.css" media="screen">
 <!-- Responsive css-->
 <link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/')}}/css/responsive.css">
+
