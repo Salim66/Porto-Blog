@@ -322,7 +322,7 @@
             }
         });
 
-        // User Trash 1 update
+        // User Trash page update
         $(".user_trash_update_1").change(function () {
             // e.preventDefault();
             let id = $(this).attr("data_id");
@@ -1159,19 +1159,6 @@
             }
         });
 
-        // category trash list show
-        $(document).on("click", ".user_trash_list", function (e) {
-            // e.preventDefault();
-
-            $.ajax({
-                url: "/users/trash-list",
-                type: "GET",
-                success: function (data) {
-                    console.log(data);
-                },
-            });
-        });
-
         // category Trash update
         $(".category_trash_update").change(function () {
             // e.preventDefault();
@@ -1186,7 +1173,7 @@
                         ),
                     },
                     type: "POST",
-                    url: "/users/admin-trash-update",
+                    url: "/categories/trash-update",
                     data: { id: id, trash: 0 }, // reverse is stattus becasse false is checked
                     success: function (data) {
                         console.log(data);
@@ -1258,7 +1245,7 @@
                         ),
                     },
                     type: "POST",
-                    url: "/users/admin-trash-update",
+                    url: "/categories/trash-update",
                     data: { id: id, trash: 1 }, // reverse is stattus becasse false is checked
                     success: function (data) {
                         console.log(data);
@@ -1325,7 +1312,7 @@
             }
         });
 
-        // category Trash 1 update
+        // category Trash page update
         $(".category_trash_update_1").change(function () {
             // e.preventDefault();
             let id = $(this).attr("data_id");
@@ -1339,7 +1326,7 @@
                         ),
                     },
                     type: "POST",
-                    url: "/users/admin-trash-update",
+                    url: "/categories/trash-update",
                     data: { id: id, trash: 1 }, // reverse is trash becasse true is checked
                     success: function (data) {
                         console.log(data);
@@ -1411,7 +1398,7 @@
                         ),
                     },
                     type: "POST",
-                    url: "/users/admin-trash-update",
+                    url: "/categories/trash-update",
                     data: { id: id, trash: 0 }, // reverse is trash becasse true is checked
                     success: function (data) {
                         console.log(data);

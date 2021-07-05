@@ -8,16 +8,15 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5>Users Trash List</h5>
+                        <h5>Category Trash List</h5>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="display" id="advance-1">
                                 <thead>
                                     <tr>
-                                        <th>Photo</th>
-                                        <th>User Name</th>
-                                        <th>Type</th>
+                                        <th>Parent Id</th>
+                                        <th>Category Name</th>
                                         <th>Status</th>
                                         <th>Trash</th>
                                         <th>Action</th>
@@ -27,16 +26,13 @@
 
                                     @foreach($all_data as $data)
                                     <tr>
-                                        <td>
-                                            <img style="width: 50px; height: 50px; border-radius: 50%; border: 1px solid #9900ff" src="{{ URL::to('') }}/uploads/users/{{ $data->photo }}" alt="User Image" onerror="this.src='{{ asset("/uploads/users/avatar3.png") }}'">
-                                        </td>
+                                        <td>{{ $data->parent_id }}</td>
                                         <td>{{ $data->name }}</td>
-                                        <td>{{ $data->user_type }}</td>
                                         <td>
 
                                             <div class="media-body text-center switch-sm">
                                                 <label class="switch">
-                                                <input type="checkbox" class="user_status_update" data_id="{{ $data->id }}" @if($data->status == true) checked="" @endif><span class="switch-state"></span>
+                                                <input type="checkbox" class="category_status_update" data_id="{{ $data->id }}" @if($data->status == true) checked="" @endif><span class="switch-state"></span>
                                                 </label>
                                             </div>
 
@@ -44,12 +40,12 @@
                                         <td>
                                             <div class="media-body text-center switch-sm">
                                                 <label class="switch">
-                                                <input type="checkbox" class="user_trash_update_1" data_id="{{ $data->id }}" @if($data->trash == true) checked="" @endif><span class="switch-state"></span>
+                                                <input type="checkbox" class="category_trash_update_1" data_id="{{ $data->id }}" @if($data->trash == true) checked="" @endif><span class="switch-state"></span>
                                                 </label>
                                             </div>
                                         </td>
                                         <td>
-                                            <a title="Edit User" edit_id="{{ $data->id }}" class="btn btn-info-gradien btn-pill edit_user"><i class="fas fa-user-edit text-white"></i></a>
+                                            <a title="Edit Category" edit_id="{{ $data->id }}" class="btn btn-info-gradien btn-pill edit_category"><i class="fas fa-user-edit text-white"></i></a>
 
                                         </td>
                                     </tr>

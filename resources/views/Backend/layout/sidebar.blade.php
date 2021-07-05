@@ -1,6 +1,7 @@
 @php
 
     $total_user_trash = App\Models\User::where('trash', true)->get()->count();
+    $total_category_trash = App\Models\Category::where('trash', true)->get()->count();
 
 @endphp
 <!-- Page Sidebar Start-->
@@ -35,7 +36,7 @@
             <li class="iconbar-header">Categories</li>
             <li><a href="{{ route('categories.view') }}">Category List</a></li>
             <li><a href="{{ route('categories.add') }}">Add Category</a></li>
-            <li><a class="user_trash_list" href="{{ route('categories.trash') }}">Trash List <span class="text-danger">({{ $total_category_trash }})</span></a></li>
+            <li><a class="category_trash_list" href="{{ route('categories.trash') }}">Trash List <span class="text-danger">({{ $total_category_trash }})</span></a></li>
           </ul>
         </li>
       </ul>

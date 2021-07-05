@@ -96,4 +96,35 @@ class CategoryController extends Controller
          ]);
         }
      }
+
+
+    /**
+     * Category trash list
+     */
+    public function trashList(){
+        $all_data = Category::where('trash', 1)->latest()->get();
+        return view('backend.category.trash-list', [
+            'all_data' => $all_data
+        ]);
+    }
+
+
+      /**
+     * User trash update
+     */
+    public function trashUpdate(Request $request){
+        $data = Category::where('id', $request->id)->update([
+            'trash' => $request->trash,
+        ]);
+
+        if($data == true){
+            return response()->json([
+                'msg' => 'Category trash updated successfully ): '
+            ]);
+        }else {
+         return response()->json([
+             'msg' => 'Something is wrong! plase try again! '
+         ]);
+        }
+     }
 }

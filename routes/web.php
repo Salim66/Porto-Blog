@@ -64,7 +64,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/edit/{id}', 'App\Http\Controllers\Backend\CategoryController@edit')->name('categories.edit');
         Route::post('/update', 'App\Http\Controllers\Backend\CategoryController@update')->name('categories.update');
         Route::post('/status-update', 'App\Http\Controllers\Backend\CategoryController@statusUpdate')->name('categorires.status.update');
-        Route::get('/trash', 'App\Http\Controllers\Backend\CategoryController@statusUpdate')->name('categories.trash');
+        Route::get('/trash', 'App\Http\Controllers\Backend\CategoryController@trashList')->name('categories.trash');
+        Route::post('/trash-update', 'App\Http\Controllers\Backend\CategoryController@trashUpdate')->name('categories.trash.update');
     });
 
 });
