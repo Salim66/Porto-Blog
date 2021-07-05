@@ -13,6 +13,7 @@
             <li><a href="index.html">Default</a></li>
           </ul>
         </li>
+        @if(Auth::user()->user_type == 'Admin')
         <li><a class="bar-icons" href="javascript:void(0)"><i class="fas fa-users"></i><span>Users Manage</span></a>
           <ul class="iconbar-mainmenu custom-scrollbar">
             <li class="iconbar-header">Users</li>
@@ -21,6 +22,7 @@
             <li><a class="user_trash_list" href="{{ route('users.trash') }}">Trash List <span class="text-danger">({{ $total_user_trash }})</span></a></li>
           </ul>
         </li>
+        @endif
         <li><a class="bar-icons" href="javascript:void(0)"><i class="fas fa-user"></i><span>User Profile</span></a>
           <ul class="iconbar-mainmenu custom-scrollbar">
             <li class="iconbar-header">Profile</li>
