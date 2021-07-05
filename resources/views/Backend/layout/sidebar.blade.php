@@ -13,6 +13,7 @@
             <li class="iconbar-header">Users</li>
             <li><a href="{{ route('index') }}">User List</a></li>
             <li><a href="{{ route('create') }}">User Add</a></li>
+            <li><a class="user_trash_list" href="{{ route('users.trash') }}">Trash List</a></li>
           </ul>
         </li>
         <li><a class="bar-icons" href="javascript:void(0)"><i class="fas fa-user"></i><span>User Profile</span></a>

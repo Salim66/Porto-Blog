@@ -41,6 +41,11 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('users')->group(function () {
         Route::resource('/', 'App\Http\Controllers\Backend\UserController');
         Route::post('/admin-add', 'App\Http\Controllers\Backend\UserController@add');
+        Route::get('/admin-edit-data/{id}', 'App\Http\Controllers\Backend\UserController@editUser');
+        Route::post('/admin-edit-store', 'App\Http\Controllers\Backend\UserController@updateUser');
+        Route::post('/admin-status-update', 'App\Http\Controllers\Backend\UserController@updateUserStatus');
+        Route::get('/trash-list', 'App\Http\Controllers\Backend\UserController@listUserTrash')->name('users.trash');
+        Route::post('/admin-trash-update', 'App\Http\Controllers\Backend\UserController@updateUserTrash');
     });
 
     // Route::post('/admin-add', 'App\Http\Controllers\Backend\UserController@add');
