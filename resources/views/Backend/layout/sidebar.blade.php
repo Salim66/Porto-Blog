@@ -21,7 +21,7 @@
             <li class="iconbar-header">Users</li>
             <li><a href="{{ route('index') }}">User List</a></li>
             <li><a href="{{ route('create') }}">User Add</a></li>
-            <li><a class="user_trash_list" href="{{ route('users.trash') }}">Trash List <span class="text-danger">({{ $total_user_trash }})</span></a></li>
+            <li><a href="{{ route('users.trash') }}">Trash List <span class="text-danger">({{ $total_user_trash }})</span></a></li>
           </ul>
         </li>
         @endif
@@ -37,7 +37,7 @@
             <li class="iconbar-header">Categories</li>
             <li><a href="{{ route('categories.view') }}">Category List</a></li>
             <li><a href="{{ route('categories.add') }}">Add Category</a></li>
-            <li><a class="category_trash_list" href="{{ route('categories.trash') }}">Trash List <span class="text-danger">({{ $total_category_trash }})</span></a></li>
+            <li><a href="{{ route('categories.trash') }}">Trash List <span class="text-danger">({{ $total_category_trash }})</span></a></li>
           </ul>
         </li>
         <li><a class="bar-icons" href="javascript:void(0)"><i class="fas fa-tags"></i><span>Tags</span></a>
@@ -45,7 +45,7 @@
             <li class="iconbar-header">Tags</li>
             <li><a href="{{ route('tags.view') }}">Tag List</a></li>
             <li><a href="{{ route('tags.add') }}">Add Tag</a></li>
-            <li><a class="tags_trash_list" href="{{ route('tags.trash') }}">Trash List <span class="text-danger">({{ $total_tag_trash }})</span></a></li>
+            <li><a href="{{ route('tags.trash') }}">Trash List <span class="text-danger">({{ $total_tag_trash }})</span></a></li>
           </ul>
         </li>
       </ul>

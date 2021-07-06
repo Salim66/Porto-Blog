@@ -74,16 +74,16 @@ class TagController extends Controller
     }
 
     /**
-     * Category status update
+     * Tag status update
      */
     public function statusUpdate(Request $request){
-        $data = Category::where('id', $request->id)->update([
+        $data = Tag::where('id', $request->id)->update([
             'status' => $request->status,
         ]);
 
         if($data == true){
             return response()->json([
-                'success' => 'Category Status updated successfully ): '
+                'success' => 'Tag Status updated successfully ): '
             ]);
         }else {
          return response()->json([
@@ -94,27 +94,27 @@ class TagController extends Controller
 
 
     /**
-     * Category trash list
+     * Tag trash list
      */
     public function trashList(){
-        $all_data = Category::where('trash', 1)->latest()->get();
-        return view('backend.category.trash-list', [
+        $all_data = Tag::where('trash', 1)->latest()->get();
+        return view('backend.tag.trash-list', [
             'all_data' => $all_data
         ]);
     }
 
 
     /**
-     * Category trash update
+     * Tag trash update
      */
     public function trashUpdate(Request $request){
-        $data = Category::where('id', $request->id)->update([
+        $data = Tag::where('id', $request->id)->update([
             'trash' => $request->trash,
         ]);
 
         if($data == true){
             return response()->json([
-                'msg' => 'Category trash updated successfully ): '
+                'msg' => 'Tag trash updated successfully ): '
             ]);
         }else {
          return response()->json([

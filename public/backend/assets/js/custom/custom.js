@@ -1738,8 +1738,8 @@
             }
         });
 
-        // category Status update
-        $(".category_status_update").change(function () {
+        // tag Status update
+        $(".tag_status_update").change(function () {
             // e.preventDefault();
             let id = $(this).attr("data_id");
 
@@ -1752,7 +1752,7 @@
                         ),
                     },
                     type: "POST",
-                    url: "/categories/status-update",
+                    url: "/tags/status-update",
                     data: { id: id, status: 1 },
                     success: function (data) {
                         console.log(data);
@@ -1824,7 +1824,7 @@
                         ),
                     },
                     type: "POST",
-                    url: "/categories/status-update",
+                    url: "/tags/status-update",
                     data: { id: id, status: 0 },
                     success: function (data) {
                         console.log(data);
@@ -1891,8 +1891,8 @@
             }
         });
 
-        // category Trash update
-        $(".category_trash_update").change(function () {
+        // tag Trash update
+        $(".tag_trash_update").change(function () {
             // e.preventDefault();
             let id = $(this).attr("data_id");
 
@@ -1905,7 +1905,7 @@
                         ),
                     },
                     type: "POST",
-                    url: "/categories/trash-update",
+                    url: "/tags/trash-update",
                     data: { id: id, trash: 0 }, // reverse is stattus becasse false is checked
                     success: function (data) {
                         console.log(data);
@@ -1977,7 +1977,7 @@
                         ),
                     },
                     type: "POST",
-                    url: "/categories/trash-update",
+                    url: "/tags/trash-update",
                     data: { id: id, trash: 1 }, // reverse is stattus becasse false is checked
                     success: function (data) {
                         console.log(data);
@@ -2044,8 +2044,8 @@
             }
         });
 
-        // category Trash page update
-        $(".category_trash_update_1").change(function () {
+        // tag Trash page update
+        $(".tag_trash_update_1").change(function () {
             // e.preventDefault();
             let id = $(this).attr("data_id");
 
@@ -2058,7 +2058,7 @@
                         ),
                     },
                     type: "POST",
-                    url: "/categories/trash-update",
+                    url: "/tags/trash-update",
                     data: { id: id, trash: 1 }, // reverse is trash becasse true is checked
                     success: function (data) {
                         console.log(data);
@@ -2130,7 +2130,7 @@
                         ),
                     },
                     type: "POST",
-                    url: "/categories/trash-update",
+                    url: "/tags/trash-update",
                     data: { id: id, trash: 0 }, // reverse is trash becasse true is checked
                     success: function (data) {
                         console.log(data);

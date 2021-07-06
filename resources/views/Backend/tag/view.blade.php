@@ -30,7 +30,7 @@
 
                                             <div class="media-body text-center switch-sm">
                                                 <label class="switch">
-                                                <input type="checkbox" class="category_status_update" data_id="{{ $data->id }}" @if($data->status == true) checked="" @endif><span class="switch-state"></span>
+                                                <input type="checkbox" class="tag_status_update" data_id="{{ $data->id }}" @if($data->status == true) checked="" @endif><span class="switch-state"></span>
                                                 </label>
                                             </div>
 
@@ -38,7 +38,7 @@
                                         <td>
                                             <div class="media-body text-center switch-sm">
                                                 <label class="switch">
-                                                <input type="checkbox" class="category_trash_update" data_id="{{ $data->id }}" @if($data->trash == false) checked="" @endif><span class="switch-state"></span>
+                                                <input type="checkbox" class="tag_trash_update" data_id="{{ $data->id }}" @if($data->trash == false) checked="" @endif><span class="switch-state"></span>
                                                 </label>
                                             </div>
                                         </td>
