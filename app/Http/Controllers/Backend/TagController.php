@@ -124,15 +124,15 @@ class TagController extends Controller
      }
 
      /**
-      * Category destroy
+      * Tag destroy
       */
       public function destroy($id){
-          $data = Category::find($id);
+          $data = Tag::find($id);
 
             if($data != null){
                 $data->delete();
 
-                return redirect()->back()->with('success', 'Category delete successfully ):');
+                return redirect()->back()->with('success', 'Tag delete successfully ):');
             }else {
                 return redirect()->back()->with('error', 'Something is wrong! plase try again!');
 

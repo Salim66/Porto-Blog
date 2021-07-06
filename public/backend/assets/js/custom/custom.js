@@ -3,6 +3,35 @@
         //datatable
         $("table#datatable").DataTable();
 
+        //============== Delete Script ==============
+        // delete by switch alert
+        $("#delete").on("click", function (e) {
+            e.preventDefault();
+            let form = $(this).closest("form");
+            // let id = $(this).attr("delete_id");
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to delete this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                    Swal.fire(
+                        "Deleted!",
+                        "Your file has been deleted.",
+                        "success"
+                    );
+                }
+            });
+        });
+
+        //============= User ==============
+
         // User Status update
         $(".user_status_update").change(function () {
             // e.preventDefault();
@@ -758,6 +787,7 @@
         });
 
         //================ Category =================
+
         // Category store
         $("#category_Add").on("submit", function (e) {
             e.preventDefault();
@@ -1466,33 +1496,8 @@
             }
         });
 
-        // category delete by switch alert
-        $("#delete").on("click", function (e) {
-            e.preventDefault();
-            let form = $(this).closest("form");
-            // let id = $(this).attr("delete_id");
-
-            Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to delete this!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!",
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    form.submit();
-                    Swal.fire(
-                        "Deleted!",
-                        "Your file has been deleted.",
-                        "success"
-                    );
-                }
-            });
-        });
-
         //================ Tag =================
+
         // Tag store
         $("#tag_add").on("submit", function (e) {
             e.preventDefault();
@@ -2195,32 +2200,6 @@
                     },
                 });
             }
-        });
-
-        // category delete by switch alert
-        $("#delete").on("click", function (e) {
-            e.preventDefault();
-            let form = $(this).closest("form");
-            // let id = $(this).attr("delete_id");
-
-            Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to delete this!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!",
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    form.submit();
-                    Swal.fire(
-                        "Deleted!",
-                        "Your file has been deleted.",
-                        "success"
-                    );
-                }
-            });
         });
     });
 })(jQuery);

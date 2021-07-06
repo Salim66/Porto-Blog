@@ -43,7 +43,7 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <form style="display: inline;" action="{{ route('categories.destroy', $data->id) }}" method="POST">
+                                            <form style="display: inline;" action="{{ route('tags.destroy', $data->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button delete_id="{{ $data->id }}" type="submit" id="delete" class="btn btn-danger-gradien btn-pill"><i class="fas fa-trash text-white"></i></button>
