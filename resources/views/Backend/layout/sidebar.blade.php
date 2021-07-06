@@ -3,6 +3,7 @@
     $total_user_trash = App\Models\User::where('trash', true)->get()->count();
     $total_category_trash = App\Models\Category::where('trash', true)->get()->count();
     $total_tag_trash = App\Models\Tag::where('trash', true)->get()->count();
+    $total_post_trash = App\Models\Post::where('trash', true)->get()->count();
 
 @endphp
 <!-- Page Sidebar Start-->
@@ -46,6 +47,14 @@
             <li><a href="{{ route('tags.view') }}">Tag List</a></li>
             <li><a href="{{ route('tags.add') }}">Add Tag</a></li>
             <li><a href="{{ route('tags.trash') }}">Trash List <span class="text-danger">({{ $total_tag_trash }})</span></a></li>
+          </ul>
+        </li>
+        <li><a class="bar-icons" href="javascript:void(0)"><i class="fas fa-tags"></i><span>Posts</span></a>
+          <ul class="iconbar-mainmenu custom-scrollbar">
+            <li class="iconbar-header">Posts</li>
+            <li><a href="{{ route('posts.view') }}">Post List</a></li>
+            <li><a href="{{ route('posts.add') }}">Add Post</a></li>
+            <li><a href="{{ route('posts.trash') }}">Trash List <span class="text-danger">({{ $total_post_trash }})</span></a></li>
           </ul>
         </li>
       </ul>

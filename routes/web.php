@@ -82,6 +82,18 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/delete/{id}', 'App\Http\Controllers\Backend\TagController@destroy')->name('tags.destroy');
     });
 
+    Route::prefix('posts')->group(function () {
+        Route::get('/view', 'App\Http\Controllers\Backend\PostController@view')->name('posts.view');
+        Route::get('/add', 'App\Http\Controllers\Backend\PostController@add')->name('posts.add');
+        Route::post('/store', 'App\Http\Controllers\Backend\PostController@store')->name('posts.store');
+        Route::get('/edit/{id}', 'App\Http\Controllers\Backend\PostController@edit')->name('posts.edit');
+        Route::post('/update', 'App\Http\Controllers\Backend\PostController@update')->name('posts.update');
+        Route::post('/status-update', 'App\Http\Controllers\Backend\PostController@statusUpdate')->name('posts.status.update');
+        Route::get('/trash', 'App\Http\Controllers\Backend\PostController@trashList')->name('posts.trash');
+        Route::post('/trash-update', 'App\Http\Controllers\Backend\PostController@trashUpdate')->name('posts.trash.update');
+        Route::delete('/delete/{id}', 'App\Http\Controllers\Backend\PostController@destroy')->name('posts.destroy');
+    });
+
 
 
 });
