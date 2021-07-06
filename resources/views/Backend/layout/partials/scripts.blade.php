@@ -47,6 +47,9 @@
 <script src="{{ asset('backend/assets/')}}/js/dropzone/dropzone-script.js"></script>
 <script src="{{ asset('backend/assets/')}}/js/sweet-alert/sweetalert.min.js"></script>
 <script src="{{ asset('backend/assets/')}}/js/sweet-alert/app.js"></script>
+<script src="{{ asset('backend/assets/')}}/js/select2/select2.full.min.js"></script>
+<script src="{{ asset('backend/assets/')}}/js/select2/select2-custom.js"></script>
+<script src="//cdn.ckeditor.com/4.16.1/full/ckeditor.js"></script>
 <!-- Plugins JS Ends-->
 <!-- Theme js-->
 <script src="{{ asset('backend/assets/')}}/js/script.js"></script>

@@ -1,0 +1,7 @@
+/* custom css */
+.post_image,
+.post_image_g,
+.post_image_v,
+.post_image_a {
+    display: none;
+}

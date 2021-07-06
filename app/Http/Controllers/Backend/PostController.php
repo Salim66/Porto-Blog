@@ -3,13 +3,16 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
     /**
-     * Category list view
+     * Post list view
      */
     public function view(){
         $all_data = Post::where('trash', false)->latest()->get();
@@ -19,28 +22,85 @@ class PostController extends Controller
     }
 
     /**
-     * Category add page
+     * Post add page
      */
     public function add(){
-        $all_data = Category::where('parent_id', 0)->latest()->get();
-        return view('Backend.category.add', [
-            'all_data' => $all_data
+        $all_category = Category::where('trash', 0)->where('status', 1)->latest()->get();
+        $all_tag = Tag::where('trash', 0)->where('status', 1)->latest()->get();
+        return view('Backend.post.add', [
+            'all_category' => $all_category,
+            'all_tag'      => $all_tag
         ]);
     }
 
     /**
-     * Category store
+     * Post store
      */
     public function store(Request $request){
-        $data = Category::create([
-            'parent_id' => $request->parent_id,
-            'name'      => $request->name,
-            'slug'      => str_replace(' ', '-', $request->name)
+
+        //post image
+        $image_unique_name = '';
+        if($request->hasFile('post_image')){
+            $image = $request->file('post_image');
+            $image_unique_name = md5(time().rand()) .'.'. $image->getClientOriginalExtension();
+            // get extension
+            $extension = pathinfo($image_unique_name, PATHINFO_EXTENSION);
+            $valid_extesion = array('jpg', 'jpeg', 'png', 'gif');
+            if(in_array($extension, $valid_extesion)){
+                $image->move(public_path('uploads/posts/'), $image_unique_name);
+            }else {
+                return response()->json([
+                    'error' => 'Invalid file format! '
+                ]);
+            }
+        }
+
+        //post gallery image
+        $gallery_image_u_n = [];
+        $gallery_image = $request->hasFile('post_gallery_image');
+        if($gallery_image != NULL){
+            $g_image = $request->file('post_gallery_image');
+            foreach ($g_image as $image){
+                $gallery_image_unique_name = md5(time().rand()) .'.'. $image->getClientOriginalExtension();
+                // get extension
+                $extension = pathinfo($gallery_image_unique_name, PATHINFO_EXTENSION);
+                $valid_extesion = array('jpg', 'jpeg', 'png', 'gif');
+                if(in_array($extension, $valid_extesion)){
+                    array_push($gallery_image_u_n, $gallery_image_unique_name);
+                    $image->move(public_path('uploads/posts/'), $gallery_image_unique_name);
+                }else {
+                    return response()->json([
+                        'error' => 'Invalid file format! '
+                    ]);
+                }
+            }
+        }
+
+        // featured information
+        $post_featured = [
+            'post_type'    => $request->post_type,
+            'post_image'   => $image_unique_name,
+            'post_gallery' => $gallery_image_u_n,
+            'post_audio'   => $request->post_audio,
+            'post_video'   => $this->getVideo($request->post_video),
+        ];
+
+
+
+        $data = Post::create([
+            'user_id'       => Auth::id(),
+            'title'         => $request->title,
+            'slug'          => $this->getSlug($request->title),
+            'content'       => $request->content,
+            'featured'      => json_encode($post_featured),
         ]);
+
+        $data->categories()->attach($request->category_id);
+        $data->tags()->attach($request->tag_id);
 
         if($data == true){
             return response()->json([
-                'success' => 'Category added successfully ): '
+                'success' => 'Post added successfully ): '
             ]);
         }else {
             return response()->json([

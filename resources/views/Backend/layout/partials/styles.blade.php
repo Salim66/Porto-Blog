@@ -21,6 +21,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/')}}/css/datatables.css">
 <link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/')}}/css/dropzone.css">
 <link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/')}}/css/sweetalert2.css">
+<link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/')}}/css/select2.css">
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- Plugins css Ends-->
 <!-- Bootstrap css-->
@@ -28,6 +29,7 @@
 <!-- App css-->
 <link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/')}}/css/style.css">
 <link id="color" rel="stylesheet" href="{{ asset('backend/assets/')}}/css/color-1.css" media="screen">
+<link id="color" rel="stylesheet" href="{{ asset('backend/assets/')}}/css/custom.css" media="screen">
 <!-- Responsive css-->
 <link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/')}}/css/responsive.css">
 

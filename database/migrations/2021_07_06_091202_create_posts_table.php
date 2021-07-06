@@ -18,11 +18,11 @@ class CreatePostsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('title');
             $table->string('slug');
-            $table->string('featured_image');
-            $table->longText('content');
-            $table->boolean('status');
-            $table->boolean('trash');
-            $table->unsignedBigInteger('views');
+            $table->longText('featured')->nullable();
+            $table->longText('content')->nullable();
+            $table->boolean('status')->default(true);
+            $table->boolean('trash')->default(false);
+            $table->unsignedBigInteger('views')->nullable();
             $table->timestamps();
         });
     }
