@@ -3,16 +3,17 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-        /**
+    /**
      * Category list view
      */
     public function view(){
-        $all_data = Category::where('trash', false)->latest()->get();
-        return view('Backend.category.view', [
+        $all_data = Post::where('trash', false)->latest()->get();
+        return view('Backend.post.view', [
             'all_data' => $all_data
         ]);
     }

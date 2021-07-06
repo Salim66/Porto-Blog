@@ -49,7 +49,7 @@
             <li><a href="{{ route('tags.trash') }}">Trash List <span class="text-danger">({{ $total_tag_trash }})</span></a></li>
           </ul>
         </li>
-        <li><a class="bar-icons" href="javascript:void(0)"><i class="fas fa-tags"></i><span>Posts</span></a>
+        <li><a class="bar-icons" href="javascript:void(0)"><i class="fas fa-blog"></i><span>Posts</span></a>
           <ul class="iconbar-mainmenu custom-scrollbar">
             <li class="iconbar-header">Posts</li>
             <li><a href="{{ route('posts.view') }}">Post List</a></li>
