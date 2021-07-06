@@ -2380,20 +2380,19 @@
             }
         });
 
-        // Edit tag model show with data
-        $(".edit_tag").click(function (e) {
+        // Edit post model show with data
+        $(".edit_post").click(function (e) {
             e.preventDefault();
             let edit_id = $(this).attr("edit_id");
 
             $.ajax({
-                url: "/tags/edit/" + edit_id,
+                url: "/posts/edit/" + edit_id,
                 type: "GET",
                 success: function (data) {
-                    // console.log(data);
-                    $(".t_name").val(data.name);
-                    $(".edit_id").val(data.id);
-
-                    $("#edit_tag").modal("show");
+                    console.log(data);
+                    $(".p_title").val(data.title);
+                    $(".p_content").html(data.id);
+                    $("#edit_post").modal("show");
                 },
             });
         });

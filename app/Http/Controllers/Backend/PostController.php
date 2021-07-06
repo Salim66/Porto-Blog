@@ -16,8 +16,12 @@ class PostController extends Controller
      */
     public function view(){
         $all_data = Post::where('trash', false)->latest()->get();
+        $all_category = Category::where('trash', 0)->where('status', 1)->latest()->get();
+        $all_tag = Tag::where('trash', 0)->where('status', 1)->latest()->get();
         return view('Backend.post.view', [
-            'all_data' => $all_data
+            'all_data' => $all_data,
+            'all_category' => $all_category,
+            'all_tag'      => $all_tag
         ]);
     }
 
@@ -110,10 +114,10 @@ class PostController extends Controller
     }
 
     /**
-     * Category edit page
+     * Post edit page
      */
     public function edit($id){
-        $data = Category::find($id);
+        $data = Post::find($id);
         return response()->json($data);
     }
 

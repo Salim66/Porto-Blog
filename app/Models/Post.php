@@ -20,4 +20,9 @@ class Post extends Model
     public function tags(){
         return $this->belongsToMany('App\Models\Tag')->withTimestamps();
     }
+
+    // get user values for relationship one to many relationship
+    public function user(){
+        return $this->belongsTo('App\Models\User');
+    }
 }

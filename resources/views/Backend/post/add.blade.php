@@ -11,7 +11,8 @@
                 <h5>Post Add</h5>
             </div>
             <div class="card-body">
-                <form class="needs-validation" id="post_add" novalidate="" enctype="multipart/form-data">
+                <form  class="needs-validation" id="post_add" novalidate="" enctype="multipart/form-data">
+                    @csrf
                     <div class="form-row">
 
                     <div class="col-md-12 mb-3">
@@ -28,7 +29,6 @@
                     <div class="col-md-6 mb-3">
                         <label for="validationCustom01">Category</label>
                         <select name="category_id[]" class="form-control category_id js-example-placeholder-multiple p_cat" id="validationCustom01" multiple="multiple">
-                            <option value="0">Select Category</option>
                             @foreach($all_category as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
@@ -37,7 +37,6 @@
                     <div class="col-md-6 mb-3">
                         <label for="validationCustom01">Tag</label>
                         <select name="tag_id[]" class="form-control tag_id js-example-placeholder-multiple p_tag" id="validationCustom01" multiple="multiple">
-                            <option value="0">Select Tag</option>
                             @foreach($all_tag as $tag)
                             <option value="{{ $tag->id }}">{{ $tag->name }}</option>
                             @endforeach
@@ -60,13 +59,11 @@
                         <input type="file" name="post_image" class="form-control d-none" id="post_image">
                     </div>
                     <div class="form-group col-md-12 post_image_g">
-                        {{-- <div class="post_gallery_image"></div>
+                        <div class="post_gallery_image"></div>
                         <br>
                         <br>
                         <label for="post_image_g"><img style="width: 100px; cursor: pointer;" src="{{ URL::to('/') }}/backend/assets/images/image-file.png" alt=""></label>
-                        <input type="file" name="post_gallery_image[]" class="form-control d-none" id="post_image_g" multiple> --}}
-
-
+                        <input type="file" name="post_gallery_image[]" class="form-control d-none" id="post_image_g" multiple>
                     </div>
                     <div class="form-group col-md-12 post_image_a">
                         <label for="">Post Audio Link</label>
@@ -97,5 +94,4 @@
   <!-- Container-fluid Ends-->
   <br>
   <br>
-
 @endsection
