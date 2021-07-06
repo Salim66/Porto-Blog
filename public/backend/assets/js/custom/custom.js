@@ -757,6 +757,7 @@
             }
         });
 
+        //================ Category =================
         // Category store
         $("#category_Add").on("submit", function (e) {
             e.preventDefault();
@@ -942,6 +943,737 @@
                         // console.log(response);
                         $(".c_name").val("");
                         $(".parent_id").val("");
+
+                        $.notify(
+                            {
+                                message: response.success,
+                            },
+                            {
+                                type: "primary",
+                                allow_dismiss: false,
+                                newest_on_top: false,
+                                mouse_over: false,
+                                showProgressbar: false,
+                                spacing: 10,
+                                timer: 2000,
+                                placement: {
+                                    from: "top",
+                                    align: "right",
+                                },
+                                offset: {
+                                    x: 30,
+                                    y: 30,
+                                },
+                                delay: 1000,
+                                z_index: 10000,
+                                animate: {
+                                    enter: "animated bounce",
+                                    exit: "animated bounce",
+                                },
+                            }
+                        );
+                    },
+                    error: function (response) {
+                        $.notify(
+                            {
+                                message: response.error,
+                            },
+                            {
+                                type: "danger",
+                                allow_dismiss: false,
+                                newest_on_top: false,
+                                mouse_over: false,
+                                showProgressbar: false,
+                                spacing: 10,
+                                timer: 2000,
+                                placement: {
+                                    from: "top",
+                                    align: "right",
+                                },
+                                offset: {
+                                    x: 30,
+                                    y: 30,
+                                },
+                                delay: 1000,
+                                z_index: 10000,
+                                animate: {
+                                    enter: "animated bounce",
+                                    exit: "animated bounce",
+                                },
+                            }
+                        );
+                    },
+                });
+            }
+        });
+
+        // category Status update
+        $(".category_status_update").change(function () {
+            // e.preventDefault();
+            let id = $(this).attr("data_id");
+
+            //Input checkbox checked or uncheck under jquery prop() function
+            if ($(this).prop("checked") == true) {
+                $.ajax({
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf_token"]').attr(
+                            "content"
+                        ),
+                    },
+                    type: "POST",
+                    url: "/categories/status-update",
+                    data: { id: id, status: 1 },
+                    success: function (data) {
+                        console.log(data);
+                        $.notify(
+                            {
+                                message: data.success,
+                            },
+                            {
+                                type: "primary",
+                                allow_dismiss: false,
+                                newest_on_top: false,
+                                mouse_over: false,
+                                showProgressbar: false,
+                                spacing: 10,
+                                timer: 2000,
+                                placement: {
+                                    from: "top",
+                                    align: "right",
+                                },
+                                offset: {
+                                    x: 30,
+                                    y: 30,
+                                },
+                                delay: 1000,
+                                z_index: 10000,
+                                animate: {
+                                    enter: "animated bounce",
+                                    exit: "animated bounce",
+                                },
+                            }
+                        );
+                    },
+                    error: function (data) {
+                        $.notify(
+                            {
+                                message: data.error,
+                            },
+                            {
+                                type: "danger",
+                                allow_dismiss: false,
+                                newest_on_top: false,
+                                mouse_over: false,
+                                showProgressbar: false,
+                                spacing: 10,
+                                timer: 2000,
+                                placement: {
+                                    from: "top",
+                                    align: "right",
+                                },
+                                offset: {
+                                    x: 30,
+                                    y: 30,
+                                },
+                                delay: 1000,
+                                z_index: 10000,
+                                animate: {
+                                    enter: "animated bounce",
+                                    exit: "animated bounce",
+                                },
+                            }
+                        );
+                    },
+                });
+            } else {
+                $.ajax({
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf_token"]').attr(
+                            "content"
+                        ),
+                    },
+                    type: "POST",
+                    url: "/categories/status-update",
+                    data: { id: id, status: 0 },
+                    success: function (data) {
+                        console.log(data);
+                        $.notify(
+                            {
+                                message: data.success,
+                            },
+                            {
+                                type: "primary",
+                                allow_dismiss: false,
+                                newest_on_top: false,
+                                mouse_over: false,
+                                showProgressbar: false,
+                                spacing: 10,
+                                timer: 2000,
+                                placement: {
+                                    from: "top",
+                                    align: "right",
+                                },
+                                offset: {
+                                    x: 30,
+                                    y: 30,
+                                },
+                                delay: 1000,
+                                z_index: 10000,
+                                animate: {
+                                    enter: "animated bounce",
+                                    exit: "animated bounce",
+                                },
+                            }
+                        );
+                    },
+                    error: function (data) {
+                        $.notify(
+                            {
+                                message: data.error,
+                            },
+                            {
+                                type: "danger",
+                                allow_dismiss: false,
+                                newest_on_top: false,
+                                mouse_over: false,
+                                showProgressbar: false,
+                                spacing: 10,
+                                timer: 2000,
+                                placement: {
+                                    from: "top",
+                                    align: "right",
+                                },
+                                offset: {
+                                    x: 30,
+                                    y: 30,
+                                },
+                                delay: 1000,
+                                z_index: 10000,
+                                animate: {
+                                    enter: "animated bounce",
+                                    exit: "animated bounce",
+                                },
+                            }
+                        );
+                    },
+                });
+            }
+        });
+
+        // category Trash update
+        $(".category_trash_update").change(function () {
+            // e.preventDefault();
+            let id = $(this).attr("data_id");
+
+            //Input checkbox checked or uncheck under jquery prop() function
+            if ($(this).prop("checked") == true) {
+                $.ajax({
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf_token"]').attr(
+                            "content"
+                        ),
+                    },
+                    type: "POST",
+                    url: "/categories/trash-update",
+                    data: { id: id, trash: 0 }, // reverse is stattus becasse false is checked
+                    success: function (data) {
+                        console.log(data);
+                        $.notify(
+                            {
+                                message: data.msg,
+                            },
+                            {
+                                type: "primary",
+                                allow_dismiss: false,
+                                newest_on_top: false,
+                                mouse_over: false,
+                                showProgressbar: false,
+                                spacing: 10,
+                                timer: 2000,
+                                placement: {
+                                    from: "top",
+                                    align: "right",
+                                },
+                                offset: {
+                                    x: 30,
+                                    y: 30,
+                                },
+                                delay: 1000,
+                                z_index: 10000,
+                                animate: {
+                                    enter: "animated bounce",
+                                    exit: "animated bounce",
+                                },
+                            }
+                        );
+                    },
+                    error: function (data) {
+                        $.notify(
+                            {
+                                message: data.msg,
+                            },
+                            {
+                                type: "danger",
+                                allow_dismiss: false,
+                                newest_on_top: false,
+                                mouse_over: false,
+                                showProgressbar: false,
+                                spacing: 10,
+                                timer: 2000,
+                                placement: {
+                                    from: "top",
+                                    align: "right",
+                                },
+                                offset: {
+                                    x: 30,
+                                    y: 30,
+                                },
+                                delay: 1000,
+                                z_index: 10000,
+                                animate: {
+                                    enter: "animated bounce",
+                                    exit: "animated bounce",
+                                },
+                            }
+                        );
+                    },
+                });
+            } else {
+                $.ajax({
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf_token"]').attr(
+                            "content"
+                        ),
+                    },
+                    type: "POST",
+                    url: "/categories/trash-update",
+                    data: { id: id, trash: 1 }, // reverse is stattus becasse false is checked
+                    success: function (data) {
+                        console.log(data);
+                        $.notify(
+                            {
+                                message: data.msg,
+                            },
+                            {
+                                type: "primary",
+                                allow_dismiss: false,
+                                newest_on_top: false,
+                                mouse_over: false,
+                                showProgressbar: false,
+                                spacing: 10,
+                                timer: 2000,
+                                placement: {
+                                    from: "top",
+                                    align: "right",
+                                },
+                                offset: {
+                                    x: 30,
+                                    y: 30,
+                                },
+                                delay: 1000,
+                                z_index: 10000,
+                                animate: {
+                                    enter: "animated bounce",
+                                    exit: "animated bounce",
+                                },
+                            }
+                        );
+                    },
+                    error: function (data) {
+                        $.notify(
+                            {
+                                message: data.msg,
+                            },
+                            {
+                                type: "danger",
+                                allow_dismiss: false,
+                                newest_on_top: false,
+                                mouse_over: false,
+                                showProgressbar: false,
+                                spacing: 10,
+                                timer: 2000,
+                                placement: {
+                                    from: "top",
+                                    align: "right",
+                                },
+                                offset: {
+                                    x: 30,
+                                    y: 30,
+                                },
+                                delay: 1000,
+                                z_index: 10000,
+                                animate: {
+                                    enter: "animated bounce",
+                                    exit: "animated bounce",
+                                },
+                            }
+                        );
+                    },
+                });
+            }
+        });
+
+        // category Trash page update
+        $(".category_trash_update_1").change(function () {
+            // e.preventDefault();
+            let id = $(this).attr("data_id");
+
+            //Input checkbox checked or uncheck under jquery prop() function
+            if ($(this).prop("checked") == true) {
+                $.ajax({
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf_token"]').attr(
+                            "content"
+                        ),
+                    },
+                    type: "POST",
+                    url: "/categories/trash-update",
+                    data: { id: id, trash: 1 }, // reverse is trash becasse true is checked
+                    success: function (data) {
+                        console.log(data);
+                        $.notify(
+                            {
+                                message: data.msg,
+                            },
+                            {
+                                type: "primary",
+                                allow_dismiss: false,
+                                newest_on_top: false,
+                                mouse_over: false,
+                                showProgressbar: false,
+                                spacing: 10,
+                                timer: 2000,
+                                placement: {
+                                    from: "top",
+                                    align: "right",
+                                },
+                                offset: {
+                                    x: 30,
+                                    y: 30,
+                                },
+                                delay: 1000,
+                                z_index: 10000,
+                                animate: {
+                                    enter: "animated bounce",
+                                    exit: "animated bounce",
+                                },
+                            }
+                        );
+                    },
+                    error: function (data) {
+                        $.notify(
+                            {
+                                message: data.msg,
+                            },
+                            {
+                                type: "danger",
+                                allow_dismiss: false,
+                                newest_on_top: false,
+                                mouse_over: false,
+                                showProgressbar: false,
+                                spacing: 10,
+                                timer: 2000,
+                                placement: {
+                                    from: "top",
+                                    align: "right",
+                                },
+                                offset: {
+                                    x: 30,
+                                    y: 30,
+                                },
+                                delay: 1000,
+                                z_index: 10000,
+                                animate: {
+                                    enter: "animated bounce",
+                                    exit: "animated bounce",
+                                },
+                            }
+                        );
+                    },
+                });
+            } else {
+                $.ajax({
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf_token"]').attr(
+                            "content"
+                        ),
+                    },
+                    type: "POST",
+                    url: "/categories/trash-update",
+                    data: { id: id, trash: 0 }, // reverse is trash becasse true is checked
+                    success: function (data) {
+                        console.log(data);
+                        $.notify(
+                            {
+                                message: data.msg,
+                            },
+                            {
+                                type: "primary",
+                                allow_dismiss: false,
+                                newest_on_top: false,
+                                mouse_over: false,
+                                showProgressbar: false,
+                                spacing: 10,
+                                timer: 2000,
+                                placement: {
+                                    from: "top",
+                                    align: "right",
+                                },
+                                offset: {
+                                    x: 30,
+                                    y: 30,
+                                },
+                                delay: 1000,
+                                z_index: 10000,
+                                animate: {
+                                    enter: "animated bounce",
+                                    exit: "animated bounce",
+                                },
+                            }
+                        );
+                    },
+                    error: function (data) {
+                        $.notify(
+                            {
+                                message: data.msg,
+                            },
+                            {
+                                type: "danger",
+                                allow_dismiss: false,
+                                newest_on_top: false,
+                                mouse_over: false,
+                                showProgressbar: false,
+                                spacing: 10,
+                                timer: 2000,
+                                placement: {
+                                    from: "top",
+                                    align: "right",
+                                },
+                                offset: {
+                                    x: 30,
+                                    y: 30,
+                                },
+                                delay: 1000,
+                                z_index: 10000,
+                                animate: {
+                                    enter: "animated bounce",
+                                    exit: "animated bounce",
+                                },
+                            }
+                        );
+                    },
+                });
+            }
+        });
+
+        // category delete by switch alert
+        $("#delete").on("click", function (e) {
+            e.preventDefault();
+            let form = $(this).closest("form");
+            // let id = $(this).attr("delete_id");
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to delete this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                    Swal.fire(
+                        "Deleted!",
+                        "Your file has been deleted.",
+                        "success"
+                    );
+                }
+            });
+        });
+
+        //================ Tag =================
+        // Tag store
+        $("#tag_add").on("submit", function (e) {
+            e.preventDefault();
+            let name = $(".t_name").val();
+
+            if (name == "" || name == null) {
+                $.notify(
+                    {
+                        message: "Tag name is required !",
+                    },
+                    {
+                        type: "danger",
+                        allow_dismiss: false,
+                        newest_on_top: false,
+                        mouse_over: false,
+                        showProgressbar: false,
+                        spacing: 10,
+                        timer: 2000,
+                        placement: {
+                            from: "top",
+                            align: "right",
+                        },
+                        offset: {
+                            x: 30,
+                            y: 30,
+                        },
+                        delay: 1000,
+                        z_index: 10000,
+                        animate: {
+                            enter: "animated bounce",
+                            exit: "animated bounce",
+                        },
+                    }
+                );
+            } else {
+                $.ajax({
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf_token"]').attr(
+                            "content"
+                        ),
+                    },
+                    method: "POST",
+                    url: "/tags/store",
+                    data: new FormData(this),
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        // console.log(response);
+                        $(".t_name").val("");
+
+                        $.notify(
+                            {
+                                message: response.success,
+                            },
+                            {
+                                type: "primary",
+                                allow_dismiss: false,
+                                newest_on_top: false,
+                                mouse_over: false,
+                                showProgressbar: false,
+                                spacing: 10,
+                                timer: 2000,
+                                placement: {
+                                    from: "top",
+                                    align: "right",
+                                },
+                                offset: {
+                                    x: 30,
+                                    y: 30,
+                                },
+                                delay: 1000,
+                                z_index: 10000,
+                                animate: {
+                                    enter: "animated bounce",
+                                    exit: "animated bounce",
+                                },
+                            }
+                        );
+                    },
+                    error: function (response) {
+                        $.notify(
+                            {
+                                message: response.error,
+                            },
+                            {
+                                type: "danger",
+                                allow_dismiss: false,
+                                newest_on_top: false,
+                                mouse_over: false,
+                                showProgressbar: false,
+                                spacing: 10,
+                                timer: 2000,
+                                placement: {
+                                    from: "top",
+                                    align: "right",
+                                },
+                                offset: {
+                                    x: 30,
+                                    y: 30,
+                                },
+                                delay: 1000,
+                                z_index: 10000,
+                                animate: {
+                                    enter: "animated bounce",
+                                    exit: "animated bounce",
+                                },
+                            }
+                        );
+                    },
+                });
+            }
+        });
+
+        // Edit tag model show with data
+        $(".edit_tag").click(function (e) {
+            e.preventDefault();
+            let edit_id = $(this).attr("edit_id");
+
+            $.ajax({
+                url: "/tags/edit/" + edit_id,
+                type: "GET",
+                success: function (data) {
+                    // console.log(data);
+                    $(".t_name").val(data.name);
+                    $(".edit_id").val(data.id);
+
+                    $("#edit_tag").modal("show");
+                },
+            });
+        });
+
+        // update tag
+        $("#tag_edit").on("submit", function (e) {
+            e.preventDefault();
+            let name = $(".t_name").val();
+            // console.log(name + " " + parent_id);
+
+            if (name == "" || name == null) {
+                $.notify(
+                    {
+                        message: "Tag name is reqired!",
+                    },
+                    {
+                        type: "warning",
+                        allow_dismiss: false,
+                        newest_on_top: false,
+                        mouse_over: false,
+                        showProgressbar: false,
+                        spacing: 10,
+                        timer: 2000,
+                        placement: {
+                            from: "top",
+                            align: "right",
+                        },
+                        offset: {
+                            x: 30,
+                            y: 30,
+                        },
+                        delay: 1000,
+                        z_index: 10000,
+                        animate: {
+                            enter: "animated bounce",
+                            exit: "animated bounce",
+                        },
+                    }
+                );
+            } else {
+                $.ajax({
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf_token"]').attr(
+                            "content"
+                        ),
+                    },
+                    method: "POST",
+                    url: "/tags/update",
+                    data: new FormData(this),
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        // console.log(response);
+                        $(".t_name").val("");
 
                         $.notify(
                             {

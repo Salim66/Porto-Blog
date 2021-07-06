@@ -3,9 +3,139 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
-    //
+    /**
+     * Tag list view
+     */
+    public function view(){
+        $all_data = Tag::where('trash', false)->latest()->get();
+        return view('Backend.tag.view', [
+            'all_data' => $all_data
+        ]);
+    }
+
+    /**
+     * Tag add page
+     */
+    public function add(){
+        return view('Backend.tag.add');
+    }
+
+    /**
+     * Tag store
+     */
+    public function store(Request $request){
+        $data = Tag::create([
+            'name'      => $request->name,
+            'slug'      => str_replace(' ', '-', $request->name)
+        ]);
+
+        if($data == true){
+            return response()->json([
+                'success' => 'Tag added successfully ): '
+            ]);
+        }else {
+            return response()->json([
+                'error' => 'Sorry! do not added data! '
+            ]);
+        }
+    }
+
+    /**
+     * Tag edit page
+     */
+    public function edit($id){
+        $data = Tag::find($id);
+        return response()->json($data);
+    }
+
+    /**
+     * Tag update
+     */
+    public function update(Request $request){
+        $data = Tag::find($request->id);
+        if($data != null){
+            $data->name = $request->name;
+            $data->slug = str_replace(' ', '-', $request->name);
+            $data->update();
+
+            return response()->json([
+                'success' => 'Tag updated successfully ): '
+            ]);
+        }else {
+            return response()->json([
+                'error' => 'Tag not found! '
+            ]);
+        }
+    }
+
+    /**
+     * Category status update
+     */
+    public function statusUpdate(Request $request){
+        $data = Category::where('id', $request->id)->update([
+            'status' => $request->status,
+        ]);
+
+        if($data == true){
+            return response()->json([
+                'success' => 'Category Status updated successfully ): '
+            ]);
+        }else {
+         return response()->json([
+             'error' => 'Something is wrong! plase try again! '
+         ]);
+        }
+     }
+
+
+    /**
+     * Category trash list
+     */
+    public function trashList(){
+        $all_data = Category::where('trash', 1)->latest()->get();
+        return view('backend.category.trash-list', [
+            'all_data' => $all_data
+        ]);
+    }
+
+
+    /**
+     * Category trash update
+     */
+    public function trashUpdate(Request $request){
+        $data = Category::where('id', $request->id)->update([
+            'trash' => $request->trash,
+        ]);
+
+        if($data == true){
+            return response()->json([
+                'msg' => 'Category trash updated successfully ): '
+            ]);
+        }else {
+         return response()->json([
+             'msg' => 'Something is wrong! plase try again! '
+         ]);
+        }
+     }
+
+     /**
+      * Category destroy
+      */
+      public function destroy($id){
+          $data = Category::find($id);
+
+            if($data != null){
+                $data->delete();
+
+                return redirect()->back()->with('success', 'Category delete successfully ):');
+            }else {
+                return redirect()->back()->with('error', 'Something is wrong! plase try again!');
+
+            }
+      }
 }

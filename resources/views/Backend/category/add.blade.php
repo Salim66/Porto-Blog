@@ -35,7 +35,7 @@
                         </select>
                     </div>
                     <button class="btn btn-primary" type="submit">
-                        Add user
+                        Add category
                     </button>
                   </div>
                 </form>

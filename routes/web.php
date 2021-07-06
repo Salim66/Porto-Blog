@@ -70,5 +70,19 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/delete/{id}', 'App\Http\Controllers\Backend\CategoryController@destroy')->name('categories.destroy');
     });
 
+    Route::prefix('tags')->group(function () {
+        Route::get('/view', 'App\Http\Controllers\Backend\TagController@view')->name('tags.view');
+        Route::get('/add', 'App\Http\Controllers\Backend\TagController@add')->name('tags.add');
+        Route::post('/store', 'App\Http\Controllers\Backend\TagController@store')->name('tags.store');
+        Route::get('/edit/{id}', 'App\Http\Controllers\Backend\TagController@edit')->name('tags.edit');
+        Route::post('/update', 'App\Http\Controllers\Backend\TagController@update')->name('tags.update');
+        Route::post('/status-update', 'App\Http\Controllers\Backend\TagController@statusUpdate')->name('tags.status.update');
+        Route::get('/trash', 'App\Http\Controllers\Backend\TagController@trashList')->name('tags.trash');
+        Route::post('/trash-update', 'App\Http\Controllers\Backend\TagController@trashUpdate')->name('tags.trash.update');
+        Route::delete('/delete/{id}', 'App\Http\Controllers\Backend\TagController@destroy')->name('tags.destroy');
+    });
+
+
+
 });
 

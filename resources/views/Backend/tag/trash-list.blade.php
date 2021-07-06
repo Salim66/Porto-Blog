@@ -8,7 +8,7 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5>Categories List</h5>
+                        <h5>Category Trash List</h5>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -40,12 +40,18 @@
                                         <td>
                                             <div class="media-body text-center switch-sm">
                                                 <label class="switch">
-                                                <input type="checkbox" class="category_trash_update" data_id="{{ $data->id }}" @if($data->trash == false) checked="" @endif><span class="switch-state"></span>
+                                                <input type="checkbox" class="category_trash_update_1" data_id="{{ $data->id }}" @if($data->trash == true) checked="" @endif><span class="switch-state"></span>
                                                 </label>
                                             </div>
                                         </td>
                                         <td>
-                                            <a title="Edit Category" edit_id="{{ $data->id }}" class="btn btn-info-gradien btn-pill edit_category"><i class="fas fa-user-edit text-white"></i></a>
+                                            {{-- <a title="Delete Category" delete_id="{{ $data->id }}" class="btn btn-danger-gradien btn-pill delete_category"><i class="fas fa-trash text-white"></i></a> --}}
+
+                                            <form style="display: inline;" action="{{ route('categories.destroy', $data->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button delete_id="{{ $data->id }}" type="submit" id="delete" class="btn btn-danger-gradien btn-pill"><i class="fas fa-trash text-white"></i></button>
+                                            </form>
 
                                         </td>
                                     </tr>
@@ -62,42 +68,53 @@
     </div>
 </div>
   <!-- Container-fluid Ends-->
-  <div id="edit_category" class="modal fade">
+  <div id="edit_users" class="modal fade">
       <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
               <div class="modal-title py-3">
-                  <h5 class="d-inline float-left ml-3">Edit Category</h5>
+                  <h5 class="d-inline float-left ml-3">Edit User</h5>
                   <button class="close d-inline float-right mr-3" data-dismiss="modal">&times;</button>
               </div>
               <div class="modal-body">
-                <form class="needs-validation" id="category_edit" novalidate="">
+                <form class="needs-validation" id="uase_edit" novalidate="">
                     <div class="form-row">
 
-                        <div class="col-md-12 mb-3">
-                        <label for="validationCustom01">Category Name</label>
-                        <input type="hidden" name="id" class="edit_id">
+                      <div class="col-md-12 mb-3">
+                        <label for="validationCustom01">Full name</label>
+                        <input type="hidden" name="id" class="id">
                         <input
-                            class="form-control c_name"
-                            id="validationCustom01"
-                            type="text"
-                            name="name"
-                            placeholder="Category name"
-                            required=""
+                          class="form-control f_name"
+                          id="validationCustom01"
+                          type="text"
+                          name="name"
+                          placeholder="First name"
+                          required=""
                         />
+                      </div>
+                      <div class="col-md-12 mb-3">
+                        <label for="validationCustom02">Email</label>
+                        <input
+                          class="form-control f_email"
+                          id="validationCustom02"
+                          type="email"
+                          name="email"
+                          placeholder="Last name"
+                          required=""
+                        />
+                      </div>
+                      <div class="col-md-12 mb-3">
+                        <label for="validationCustom01">User Type</label>
+                        <select name="user_type" class="form-control user_type" id="validationCustom01">
+                            <option selected>Select Type</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Modaretor">Modaretor</option>
+                            <option value="User">User</option>
+                        </select>
                         </div>
-                        <div class="col-md-12 mb-3">
-                            <label for="validationCustom01">Parent Category</label>
-                            <select name="parent_id" class="form-control parent_id" id="validationCustom01">
-                                <option value="0">Select Category</option>
-                                @foreach($all_data as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <button class="btn btn-primary" type="submit">
-                        Update category
-                        </button>
-                    </div>
+
+                    <button class="btn btn-primary" type="submit">
+                      Update user
+                    </button>
                   </form>
               </div>
               <div></div>
