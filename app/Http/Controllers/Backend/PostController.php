@@ -336,6 +336,10 @@ class PostController extends Controller
           $data = Post::find($id);
 
             if($data != null){
+
+                $data->categories()->detach();
+                $data->tags()->detach();
+
                 $data->delete();
 
                 return redirect()->back()->with('success', 'Post delete successfully ):');

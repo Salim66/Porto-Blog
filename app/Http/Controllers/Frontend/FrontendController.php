@@ -12,7 +12,7 @@ class FrontendController extends Controller
      * Frontend index page load
      */
     public function index(){
-        $all_data = Post::where('status', true)->where('trash', false)->latest()->get();
+        $all_data = Post::where('status', true)->where('trash', false)->latest()->paginate(4);
         return view('Frontend.index', [
             'all_data' => $all_data
         ]);
