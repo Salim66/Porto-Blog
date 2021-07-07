@@ -5,3 +5,12 @@
 .post_image_a {
     display: none;
 }
+
+body.modal-open .background-container {
+    -webkit-filter: blur(4px) grayscale(90%);
+    -moz-filter: blur(4px) grayscale(90%);
+    -o-filter: blur(4px) grayscale(90%);
+    -ms-filter: blur(4px) grayscale(90%);
+    filter: blur(4px) grayscale(90%);
+    background-color: #000;
+}

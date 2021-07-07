@@ -2696,8 +2696,8 @@
             $(".select_tag").remove();
         });
 
-        // tag Status update
-        $(".tag_status_update").change(function () {
+        // post Status update
+        $(".post_status_update").change(function () {
             // e.preventDefault();
             let id = $(this).attr("data_id");
 
@@ -2710,7 +2710,7 @@
                         ),
                     },
                     type: "POST",
-                    url: "/tags/status-update",
+                    url: "/posts/status-update",
                     data: { id: id, status: 1 },
                     success: function (data) {
                         console.log(data);
@@ -2782,7 +2782,7 @@
                         ),
                     },
                     type: "POST",
-                    url: "/tags/status-update",
+                    url: "/posts/status-update",
                     data: { id: id, status: 0 },
                     success: function (data) {
                         console.log(data);

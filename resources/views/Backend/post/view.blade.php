@@ -69,7 +69,7 @@
 
                                             <div class="media-body text-center switch-sm">
                                                 <label class="switch">
-                                                <input type="checkbox" class="category_status_update" data_id="{{ $data->id }}" @if($data->status == true) checked="" @endif><span class="switch-state"></span>
+                                                <input type="checkbox" class="post_status_update" data_id="{{ $data->id }}" @if($data->status == true) checked="" @endif><span class="switch-state"></span>
                                                 </label>
                                             </div>
 
@@ -82,8 +82,8 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <a title="Preview" edit_id="{{ $data->id }}" class="btn btn-warning btn-sm btn-pill preview_post d-inline-block"><i class="fas fa-eye text-white"></i></a>
-                                            <a title="Edit Post" edit_id="{{ $data->id }}" class="btn btn-info btn-sm btn-pill edit_post d-inline-block"><i class="fas fa-edit text-white"></i></a>
+                                            <a title="Preview" edit_id="{{ $data->id }}" class="btn btn-warning btn-sm preview_post d-inline"><i class="fas fa-eye text-white"></i></a>
+                                            <a title="Edit Post" edit_id="{{ $data->id }}" class="btn btn-info btn-sm edit_post d-inline"><i class="fas fa-edit text-white"></i></a>
 
                                         </td>
                                     </tr>

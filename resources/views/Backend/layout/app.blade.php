@@ -2,7 +2,7 @@
 <html lang="en">
 
   @include('Backend.layout.head')
-  <body>
+  <body class="background-container">
     <!-- Loader starts-->
     {{-- <div class="loader-wrapper">
       <div class="typewriter">

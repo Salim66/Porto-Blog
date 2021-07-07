@@ -279,16 +279,16 @@ class PostController extends Controller
     }
 
     /**
-     * Category status update
+     * Post status update
      */
     public function statusUpdate(Request $request){
-        $data = Category::where('id', $request->id)->update([
+        $data = Post::where('id', $request->id)->update([
             'status' => $request->status,
         ]);
 
         if($data == true){
             return response()->json([
-                'success' => 'Category Status updated successfully ): '
+                'success' => 'Post Status updated successfully ): '
             ]);
         }else {
          return response()->json([
