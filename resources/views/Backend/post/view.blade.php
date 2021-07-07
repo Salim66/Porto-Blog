@@ -61,7 +61,7 @@
                                                 {{ $tag->name }}
                                             @endforeach
                                         </td>
-                                        <td>{{ $data->title }}</td>
+                                        <td>{{ Str::words($data->title, 2, '...') }}</td>
                                         <td>{{ $featured_info->post_type }}</td>
                                         <td>{{ $data->views }}</td>
                                         <td>{{ $data->user->name }}</td>
@@ -192,7 +192,7 @@
 
 {{--    Post Preview Modal--}}
 <div id="post_details_modal" class="modal fade" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h2 class="m-auto">Single Post Information</h2>

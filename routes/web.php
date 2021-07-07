@@ -13,9 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+// Routes for frontend
+Route::get('/', 'App\Http\Controllers\Frontend\FrontendController@index')->name('blog.index');
+
+
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
