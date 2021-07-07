@@ -5,16 +5,41 @@
 <div class="col-lg-9 order-lg-1">
     <div class="blog-posts">
        <div class="row px-3">
+
+        @foreach($all_data as $data)
+            @php
+            $featured_info = json_decode($data->featured);
+            @endphp
           <div class="col-sm-6">
              <article class="post post-medium border-0 pb-0 mb-5">
                 <div class="post-image">
                    <a href="blog-post.html">
-                   <img src="{{ asset('img/')}}/blog/medium/blog-1.jpg" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
-                   </a>
+
+                       @if($featured_info->post_type == 'Image')
+                        <img style="height: 270px; width: 380px;" src="{{ URL::to('') }}/uploads/posts/{{ $featured_info->post_image }}" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
+                       @endif
+
+                       @if($featured_info->post_type == 'Gallery')
+                        <img style="height: 270px; width: 380px;" src="{{ URL::to('') }}/uploads/posts/{{ $featured_info->post_gallery[1] }}" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
+                       @endif
+
+
+                       @if($featured_info->post_type == 'Video')
+                        <iframe style="height: 270px; width: 380px;" src="{{ $featured_info->post_video }}" frameborder="0"></iframe>
+                       @endif
+
+
+                       @if($featured_info->post_type == 'Audio')
+                        <iframe style="height: 270px; width: 380px;" src="{{ $featured_info->post_audio }}" frameborder="0"></iframe>
+                       @endif
+
+
+
+                    </a>
                 </div>
                 <div class="post-content">
-                   <h2 class="font-weight-semibold text-5 line-height-6 mt-3 mb-2"><a href="blog-post.html">Amazing Mountain</a></h2>
-                   <p>Euismod atras vulputate iltricies etri elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+                   <h2 class="font-weight-semibold text-5 line-height-6 mt-3 mb-2"><a href="blog-post.html">{{ $data->title }}</a></h2>
+                   <p>{!! Str::of(htmlspecialchars_decode($data->content))->words('5', '<span style="color:red;">>>></span>') !!}</p>
                    <div class="post-meta">
                       <span><i class="far fa-user"></i> By <a href="#">Bob Doe</a> </span>
                       <span><i class="far fa-folder"></i> <a href="#">News</a>, <a href="#">Design</a> </span>
@@ -24,8 +49,12 @@
                 </div>
              </article>
           </div>
+        @endforeach
 
        </div>
+
+
+        <!-- Pagination -->
        <div class="row">
           <div class="col">
              <ul class="pagination float-right">
