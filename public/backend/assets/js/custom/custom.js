@@ -2553,6 +2553,149 @@
             }
         });
 
+        // single post preview
+        $(".preview_post").click(function (e) {
+            e.preventDefault();
+            let edit_id = $(this).attr("edit_id");
+
+            $.ajax({
+                url: "/posts/preview/" + edit_id,
+                type: "GET",
+                success: function (data) {
+                    if (data.post_type != "") {
+                        $("#p_type").show();
+                        $("#post_details_modal #post_type").html(
+                            data.post_type
+                        );
+                    } else {
+                        $("#p_type").hide();
+                    }
+
+                    if (data.title != "") {
+                        $("#p_t").show();
+                        $("#post_details_modal #post_title").html(data.title);
+                    } else {
+                        $("#p_t").hide();
+                    }
+
+                    if (data.slug != "") {
+                        $("#p_s").show();
+                        $("#post_details_modal #post_slug").html(data.slug);
+                    } else {
+                        $("#p_s").hide();
+                    }
+
+                    if (data.categories != "") {
+                        $("#p_c").show();
+                        for (const category of data.categories) {
+                            $("#post_details_modal #post_category").append(
+                                "" +
+                                    '<span class="select_category">' +
+                                    category["name"] +
+                                    "," +
+                                    " " +
+                                    "</span>"
+                            );
+                        }
+                    } else {
+                        $("#p_c").hide();
+                    }
+
+                    if (data.tags != "") {
+                        $("#p_tag").show();
+                        for (const tag of data.tags) {
+                            $("#post_details_modal #post_tag").append(
+                                "" +
+                                    '<span class="select_tag">' +
+                                    tag["name"] +
+                                    "," +
+                                    " " +
+                                    "</span>"
+                            );
+                        }
+                    } else {
+                        $("#p_tag").hide();
+                    }
+
+                    if (data.status != "") {
+                        $("#p_sta").show();
+                        $("#post_details_modal #post_status").html(data.status);
+                    } else {
+                        $("#p_sta").hide();
+                    }
+
+                    if (data.content != "") {
+                        $("#p_con").show();
+                        $("#post_details_modal #post_content").html(
+                            data.content
+                        );
+                    } else {
+                        $("#p_con").hide();
+                    }
+
+                    if (data.post_image != "") {
+                        $("#p_i").show();
+                        $("#post_details_modal #post_image img").attr(
+                            "src",
+                            "/uploads/posts/" + data.post_image
+                        );
+                    } else {
+                        $("#p_i").hide();
+                    }
+
+                    if (data.post_gallery != "") {
+                        $("#p_g").show();
+                        for (const gallery of data.post_gallery) {
+                            $("#post_details_modal #post_g_image").append(
+                                "" +
+                                    '<span class="gallery_image"><img width="150" style="margin: 5px;" src="/uploads/posts/' +
+                                    gallery +
+                                    '" alt=""></span>'
+                            );
+                        }
+                    } else {
+                        $("#p_g").hide();
+                    }
+
+                    if (data.post_audio != null && data.post_audio != "") {
+                        $("#p_a").show();
+                        $("#post_details_modal #post_audio").append(
+                            "" +
+                                '<span class="p_audio"><iframe width="400" height="250" src="' +
+                                data.post_audio +
+                                '" frameborder="0"></iframe></span>'
+                        );
+                    } else {
+                        $("#p_a").hide();
+                    }
+
+                    if (data.post_video != null && data.post_video != "") {
+                        $("#p_v").show();
+                        $("#post_details_modal #post_video").append(
+                            "" +
+                                '<span class="p_video"><iframe width="400" height="250" src="' +
+                                data.post_video +
+                                '" frameborder="0"></iframe></span>'
+                        );
+                    } else {
+                        $("#p_v").hide();
+                    }
+
+                    $("#post_details_modal").modal("show");
+                },
+            });
+        });
+
+        // single post gallery image and category and tag problem solve
+        $(document).on("click", "#remove_gallary_image", function (event) {
+            event.preventDefault();
+            $(".gallery_image").remove();
+            $(".p_video").remove();
+            $(".p_audio").remove();
+            $(".select_category").remove();
+            $(".select_tag").remove();
+        });
+
         // tag Status update
         $(".tag_status_update").change(function () {
             // e.preventDefault();

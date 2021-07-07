@@ -82,7 +82,8 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <a title="Edit Post" edit_id="{{ $data->id }}" class="btn btn-info-gradien btn-pill edit_post"><i class="fas fa-edit text-white"></i></a>
+                                            <a title="Preview" edit_id="{{ $data->id }}" class="btn btn-warning btn-sm btn-pill preview_post d-inline-block"><i class="fas fa-eye text-white"></i></a>
+                                            <a title="Edit Post" edit_id="{{ $data->id }}" class="btn btn-info btn-sm btn-pill edit_post d-inline-block"><i class="fas fa-edit text-white"></i></a>
 
                                         </td>
                                     </tr>
@@ -106,6 +107,7 @@
     }
 </style>
   <!-- Container-fluid Ends-->
+  <!--Post Edit Modal-->
   <div id="edit_post" class="modal fade" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog modal-dialog-centered modal-lg">
           <div class="modal-content">
@@ -187,6 +189,69 @@
           </div>
       </div>
   </div>
+
+{{--    Post Preview Modal--}}
+<div id="post_details_modal" class="modal fade" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="m-auto">Single Post Information</h2>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-hover">
+                    <tr id="p_type">
+                        <td style="font-weight: bold" width="200">Post Type</td>
+                        <td id="post_type"></td>
+                    </tr>
+                    <tr id="p_t">
+                        <td style="font-weight: bold" width="200">Post Title</td>
+                        <td id="post_title"></td>
+                    </tr>
+                    <tr id="p_s">
+                        <td style="font-weight: bold" width="200">Post Slug</td>
+                        <td id="post_slug"></td>
+                    </tr>
+                    <tr id="p_c">
+                        <td style="font-weight: bold" width="200">Post Category</td>
+                        <td id="post_category"></td>
+                    </tr>
+                    <tr id="p_tag">
+                        <td style="font-weight: bold" width="200">Post Tag</td>
+                        <td id="post_tag"></td>
+                    </tr>
+                    <tr id="p_sta">
+                        <td style="font-weight: bold" width="200">Post Status</td>
+                        <td id="post_status"></td>
+                    </tr>
+                    <tr id="p_i">
+                        <td style="font-weight: bold" width="200">Post Image</td>
+                        <td id="post_image"><img width="300" src="" alt=""></td>
+                    </tr>
+                    <tr id="p_g">
+                        <td style="font-weight: bold" width="200">Post Gallery Image</td>
+                        <td id="post_g_image"></td>
+                    </tr>
+                    <tr id="p_a">
+                        <td style="font-weight: bold" width="200">Post Audio</td>
+                        <td id="post_audio"></td>
+                    </tr>
+                    <tr id="p_v">
+                        <td style="font-weight: bold" width="200">Post Video</td>
+                        <td id="post_video"></td>
+                    </tr>
+                    <tr id="p_con">
+                        <td style="font-weight: bold" width="200">Post Content</td>
+                        <td id="post_content"></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button class="close" style="float: right;" data-dismiss="modal"
+                    id="remove_gallary_image">&times;</button>
+            </div>
+        </div>
+    </div>
+</div>
 <br>
 <br>
 <br>

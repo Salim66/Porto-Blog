@@ -257,6 +257,27 @@ class PostController extends Controller
         }
     }
 
+    // Display the specified post
+    public function preview($id){
+        $single_post = Post::find($id);
+
+        $post_fet = json_decode($single_post->featured);
+
+        return [
+            'title' => $single_post->title,
+            'slug' => $single_post->slug,
+            'status' => $single_post->status,
+            'categories' => $single_post->categories,
+            'tags' => $single_post->tags,
+            'content' => $single_post->content,
+            'post_type' => $post_fet->post_type,
+            'post_image' => $post_fet->post_image,
+            'post_gallery' => $post_fet->post_gallery,
+            'post_audio' => $post_fet->post_audio,
+            'post_video' => $post_fet->post_video,
+        ];
+    }
+
     /**
      * Category status update
      */

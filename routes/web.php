@@ -88,6 +88,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/store', 'App\Http\Controllers\Backend\PostController@store')->name('posts.store');
         Route::get('/edit/{id}', 'App\Http\Controllers\Backend\PostController@edit')->name('posts.edit');
         Route::post('/update', 'App\Http\Controllers\Backend\PostController@update')->name('posts.update');
+        Route::get('/preview/{id}', 'App\Http\Controllers\Backend\PostController@preview')->name('posts.preview');
         Route::post('/status-update', 'App\Http\Controllers\Backend\PostController@statusUpdate')->name('posts.status.update');
         Route::get('/trash', 'App\Http\Controllers\Backend\PostController@trashList')->name('posts.trash');
         Route::post('/trash-update', 'App\Http\Controllers\Backend\PostController@trashUpdate')->name('posts.trash.update');
