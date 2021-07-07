@@ -2393,9 +2393,10 @@
                 url: "/posts/edit/" + edit_id,
                 type: "GET",
                 success: function (data) {
-                    console.log(data);
+                    // console.log(data);
                     let photo = JSON.parse(data.featured);
-                    console.log(photo);
+                    // console.log(photo);
+                    $(".edit_id").val(data.id);
                     $(".p_title").val(data.title);
                     $("#category_id").html(data.category_list);
                     $("#tag_id").html(data.tag_list);
@@ -2424,22 +2425,26 @@
                         }
                     );
 
+                    $(".post_audio").val(photo.post_audio);
+                    $(".post_video").val(photo.post_video);
+
                     postType(photo.post_type);
+
                     $("#edit_post").modal("show");
                 },
             });
         });
 
-        // update tag
-        $("#tag_edit").on("submit", function (e) {
+        // update post
+        $("#post_edit").on("submit", function (e) {
             e.preventDefault();
-            let name = $(".t_name").val();
+            let title = $(".p_title").val();
             // console.log(name + " " + parent_id);
 
-            if (name == "" || name == null) {
+            if (title == "" || title == null) {
                 $.notify(
                     {
-                        message: "Tag name is reqired!",
+                        message: "Post title is reqired!",
                     },
                     {
                         type: "warning",
@@ -2466,6 +2471,11 @@
                     }
                 );
             } else {
+                // data pass by ckeditor
+                for (instance in CKEDITOR.instances) {
+                    CKEDITOR.instances[instance].updateElement();
+                }
+
                 $.ajax({
                     headers: {
                         "X-CSRF-TOKEN": $('meta[name="csrf_token"]').attr(
@@ -2473,13 +2483,12 @@
                         ),
                     },
                     method: "POST",
-                    url: "/tags/update",
+                    url: "/posts/update",
                     data: new FormData(this),
                     contentType: false,
                     processData: false,
                     success: function (response) {
-                        // console.log(response);
-                        $(".t_name").val("");
+                        console.log(response);
 
                         $.notify(
                             {

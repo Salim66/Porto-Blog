@@ -117,6 +117,8 @@
                 <form class="needs-validation" id="post_edit" novalidate="">
                     <div class="form-row">
 
+                        <input type="hidden" name="id" class="edit_id">
+
                         <div class="col-md-12 mb-3">
                             <label for="">Post Format</label>
                             <select name="post_type" id="post_format" class="form-control p_type">
@@ -166,19 +168,17 @@
                         <div class="form-group col-md-12 post_image_a">
                             <label for="">Post Audio Link</label>
                             <input type="text" name="post_audio" class="form-control post_audio">
-                            <font style="color: red;">{{ ($errors->has('post_audio'))? $errors->first('post_audio') : '' }}</font>
                         </div>
                         <div class="form-group col-md-12 post_image_v">
                             <label for="">Post Video Link</label>
                             <input type="text" name="post_video" class="form-control post_video">
-                            <font style="color: red;">{{ ($errors->has('post_video'))? $errors->first('post_video') : '' }}</font>
                         </div>
                         <div class="col-md-12 mb-3">
                           <textarea name="content" id="content" rows="2" class="content p_content form-control"></textarea>
                         </div>
 
                         <button class="btn btn-primary" type="submit">
-                        Update category
+                        Update post
                         </button>
                     </div>
                   </form>

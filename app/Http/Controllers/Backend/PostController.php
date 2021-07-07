@@ -170,22 +170,89 @@ class PostController extends Controller
     }
 
     /**
-     * Category update
+     * Post update
      */
     public function update(Request $request){
-        $data = Category::find($request->id);
+        //find post data
+        $data = Post::find($request->id);
         if($data != null){
-            $data->parent_id = $request->parent_id;
-            $data->name = $request->name;
-            $data->slug = str_replace(' ', '-', $request->name);
+
+            $feature_data = json_decode($data->featured);
+
+            //post Image
+            $image_unique_name = '';
+            if ($request->hasFile('post_image')) {
+                $image = $request->file('post_image');
+                $image_unique_name = md5(time() . rand()) . '.' . $image->getClientOriginalExtension();
+                $extension = pathinfo($image_unique_name, PATHINFO_EXTENSION);
+                $valid_extension = array('jpg', 'jpeg', 'png', 'gif');
+                if (in_array($extension, $valid_extension)) {
+                    $image->move(public_path('uploads/posts/'), $image_unique_name);
+                } else {
+                    return response()->json([
+                        'error' => 'Invalid file format! '
+                    ]);
+                }
+                if (file_exists('uploads/posts/' . $feature_data->post_image) && !empty($feature_data->post_image)) {
+                    unlink('uploads/posts/' . $feature_data->post_image);
+                }
+            } else {
+                $image_unique_name = $feature_data->post_image;
+            }
+
+            //post gallery
+            $gallery_unique_name_u = [];
+            if ($request->hasFile('post_gallery_image')) {
+                $images = $request->file('post_gallery_image');
+                foreach ($images as $image) {
+                    $gallery_unique_name = md5(time() . rand()) . '.' . $image->getClientOriginalExtension();
+                    $extension = pathinfo($gallery_unique_name, PATHINFO_EXTENSION);
+                    $valid_extension = array('jpg', 'jpeg', 'png', 'gif');
+                    if (in_array($extension, $valid_extension)) {
+                        array_push($gallery_unique_name_u, $gallery_unique_name);
+                        $image->move(public_path('uploads/posts/'), $gallery_unique_name);
+                    } else {
+                        return response()->json([
+                            'error' => 'Invalid file format! '
+                        ]);
+                    }
+                    foreach ($feature_data->post_gallery as $gallery) {
+                        if (file_exists('uploads/posts/' . $gallery) && !empty($gallery)) {
+                            unlink('uploads/posts/' . $gallery);
+                        }
+                    }
+                }
+            } else {
+                $gallery_unique_name_u = $feature_data->post_gallery;
+            }
+
+
+            $post_featured = [
+                'post_type' => $request->post_type,
+                'post_image' => $image_unique_name,
+                'post_gallery' => $gallery_unique_name_u,
+                'post_audio' => $request->post_audio,
+                'post_video' => $this->getUpdateVideo($request->post_video, $feature_data),
+            ];
+
+            $data->user_id = Auth::user()->id;
+            $data->title = $request->title;
+            $data->slug = $this->getSlug($request->title);
+            $data->content = $request->content;
+            $data->featured = $post_featured;
             $data->update();
 
+            $data->categories()->detach();
+            $data->categories()->attach($request->category_id);
+
+            $data->tags()->detach();
+            $data->tags()->attach($request->tag_id);
             return response()->json([
-                'success' => 'Category updated successfully ): '
+                'success' => 'Post updated successfully ): '
             ]);
         }else {
             return response()->json([
-                'error' => 'Category not found! '
+                'error' => 'Post data not found! '
             ]);
         }
     }
