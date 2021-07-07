@@ -131,17 +131,13 @@
                         <div class="col-md-6 mb-3">
                             <label for="validationCustom01" style="display: block;">Category</label>
                             <select name="category_id[]" class="form-control js-example-placeholder-multiple category_id  p_cat" id="category_id" multiple="multiple">
-                                @foreach($all_category as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                @endforeach
+
                             </select>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="validationCustom01"  style="display: block;">Tag</label>
                             <select name="tag_id[]" class="form-control tag_id js-example-placeholder-multiple  p_tag" id="tag_id" multiple="multiple">
-                                @foreach($all_tag as $tag)
-                                <option value="{{ $tag->id }}">{{ $tag->name }}</option>
-                                @endforeach
+
                             </select>
                         </div>
                         <div class="col-md-12 mb-3">
@@ -156,7 +152,7 @@
                           />
                         </div>
                         <div class="form-group col-md-12 post_image">
-                            <img id="post_image_load" class="post_image" style="width: 400px;" src="" class="d-block" alt="">
+                            <img id="post_image_load" class="post_image" style="width: 400px;" src="" class="d-block" alt=""><br>
                             <label for="post_image"><img style="width: 100px; cursor: pointer;" src="{{ URL::to('/') }}/backend/assets/images/image-file.png" alt=""></label>
                             <input type="file" name="post_image" class="form-control d-none" id="post_image">
                         </div>

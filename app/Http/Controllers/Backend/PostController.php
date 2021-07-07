@@ -16,12 +16,8 @@ class PostController extends Controller
      */
     public function view(){
         $all_data = Post::where('trash', false)->latest()->get();
-        $all_category = Category::where('trash', 0)->where('status', 1)->latest()->get();
-        $all_tag = Tag::where('trash', 0)->where('status', 1)->latest()->get();
         return view('Backend.post.view', [
             'all_data' => $all_data,
-            'all_category' => $all_category,
-            'all_tag'      => $all_tag
         ]);
     }
 
@@ -118,7 +114,59 @@ class PostController extends Controller
      */
     public function edit($id){
         $data = Post::find($id);
-        return response()->json($data);
+
+        //All Category
+        $all_category = Category::all();
+
+        //Selected Category
+        $selected_category = $data -> categories;
+        $select_cat = [];
+        foreach ($selected_category as $cat){
+            array_push($select_cat, $cat -> id);
+        }
+
+
+        $cat_list = '';
+        foreach ($all_category as $category){
+            if(in_array($category -> id , $select_cat)){
+                $selected = 'selected';
+            }else{
+                $selected = '';
+            }
+            $cat_list .= '<option value="'.$category->id.'" '.$selected.'>'.$category->name.'</option>';
+        }
+
+
+        //All Tag
+        $all_tag = Tag::all();
+
+        //Selected tag
+        $selected_tag = $data -> tags;
+        $select_tag = [];
+        foreach ($selected_tag as $tag){
+            array_push($select_tag, $tag -> id);
+        }
+
+
+        $tag_list = '';
+        foreach ($all_tag as $tag){
+            if(in_array($tag -> id , $select_tag)){
+                $selected = 'selected';
+            }else{
+                $selected = '';
+            }
+            $tag_list .= '<option value="'.$tag->id.'" '.$selected.'>'.$tag->name.'</option>';
+        }
+
+
+        return [
+            'title' => $data -> title,
+            'id' => $data -> id,
+            'featured' => $data -> featured,
+            'content' => $data -> content,
+            'category_list' => $cat_list,
+            'tag_list' => $tag_list,
+        ];
     }
 
     /**

@@ -2207,10 +2207,7 @@
 
         //================== Post ==================
 
-        // Post Type Select
-        $("#post_format").on("change", function (e) {
-            let post_type = $(this).val();
-
+        function postType(post_type) {
             // select psot type
             if (post_type == "Image") {
                 $(".post_image").show();
@@ -2235,6 +2232,12 @@
             } else {
                 $(".post_image_a").hide();
             }
+        }
+
+        // Post Type Select
+        $("#post_format").on("change", function (e) {
+            let post_type = $(this).val();
+            postType(post_type);
         });
 
         // Post image load
@@ -2295,6 +2298,7 @@
                     }
                 );
             } else {
+                // data pass by ckeditor
                 for (instance in CKEDITOR.instances) {
                     CKEDITOR.instances[instance].updateElement();
                 }
@@ -2390,8 +2394,37 @@
                 type: "GET",
                 success: function (data) {
                     console.log(data);
+                    let photo = JSON.parse(data.featured);
+                    console.log(photo);
                     $(".p_title").val(data.title);
-                    $(".p_content").html(data.id);
+                    $("#category_id").html(data.category_list);
+                    $("#tag_id").html(data.tag_list);
+                    $("#post_format").val(photo.post_type);
+                    $("#post_image_load").attr(
+                        "src",
+                        "/uploads/posts/" + photo.post_image
+                    );
+                    $("#post_gallery_image").append(
+                        "src",
+                        "/uploads/posts/" + photo.post_image
+                    );
+                    let post_gellary_url = "";
+                    photo.post_gallery.forEach(function (gallery) {
+                        post_gellary_url +=
+                            '<img class="shadow" style="width: 150px; margin-right: 10px" src="/uploads/posts/' +
+                            gallery +
+                            '" />';
+                    });
+                    $(".post_gallery_image").html(post_gellary_url);
+
+                    CKEDITOR.instances.content.setData(
+                        data.content,
+                        function () {
+                            this.checkDirty();
+                        }
+                    );
+
+                    postType(photo.post_type);
                     $("#edit_post").modal("show");
                 },
             });
