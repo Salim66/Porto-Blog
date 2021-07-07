@@ -60,7 +60,7 @@ class UserController extends Controller
         ]);
 
         return response()->json([
-            'data' => 'User added successfully ): '
+            'success' => 'User added successfully ): '
         ]);
     }
 

@@ -119,11 +119,11 @@ class CategoryController extends Controller
 
         if($data == true){
             return response()->json([
-                'msg' => 'Category trash updated successfully ): '
+                'success' => 'Category trash updated successfully ): '
             ]);
         }else {
          return response()->json([
-             'msg' => 'Something is wrong! plase try again! '
+             'error' => 'Something is wrong! plase try again! '
          ]);
         }
      }

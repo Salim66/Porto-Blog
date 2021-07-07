@@ -45,7 +45,7 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <a title="Edit Category" edit_id="{{ $data->id }}" class="btn btn-info-gradien btn-pill edit_category"><i class="fas fa-user-edit text-white"></i></a>
+                                            <a title="Edit Category" edit_id="{{ $data->id }}" class="btn btn-info-gradien btn-pill edit_category"><i class="fas fa-edit text-white"></i></a>
 
                                         </td>
                                     </tr>

@@ -114,11 +114,11 @@ class TagController extends Controller
 
         if($data == true){
             return response()->json([
-                'msg' => 'Tag trash updated successfully ): '
+                'success' => 'Tag trash updated successfully ): '
             ]);
         }else {
          return response()->json([
-             'msg' => 'Something is wrong! plase try again! '
+             'error' => 'Something is wrong! plase try again! '
          ]);
         }
      }

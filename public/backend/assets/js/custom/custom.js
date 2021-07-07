@@ -34,6 +34,38 @@
             });
         });
 
+        //============notify js =============
+        function notifyFun(success) {
+            $.notify(
+                {
+                    message: success,
+                },
+                {
+                    type: "primary",
+                    allow_dismiss: false,
+                    newest_on_top: false,
+                    mouse_over: false,
+                    showProgressbar: false,
+                    spacing: 10,
+                    timer: 2000,
+                    placement: {
+                        from: "top",
+                        align: "right",
+                    },
+                    offset: {
+                        x: 30,
+                        y: 30,
+                    },
+                    delay: 1000,
+                    z_index: 10000,
+                    animate: {
+                        enter: "animated bounce",
+                        exit: "animated bounce",
+                    },
+                }
+            );
+        }
+
         //============= User ==============
 
         //user add script
@@ -66,34 +98,8 @@
                     $(".user_type").val("");
                     $(".f_password").val("");
                     $(".f_con_password").val("");
-                    $.notify(
-                        {
-                            message: "User added successfully ): ",
-                        },
-                        {
-                            type: "primary",
-                            allow_dismiss: false,
-                            newest_on_top: false,
-                            mouse_over: false,
-                            showProgressbar: false,
-                            spacing: 10,
-                            timer: 2000,
-                            placement: {
-                                from: "top",
-                                align: "right",
-                            },
-                            offset: {
-                                x: 30,
-                                y: 30,
-                            },
-                            delay: 1000,
-                            z_index: 10000,
-                            animate: {
-                                enter: "animated bounce",
-                                exit: "animated bounce",
-                            },
-                        }
-                    );
+
+                    notifyFun(response.success);
                 },
             });
         });
@@ -145,34 +151,8 @@
                     $(".f_name").val("");
                     $(".f_email").val("");
                     $(".user_type").val("");
-                    $.notify(
-                        {
-                            message: response.success,
-                        },
-                        {
-                            type: "primary",
-                            allow_dismiss: false,
-                            newest_on_top: false,
-                            mouse_over: false,
-                            showProgressbar: false,
-                            spacing: 10,
-                            timer: 2000,
-                            placement: {
-                                from: "top",
-                                align: "right",
-                            },
-                            offset: {
-                                x: 30,
-                                y: 30,
-                            },
-                            delay: 1000,
-                            z_index: 10000,
-                            animate: {
-                                enter: "animated bounce",
-                                exit: "animated bounce",
-                            },
-                        }
-                    );
+
+                    notifyFun(response.success);
                 },
             });
         });
@@ -195,34 +175,8 @@
                     data: { id: id, status: 1 },
                     success: function (data) {
                         console.log(data);
-                        $.notify(
-                            {
-                                message: data.success,
-                            },
-                            {
-                                type: "primary",
-                                allow_dismiss: false,
-                                newest_on_top: false,
-                                mouse_over: false,
-                                showProgressbar: false,
-                                spacing: 10,
-                                timer: 2000,
-                                placement: {
-                                    from: "top",
-                                    align: "right",
-                                },
-                                offset: {
-                                    x: 30,
-                                    y: 30,
-                                },
-                                delay: 1000,
-                                z_index: 10000,
-                                animate: {
-                                    enter: "animated bounce",
-                                    exit: "animated bounce",
-                                },
-                            }
-                        );
+
+                        notifyFun(response.success);
                     },
                 });
             } else {
@@ -237,34 +191,8 @@
                     data: { id: id, status: 0 },
                     success: function (data) {
                         console.log(data);
-                        $.notify(
-                            {
-                                message: data.success,
-                            },
-                            {
-                                type: "primary",
-                                allow_dismiss: false,
-                                newest_on_top: false,
-                                mouse_over: false,
-                                showProgressbar: false,
-                                spacing: 10,
-                                timer: 2000,
-                                placement: {
-                                    from: "top",
-                                    align: "right",
-                                },
-                                offset: {
-                                    x: 30,
-                                    y: 30,
-                                },
-                                delay: 1000,
-                                z_index: 10000,
-                                animate: {
-                                    enter: "animated bounce",
-                                    exit: "animated bounce",
-                                },
-                            }
-                        );
+
+                        notifyFun(response.success);
                     },
                 });
             }
@@ -301,34 +229,8 @@
                     data: { id: id, trash: 0 }, // reverse is stattus becasse false is checked
                     success: function (data) {
                         console.log(data);
-                        $.notify(
-                            {
-                                message: data.success,
-                            },
-                            {
-                                type: "primary",
-                                allow_dismiss: false,
-                                newest_on_top: false,
-                                mouse_over: false,
-                                showProgressbar: false,
-                                spacing: 10,
-                                timer: 2000,
-                                placement: {
-                                    from: "top",
-                                    align: "right",
-                                },
-                                offset: {
-                                    x: 30,
-                                    y: 30,
-                                },
-                                delay: 1000,
-                                z_index: 10000,
-                                animate: {
-                                    enter: "animated bounce",
-                                    exit: "animated bounce",
-                                },
-                            }
-                        );
+
+                        notifyFun(response.success);
                     },
                 });
             } else {
@@ -343,34 +245,8 @@
                     data: { id: id, trash: 1 }, // reverse is stattus becasse false is checked
                     success: function (data) {
                         console.log(data);
-                        $.notify(
-                            {
-                                message: data.success,
-                            },
-                            {
-                                type: "primary",
-                                allow_dismiss: false,
-                                newest_on_top: false,
-                                mouse_over: false,
-                                showProgressbar: false,
-                                spacing: 10,
-                                timer: 2000,
-                                placement: {
-                                    from: "top",
-                                    align: "right",
-                                },
-                                offset: {
-                                    x: 30,
-                                    y: 30,
-                                },
-                                delay: 1000,
-                                z_index: 10000,
-                                animate: {
-                                    enter: "animated bounce",
-                                    exit: "animated bounce",
-                                },
-                            }
-                        );
+
+                        notifyFun(response.success);
                     },
                 });
             }
@@ -394,34 +270,8 @@
                     data: { id: id, trash: 1 }, // reverse is trash becasse true is checked
                     success: function (data) {
                         console.log(data);
-                        $.notify(
-                            {
-                                message: data.success,
-                            },
-                            {
-                                type: "primary",
-                                allow_dismiss: false,
-                                newest_on_top: false,
-                                mouse_over: false,
-                                showProgressbar: false,
-                                spacing: 10,
-                                timer: 2000,
-                                placement: {
-                                    from: "top",
-                                    align: "right",
-                                },
-                                offset: {
-                                    x: 30,
-                                    y: 30,
-                                },
-                                delay: 1000,
-                                z_index: 10000,
-                                animate: {
-                                    enter: "animated bounce",
-                                    exit: "animated bounce",
-                                },
-                            }
-                        );
+
+                        notifyFun(response.success);
                     },
                 });
             } else {
@@ -436,34 +286,8 @@
                     data: { id: id, trash: 0 }, // reverse is trash becasse true is checked
                     success: function (data) {
                         console.log(data);
-                        $.notify(
-                            {
-                                message: data.success,
-                            },
-                            {
-                                type: "primary",
-                                allow_dismiss: false,
-                                newest_on_top: false,
-                                mouse_over: false,
-                                showProgressbar: false,
-                                spacing: 10,
-                                timer: 2000,
-                                placement: {
-                                    from: "top",
-                                    align: "right",
-                                },
-                                offset: {
-                                    x: 30,
-                                    y: 30,
-                                },
-                                delay: 1000,
-                                z_index: 10000,
-                                animate: {
-                                    enter: "animated bounce",
-                                    exit: "animated bounce",
-                                },
-                            }
-                        );
+
+                        notifyFun(response.success);
                     },
                 });
             }
@@ -561,41 +385,7 @@
                 processData: false,
                 contentType: false,
                 success: function (response) {
-                    // console.log(response);
-                    // $(".f_name").val("");
-                    // $(".f_email").val("");
-                    // $(".user_type").val("");
-                    // $(".f_address").val("");
-                    // $(".f_cell").val("");
-                    // $(".f_photo_val").val("");
-                    $.notify(
-                        {
-                            message: response.success,
-                        },
-                        {
-                            type: "primary",
-                            allow_dismiss: false,
-                            newest_on_top: false,
-                            mouse_over: false,
-                            showProgressbar: false,
-                            spacing: 10,
-                            timer: 2000,
-                            placement: {
-                                from: "top",
-                                align: "right",
-                            },
-                            offset: {
-                                x: 30,
-                                y: 30,
-                            },
-                            delay: 1000,
-                            z_index: 10000,
-                            animate: {
-                                enter: "animated bounce",
-                                exit: "animated bounce",
-                            },
-                        }
-                    );
+                    notifyFun(response.success);
                 },
             });
         });
@@ -658,34 +448,7 @@
                         $(".old_password").val("");
                         $(".new_password").val("");
 
-                        $.notify(
-                            {
-                                message: response.success,
-                            },
-                            {
-                                type: "primary",
-                                allow_dismiss: false,
-                                newest_on_top: false,
-                                mouse_over: false,
-                                showProgressbar: false,
-                                spacing: 10,
-                                timer: 2000,
-                                placement: {
-                                    from: "top",
-                                    align: "right",
-                                },
-                                offset: {
-                                    x: 30,
-                                    y: 30,
-                                },
-                                delay: 1000,
-                                z_index: 10000,
-                                animate: {
-                                    enter: "animated bounce",
-                                    exit: "animated bounce",
-                                },
-                            }
-                        );
+                        notifyFun(response.success);
                     },
                 });
             }
@@ -744,34 +507,7 @@
                         $(".c_name").val("");
                         $(".c_parent_id").val("");
 
-                        $.notify(
-                            {
-                                message: response.success,
-                            },
-                            {
-                                type: "primary",
-                                allow_dismiss: false,
-                                newest_on_top: false,
-                                mouse_over: false,
-                                showProgressbar: false,
-                                spacing: 10,
-                                timer: 2000,
-                                placement: {
-                                    from: "top",
-                                    align: "right",
-                                },
-                                offset: {
-                                    x: 30,
-                                    y: 30,
-                                },
-                                delay: 1000,
-                                z_index: 10000,
-                                animate: {
-                                    enter: "animated bounce",
-                                    exit: "animated bounce",
-                                },
-                            }
-                        );
+                        notifyFun(response.success);
                     },
                 });
             }
@@ -849,34 +585,7 @@
                         $(".c_name").val("");
                         $(".parent_id").val("");
 
-                        $.notify(
-                            {
-                                message: response.success,
-                            },
-                            {
-                                type: "primary",
-                                allow_dismiss: false,
-                                newest_on_top: false,
-                                mouse_over: false,
-                                showProgressbar: false,
-                                spacing: 10,
-                                timer: 2000,
-                                placement: {
-                                    from: "top",
-                                    align: "right",
-                                },
-                                offset: {
-                                    x: 30,
-                                    y: 30,
-                                },
-                                delay: 1000,
-                                z_index: 10000,
-                                animate: {
-                                    enter: "animated bounce",
-                                    exit: "animated bounce",
-                                },
-                            }
-                        );
+                        notifyFun(response.success);
                     },
                 });
             }
@@ -898,36 +607,10 @@
                     type: "POST",
                     url: "/categories/status-update",
                     data: { id: id, status: 1 },
-                    success: function (data) {
-                        console.log(data);
-                        $.notify(
-                            {
-                                message: data.success,
-                            },
-                            {
-                                type: "primary",
-                                allow_dismiss: false,
-                                newest_on_top: false,
-                                mouse_over: false,
-                                showProgressbar: false,
-                                spacing: 10,
-                                timer: 2000,
-                                placement: {
-                                    from: "top",
-                                    align: "right",
-                                },
-                                offset: {
-                                    x: 30,
-                                    y: 30,
-                                },
-                                delay: 1000,
-                                z_index: 10000,
-                                animate: {
-                                    enter: "animated bounce",
-                                    exit: "animated bounce",
-                                },
-                            }
-                        );
+                    success: function (response) {
+                        // console.log(response);
+
+                        notifyFun(response.success);
                     },
                 });
             } else {
@@ -940,36 +623,9 @@
                     type: "POST",
                     url: "/categories/status-update",
                     data: { id: id, status: 0 },
-                    success: function (data) {
-                        console.log(data);
-                        $.notify(
-                            {
-                                message: data.success,
-                            },
-                            {
-                                type: "primary",
-                                allow_dismiss: false,
-                                newest_on_top: false,
-                                mouse_over: false,
-                                showProgressbar: false,
-                                spacing: 10,
-                                timer: 2000,
-                                placement: {
-                                    from: "top",
-                                    align: "right",
-                                },
-                                offset: {
-                                    x: 30,
-                                    y: 30,
-                                },
-                                delay: 1000,
-                                z_index: 10000,
-                                animate: {
-                                    enter: "animated bounce",
-                                    exit: "animated bounce",
-                                },
-                            }
-                        );
+                    success: function (response) {
+                        // console.log(response);
+                        notifyFun(response.success);
                     },
                 });
             }
@@ -991,36 +647,9 @@
                     type: "POST",
                     url: "/categories/trash-update",
                     data: { id: id, trash: 0 }, // reverse is stattus becasse false is checked
-                    success: function (data) {
-                        console.log(data);
-                        $.notify(
-                            {
-                                message: data.success,
-                            },
-                            {
-                                type: "primary",
-                                allow_dismiss: false,
-                                newest_on_top: false,
-                                mouse_over: false,
-                                showProgressbar: false,
-                                spacing: 10,
-                                timer: 2000,
-                                placement: {
-                                    from: "top",
-                                    align: "right",
-                                },
-                                offset: {
-                                    x: 30,
-                                    y: 30,
-                                },
-                                delay: 1000,
-                                z_index: 10000,
-                                animate: {
-                                    enter: "animated bounce",
-                                    exit: "animated bounce",
-                                },
-                            }
-                        );
+                    success: function (response) {
+                        // console.log(response);
+                        notifyFun(response.success);
                     },
                 });
             } else {
@@ -1033,36 +662,9 @@
                     type: "POST",
                     url: "/categories/trash-update",
                     data: { id: id, trash: 1 }, // reverse is stattus becasse false is checked
-                    success: function (data) {
-                        console.log(data);
-                        $.notify(
-                            {
-                                message: data.success,
-                            },
-                            {
-                                type: "primary",
-                                allow_dismiss: false,
-                                newest_on_top: false,
-                                mouse_over: false,
-                                showProgressbar: false,
-                                spacing: 10,
-                                timer: 2000,
-                                placement: {
-                                    from: "top",
-                                    align: "right",
-                                },
-                                offset: {
-                                    x: 30,
-                                    y: 30,
-                                },
-                                delay: 1000,
-                                z_index: 10000,
-                                animate: {
-                                    enter: "animated bounce",
-                                    exit: "animated bounce",
-                                },
-                            }
-                        );
+                    success: function (response) {
+                        // console.log(response);
+                        notifyFun(response.success);
                     },
                 });
             }
@@ -1084,36 +686,9 @@
                     type: "POST",
                     url: "/categories/trash-update",
                     data: { id: id, trash: 1 }, // reverse is trash becasse true is checked
-                    success: function (data) {
-                        console.log(data);
-                        $.notify(
-                            {
-                                message: data.success,
-                            },
-                            {
-                                type: "primary",
-                                allow_dismiss: false,
-                                newest_on_top: false,
-                                mouse_over: false,
-                                showProgressbar: false,
-                                spacing: 10,
-                                timer: 2000,
-                                placement: {
-                                    from: "top",
-                                    align: "right",
-                                },
-                                offset: {
-                                    x: 30,
-                                    y: 30,
-                                },
-                                delay: 1000,
-                                z_index: 10000,
-                                animate: {
-                                    enter: "animated bounce",
-                                    exit: "animated bounce",
-                                },
-                            }
-                        );
+                    success: function (response) {
+                        // console.log(response);
+                        notifyFun(response.success);
                     },
                 });
             } else {
@@ -1126,36 +701,9 @@
                     type: "POST",
                     url: "/categories/trash-update",
                     data: { id: id, trash: 0 }, // reverse is trash becasse true is checked
-                    success: function (data) {
-                        console.log(data);
-                        $.notify(
-                            {
-                                message: data.success,
-                            },
-                            {
-                                type: "primary",
-                                allow_dismiss: false,
-                                newest_on_top: false,
-                                mouse_over: false,
-                                showProgressbar: false,
-                                spacing: 10,
-                                timer: 2000,
-                                placement: {
-                                    from: "top",
-                                    align: "right",
-                                },
-                                offset: {
-                                    x: 30,
-                                    y: 30,
-                                },
-                                delay: 1000,
-                                z_index: 10000,
-                                animate: {
-                                    enter: "animated bounce",
-                                    exit: "animated bounce",
-                                },
-                            }
-                        );
+                    success: function (response) {
+                        // console.log(response);
+                        notifyFun(response.success);
                     },
                 });
             }
@@ -1213,34 +761,7 @@
                         // console.log(response);
                         $(".t_name").val("");
 
-                        $.notify(
-                            {
-                                message: response.success,
-                            },
-                            {
-                                type: "primary",
-                                allow_dismiss: false,
-                                newest_on_top: false,
-                                mouse_over: false,
-                                showProgressbar: false,
-                                spacing: 10,
-                                timer: 2000,
-                                placement: {
-                                    from: "top",
-                                    align: "right",
-                                },
-                                offset: {
-                                    x: 30,
-                                    y: 30,
-                                },
-                                delay: 1000,
-                                z_index: 10000,
-                                animate: {
-                                    enter: "animated bounce",
-                                    exit: "animated bounce",
-                                },
-                            }
-                        );
+                        notifyFun(response.success);
                     },
                 });
             }
@@ -1315,34 +836,7 @@
                         // console.log(response);
                         $(".t_name").val("");
 
-                        $.notify(
-                            {
-                                message: response.success,
-                            },
-                            {
-                                type: "primary",
-                                allow_dismiss: false,
-                                newest_on_top: false,
-                                mouse_over: false,
-                                showProgressbar: false,
-                                spacing: 10,
-                                timer: 2000,
-                                placement: {
-                                    from: "top",
-                                    align: "right",
-                                },
-                                offset: {
-                                    x: 30,
-                                    y: 30,
-                                },
-                                delay: 1000,
-                                z_index: 10000,
-                                animate: {
-                                    enter: "animated bounce",
-                                    exit: "animated bounce",
-                                },
-                            }
-                        );
+                        notifyFun(response.success);
                     },
                 });
             }
@@ -1364,36 +858,10 @@
                     type: "POST",
                     url: "/tags/status-update",
                     data: { id: id, status: 1 },
-                    success: function (data) {
-                        console.log(data);
-                        $.notify(
-                            {
-                                message: data.success,
-                            },
-                            {
-                                type: "primary",
-                                allow_dismiss: false,
-                                newest_on_top: false,
-                                mouse_over: false,
-                                showProgressbar: false,
-                                spacing: 10,
-                                timer: 2000,
-                                placement: {
-                                    from: "top",
-                                    align: "right",
-                                },
-                                offset: {
-                                    x: 30,
-                                    y: 30,
-                                },
-                                delay: 1000,
-                                z_index: 10000,
-                                animate: {
-                                    enter: "animated bounce",
-                                    exit: "animated bounce",
-                                },
-                            }
-                        );
+                    success: function (response) {
+                        // console.log(response);
+
+                        notifyFun(response.success);
                     },
                 });
             } else {
@@ -1406,36 +874,9 @@
                     type: "POST",
                     url: "/tags/status-update",
                     data: { id: id, status: 0 },
-                    success: function (data) {
-                        console.log(data);
-                        $.notify(
-                            {
-                                message: data.success,
-                            },
-                            {
-                                type: "primary",
-                                allow_dismiss: false,
-                                newest_on_top: false,
-                                mouse_over: false,
-                                showProgressbar: false,
-                                spacing: 10,
-                                timer: 2000,
-                                placement: {
-                                    from: "top",
-                                    align: "right",
-                                },
-                                offset: {
-                                    x: 30,
-                                    y: 30,
-                                },
-                                delay: 1000,
-                                z_index: 10000,
-                                animate: {
-                                    enter: "animated bounce",
-                                    exit: "animated bounce",
-                                },
-                            }
-                        );
+                    success: function (response) {
+                        // console.log(response);
+                        notifyFun(response.success);
                     },
                 });
             }
@@ -1457,36 +898,9 @@
                     type: "POST",
                     url: "/tags/trash-update",
                     data: { id: id, trash: 0 }, // reverse is stattus becasse false is checked
-                    success: function (data) {
-                        console.log(data);
-                        $.notify(
-                            {
-                                message: data.success,
-                            },
-                            {
-                                type: "primary",
-                                allow_dismiss: false,
-                                newest_on_top: false,
-                                mouse_over: false,
-                                showProgressbar: false,
-                                spacing: 10,
-                                timer: 2000,
-                                placement: {
-                                    from: "top",
-                                    align: "right",
-                                },
-                                offset: {
-                                    x: 30,
-                                    y: 30,
-                                },
-                                delay: 1000,
-                                z_index: 10000,
-                                animate: {
-                                    enter: "animated bounce",
-                                    exit: "animated bounce",
-                                },
-                            }
-                        );
+                    success: function (response) {
+                        // console.log(response);
+                        notifyFun(response.success);
                     },
                 });
             } else {
@@ -1499,36 +913,9 @@
                     type: "POST",
                     url: "/tags/trash-update",
                     data: { id: id, trash: 1 }, // reverse is stattus becasse false is checked
-                    success: function (data) {
-                        console.log(data);
-                        $.notify(
-                            {
-                                message: data.success,
-                            },
-                            {
-                                type: "primary",
-                                allow_dismiss: false,
-                                newest_on_top: false,
-                                mouse_over: false,
-                                showProgressbar: false,
-                                spacing: 10,
-                                timer: 2000,
-                                placement: {
-                                    from: "top",
-                                    align: "right",
-                                },
-                                offset: {
-                                    x: 30,
-                                    y: 30,
-                                },
-                                delay: 1000,
-                                z_index: 10000,
-                                animate: {
-                                    enter: "animated bounce",
-                                    exit: "animated bounce",
-                                },
-                            }
-                        );
+                    success: function (response) {
+                        // console.log(response);
+                        notifyFun(response.success);
                     },
                 });
             }
@@ -1550,36 +937,9 @@
                     type: "POST",
                     url: "/tags/trash-update",
                     data: { id: id, trash: 1 }, // reverse is trash becasse true is checked
-                    success: function (data) {
-                        console.log(data);
-                        $.notify(
-                            {
-                                message: data.success,
-                            },
-                            {
-                                type: "primary",
-                                allow_dismiss: false,
-                                newest_on_top: false,
-                                mouse_over: false,
-                                showProgressbar: false,
-                                spacing: 10,
-                                timer: 2000,
-                                placement: {
-                                    from: "top",
-                                    align: "right",
-                                },
-                                offset: {
-                                    x: 30,
-                                    y: 30,
-                                },
-                                delay: 1000,
-                                z_index: 10000,
-                                animate: {
-                                    enter: "animated bounce",
-                                    exit: "animated bounce",
-                                },
-                            }
-                        );
+                    success: function (response) {
+                        // console.log(response);
+                        notifyFun(response.success);
                     },
                 });
             } else {
@@ -1592,36 +952,9 @@
                     type: "POST",
                     url: "/tags/trash-update",
                     data: { id: id, trash: 0 }, // reverse is trash becasse true is checked
-                    success: function (data) {
-                        console.log(data);
-                        $.notify(
-                            {
-                                message: data.success,
-                            },
-                            {
-                                type: "primary",
-                                allow_dismiss: false,
-                                newest_on_top: false,
-                                mouse_over: false,
-                                showProgressbar: false,
-                                spacing: 10,
-                                timer: 2000,
-                                placement: {
-                                    from: "top",
-                                    align: "right",
-                                },
-                                offset: {
-                                    x: 30,
-                                    y: 30,
-                                },
-                                delay: 1000,
-                                z_index: 10000,
-                                animate: {
-                                    enter: "animated bounce",
-                                    exit: "animated bounce",
-                                },
-                            }
-                        );
+                    success: function (response) {
+                        // console.log(response);
+                        notifyFun(response.success);
                     },
                 });
             }
@@ -1743,34 +1076,7 @@
                         $(".p_tag").val("");
                         $(".p_title").val("");
 
-                        $.notify(
-                            {
-                                message: response.success,
-                            },
-                            {
-                                type: "primary",
-                                allow_dismiss: false,
-                                newest_on_top: false,
-                                mouse_over: false,
-                                showProgressbar: false,
-                                spacing: 10,
-                                timer: 2000,
-                                placement: {
-                                    from: "top",
-                                    align: "right",
-                                },
-                                offset: {
-                                    x: 30,
-                                    y: 30,
-                                },
-                                delay: 1000,
-                                z_index: 10000,
-                                animate: {
-                                    enter: "animated bounce",
-                                    exit: "animated bounce",
-                                },
-                            }
-                        );
+                        notifyFun(response.success);
                     },
                 });
             }
@@ -1882,34 +1188,7 @@
                     success: function (response) {
                         console.log(response);
 
-                        $.notify(
-                            {
-                                message: response.success,
-                            },
-                            {
-                                type: "primary",
-                                allow_dismiss: false,
-                                newest_on_top: false,
-                                mouse_over: false,
-                                showProgressbar: false,
-                                spacing: 10,
-                                timer: 2000,
-                                placement: {
-                                    from: "top",
-                                    align: "right",
-                                },
-                                offset: {
-                                    x: 30,
-                                    y: 30,
-                                },
-                                delay: 1000,
-                                z_index: 10000,
-                                animate: {
-                                    enter: "animated bounce",
-                                    exit: "animated bounce",
-                                },
-                            }
-                        );
+                        notifyFun(response.success);
                     },
                 });
             }
@@ -2074,36 +1353,9 @@
                     type: "POST",
                     url: "/posts/status-update",
                     data: { id: id, status: 1 },
-                    success: function (data) {
-                        console.log(data);
-                        $.notify(
-                            {
-                                message: data.success,
-                            },
-                            {
-                                type: "primary",
-                                allow_dismiss: false,
-                                newest_on_top: false,
-                                mouse_over: false,
-                                showProgressbar: false,
-                                spacing: 10,
-                                timer: 2000,
-                                placement: {
-                                    from: "top",
-                                    align: "right",
-                                },
-                                offset: {
-                                    x: 30,
-                                    y: 30,
-                                },
-                                delay: 1000,
-                                z_index: 10000,
-                                animate: {
-                                    enter: "animated bounce",
-                                    exit: "animated bounce",
-                                },
-                            }
-                        );
+                    success: function (response) {
+                        // console.log(response);
+                        notifyFun(response.success);
                     },
                 });
             } else {
@@ -2116,36 +1368,9 @@
                     type: "POST",
                     url: "/posts/status-update",
                     data: { id: id, status: 0 },
-                    success: function (data) {
-                        console.log(data);
-                        $.notify(
-                            {
-                                message: data.success,
-                            },
-                            {
-                                type: "primary",
-                                allow_dismiss: false,
-                                newest_on_top: false,
-                                mouse_over: false,
-                                showProgressbar: false,
-                                spacing: 10,
-                                timer: 2000,
-                                placement: {
-                                    from: "top",
-                                    align: "right",
-                                },
-                                offset: {
-                                    x: 30,
-                                    y: 30,
-                                },
-                                delay: 1000,
-                                z_index: 10000,
-                                animate: {
-                                    enter: "animated bounce",
-                                    exit: "animated bounce",
-                                },
-                            }
-                        );
+                    success: function (response) {
+                        // console.log(response);
+                        notifyFun(response.success);
                     },
                 });
             }
@@ -2167,36 +1392,9 @@
                     type: "POST",
                     url: "/posts/trash-update",
                     data: { id: id, trash: 0 }, // reverse is stattus becasse false is checked
-                    success: function (data) {
-                        console.log(data);
-                        $.notify(
-                            {
-                                message: data.success,
-                            },
-                            {
-                                type: "primary",
-                                allow_dismiss: false,
-                                newest_on_top: false,
-                                mouse_over: false,
-                                showProgressbar: false,
-                                spacing: 10,
-                                timer: 2000,
-                                placement: {
-                                    from: "top",
-                                    align: "right",
-                                },
-                                offset: {
-                                    x: 30,
-                                    y: 30,
-                                },
-                                delay: 1000,
-                                z_index: 10000,
-                                animate: {
-                                    enter: "animated bounce",
-                                    exit: "animated bounce",
-                                },
-                            }
-                        );
+                    success: function (response) {
+                        // console.log(response);
+                        notifyFun(response.success);
                     },
                 });
             } else {
@@ -2209,36 +1407,9 @@
                     type: "POST",
                     url: "/posts/trash-update",
                     data: { id: id, trash: 1 }, // reverse is stattus becasse false is checked
-                    success: function (data) {
-                        console.log(data);
-                        $.notify(
-                            {
-                                message: data.success,
-                            },
-                            {
-                                type: "primary",
-                                allow_dismiss: false,
-                                newest_on_top: false,
-                                mouse_over: false,
-                                showProgressbar: false,
-                                spacing: 10,
-                                timer: 2000,
-                                placement: {
-                                    from: "top",
-                                    align: "right",
-                                },
-                                offset: {
-                                    x: 30,
-                                    y: 30,
-                                },
-                                delay: 1000,
-                                z_index: 10000,
-                                animate: {
-                                    enter: "animated bounce",
-                                    exit: "animated bounce",
-                                },
-                            }
-                        );
+                    success: function (response) {
+                        // console.log(response);
+                        notifyFun(response.success);
                     },
                 });
             }
@@ -2260,36 +1431,9 @@
                     type: "POST",
                     url: "/posts/trash-update",
                     data: { id: id, trash: 1 }, // reverse is trash becasse true is checked
-                    success: function (data) {
-                        console.log(data);
-                        $.notify(
-                            {
-                                message: data.success,
-                            },
-                            {
-                                type: "primary",
-                                allow_dismiss: false,
-                                newest_on_top: false,
-                                mouse_over: false,
-                                showProgressbar: false,
-                                spacing: 10,
-                                timer: 2000,
-                                placement: {
-                                    from: "top",
-                                    align: "right",
-                                },
-                                offset: {
-                                    x: 30,
-                                    y: 30,
-                                },
-                                delay: 1000,
-                                z_index: 10000,
-                                animate: {
-                                    enter: "animated bounce",
-                                    exit: "animated bounce",
-                                },
-                            }
-                        );
+                    success: function (response) {
+                        // console.log(response);
+                        notifyFun(response.success);
                     },
                 });
             } else {
@@ -2302,36 +1446,9 @@
                     type: "POST",
                     url: "/posts/trash-update",
                     data: { id: id, trash: 0 }, // reverse is trash becasse true is checked
-                    success: function (data) {
-                        console.log(data);
-                        $.notify(
-                            {
-                                message: data.success,
-                            },
-                            {
-                                type: "primary",
-                                allow_dismiss: false,
-                                newest_on_top: false,
-                                mouse_over: false,
-                                showProgressbar: false,
-                                spacing: 10,
-                                timer: 2000,
-                                placement: {
-                                    from: "top",
-                                    align: "right",
-                                },
-                                offset: {
-                                    x: 30,
-                                    y: 30,
-                                },
-                                delay: 1000,
-                                z_index: 10000,
-                                animate: {
-                                    enter: "animated bounce",
-                                    exit: "animated bounce",
-                                },
-                            }
-                        );
+                    success: function (response) {
+                        // console.log(response);
+                        notifyFun(response.success);
                     },
                 });
             }
