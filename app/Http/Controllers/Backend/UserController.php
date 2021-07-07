@@ -139,11 +139,11 @@ class UserController extends Controller
 
        if($data == true){
            return response()->json([
-               'msg' => 'User Status updated successfully ): '
+               'success' => 'User Status updated successfully ): '
            ]);
        }else {
         return response()->json([
-            'msg' => 'Something is wrong! plase try again! '
+            'error' => 'Something is wrong! plase try again! '
         ]);
        }
     }
@@ -168,11 +168,11 @@ class UserController extends Controller
 
        if($data == true){
            return response()->json([
-               'msg' => 'User trash updated successfully ): '
+               'success' => 'User trash updated successfully ): '
            ]);
        }else {
         return response()->json([
-            'msg' => 'Something is wrong! plase try again! '
+            'error' => 'Something is wrong! plase try again! '
         ]);
        }
     }
