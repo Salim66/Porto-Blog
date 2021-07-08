@@ -32,3 +32,5 @@
 		<script src="{{ asset('js/')}}/examples/examples.instagramFeed.js"></script>
 
 	<script defer src="../../../../static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"rayId":"66b2a4e7a8f0c3b3","version":"2021.6.0","r":1,"token":"03fa3b9eb60b49789931c4694c153f9b","si":10}'></script>
+    <!-- Custom js -->
+    <script src="{{ asset('js/')}}/custom.js"></script>

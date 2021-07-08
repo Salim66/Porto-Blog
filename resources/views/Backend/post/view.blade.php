@@ -157,15 +157,15 @@
                         </div>
                         <div class="form-group col-md-12 post_image">
                             <img id="post_image_load" class="post_image" style="width: 400px;" src="" class="d-block" alt=""><br>
-                            <label for="post_image"><img style="width: 100px; cursor: pointer;" src="{{ URL::to('/') }}/backend/assets/images/image-file.png" alt=""></label>
-                            <input type="file" name="post_image" class="form-control d-none" id="post_image">
+                            {{-- <label for="post_image"><img style="width: 100px; cursor: pointer;" src="{{ URL::to('/') }}/backend/assets/images/image-file.png" alt=""></label> --}}
+                            <input type="file" name="post_image" class="form-control dropify" id="post_image">
                         </div>
                         <div class="form-group col-md-12 post_image_g">
                             <div class="post_gallery_image"></div>
+                            {{-- <br>
                             <br>
-                            <br>
-                            <label for="post_image_g"><img style="width: 100px; cursor: pointer;" src="{{ URL::to('/') }}/backend/assets/images/image-file.png" alt=""></label>
-                            <input type="file" name="post_gallery_image[]" class="form-control d-none" id="post_image_g" multiple>
+                            <label for="post_image_g"><img style="width: 100px; cursor: pointer;" src="{{ URL::to('/') }}/backend/assets/images/image-file.png" alt=""></label> --}}
+                            <input type="file" name="post_gallery_image[]" class="form-control dropify" id="post_image_g" multiple>
                         </div>
                         <div class="form-group col-md-12 post_image_a">
                             <label for="">Post Audio Link</label>

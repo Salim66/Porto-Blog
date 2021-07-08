@@ -25,6 +25,8 @@ Route::post('/search', 'App\Http\Controllers\Frontend\FrontendController@postSea
 
 // Routes for comment
 Route::post('/comment/store', 'App\Http\Controllers\Frontend\CommentController@commentStore')->name('comment.store');
+Route::get('/comment/all_data', 'App\Http\Controllers\Frontend\CommentController@commentShowAll')->name('comment.show.all');
+Route::post('/comment/reply/store', 'App\Http\Controllers\Frontend\CommentController@commentReplyStore')->name('comment.reply.store');
 
 
 

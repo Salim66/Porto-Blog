@@ -94,100 +94,15 @@
                 <div id="comments" class="post-block mt-5 post-comments">
                     <h4 class="mb-3">Comments (3)</h4>
 
-                    <ul class="comments">
-                        <li>
-                            <div class="comment">
-                                <div class="img-thumbnail img-thumbnail-no-borders d-none d-sm-block">
-                                    <img class="avatar" alt="" src="img/avatars/avatar-2.jpg">
-                                </div>
-                                <div class="comment-block">
-                                    <div class="comment-arrow"></div>
-                                    <span class="comment-by">
-                                        <strong>John Doe</strong>
-                                        <span class="float-end">
-                                            <span> <a href="#"><i class="fas fa-reply"></i> Reply</a></span>
-                                        </span>
-                                    </span>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim ornare nisi, vitae mattis nulla ante id dui.</p>
-                                    <span class="date float-end">January 12, 2021 at 1:38 pm</span>
-                                </div>
-                            </div>
+                    @php
+                        $comments = App\Models\Comment::latest()->get();
 
-                            <ul class="comments reply">
-                                <li>
-                                    <div class="comment">
-                                        <div class="img-thumbnail img-thumbnail-no-borders d-none d-sm-block">
-                                            <img class="avatar" alt="" src="img/avatars/avatar-3.jpg">
-                                        </div>
-                                        <div class="comment-block">
-                                            <div class="comment-arrow"></div>
-                                            <span class="comment-by">
-                                                <strong>John Doe</strong>
-                                                <span class="float-end">
-                                                    <span> <a href="#"><i class="fas fa-reply"></i> Reply</a></span>
-                                                </span>
-                                            </span>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae.</p>
-                                            <span class="date float-end">January 12, 2021 at 1:38 pm</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="comment">
-                                        <div class="img-thumbnail img-thumbnail-no-borders d-none d-sm-block">
-                                            <img class="avatar" alt="" src="img/avatars/avatar-4.jpg">
-                                        </div>
-                                        <div class="comment-block">
-                                            <div class="comment-arrow"></div>
-                                            <span class="comment-by">
-                                                <strong>John Doe</strong>
-                                                <span class="float-end">
-                                                    <span> <a href="#"><i class="fas fa-reply"></i> Reply</a></span>
-                                                </span>
-                                            </span>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae.</p>
-                                            <span class="date float-end">January 12, 2021 at 1:38 pm</span>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <div class="comment">
-                                <div class="img-thumbnail img-thumbnail-no-borders d-none d-sm-block">
-                                    <img class="avatar" alt="" src="img/avatars/avatar.jpg">
-                                </div>
-                                <div class="comment-block">
-                                    <div class="comment-arrow"></div>
-                                    <span class="comment-by">
-                                        <strong>John Doe</strong>
-                                        <span class="float-end">
-                                            <span> <a href="#"><i class="fas fa-reply"></i> Reply</a></span>
-                                        </span>
-                                    </span>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                    <span class="date float-end">January 12, 2021 at 1:38 pm</span>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="comment">
-                                <div class="img-thumbnail img-thumbnail-no-borders d-none d-sm-block">
-                                    <img class="avatar" alt="" src="img/avatars/avatar.jpg">
-                                </div>
-                                <div class="comment-block">
-                                    <div class="comment-arrow"></div>
-                                    <span class="comment-by">
-                                        <strong>John Doe</strong>
-                                        <span class="float-end">
-                                            <span> <a href="#"><i class="fas fa-reply"></i> Reply</a></span>
-                                        </span>
-                                    </span>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                    <span class="date float-end">January 12, 2021 at 1:38 pm</span>
-                                </div>
-                            </div>
-                        </li>
+                        // dd($comments);
+                    @endphp
+
+                    <ul class="comments" id="showComments">
+
+
                     </ul>
 
                 </div>
@@ -199,22 +114,13 @@
                 <div class="post-block mt-5 post-leave-comment">
                     <h4 class="mb-3">Leave a comment</h4>
 
-                    <form class="contact-form p-4 rounded bg-color-grey" action="" method="POST">
+                    <form class="contact-form p-4 rounded bg-color-grey" id="comment_store" action="" method="POST">
                         <div class="p-2">
-                            {{-- <div class="row">
-                                <div class="form-group col-lg-6">
-                                    <label class="form-label required font-weight-bold text-dark">Full Name</label>
-                                    <input type="text" value="" data-msg-required="Please enter your name." maxlength="100" class="form-control" name="name" required>
-                                </div>
-                                <div class="form-group col-lg-6">
-                                    <label class="form-label required font-weight-bold text-dark">Email Address</label>
-                                    <input type="email" value="" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control" name="email" required>
-                                </div>
-                            </div> --}}
                             <div class="row">
                                 <div class="form-group col">
+                                    <input type="hidden" name="post_id" id="post_id" value="{{ $data->id }}">
                                     <label class="form-label required font-weight-bold text-dark">Comment</label>
-                                    <textarea maxlength="5000" data-msg-required="Please enter your comment." rows="8" class="form-control" name="text" required></textarea>
+                                    <textarea maxlength="5000" data-msg-required="Please enter your comment." rows="8" class="form-control" id="text" name="text" required></textarea>
                                 </div>
                             </div>
                             <div class="row">
@@ -231,4 +137,5 @@
 
     </div>
 </div>
+
 @endsection
