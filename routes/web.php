@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 // Routes for frontend
 Route::get('/', 'App\Http\Controllers\Frontend\FrontendController@index')->name('blog.index');
+Route::get('/single-blog/{slug}', 'App\Http\Controllers\Frontend\FrontendController@singleBlog')->name('single.blog.page');
 
 
 

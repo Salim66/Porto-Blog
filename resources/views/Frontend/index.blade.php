@@ -38,7 +38,7 @@
                     </a>
                 </div>
                 <div class="post-content">
-                   <h2 class="font-weight-semibold text-5 line-height-6 mt-3 mb-2"><a href="blog-post.html">{{ $data->title }}</a></h2>
+                   <h2 class="font-weight-semibold text-5 line-height-6 mt-3 mb-2"><a href="{{ route('single.blog.page', $data->slug) }}">{{ $data->title }}</a></h2>
                    <p>{!! Str::of(htmlspecialchars_decode($data->content))->words('5', '<span style="color:red;">>>></span>') !!}</p>
                    <div class="post-meta">
                       <span><i class="far fa-user"></i> By <a href="#">{{ $data->user->name }}</a> </span>
@@ -52,7 +52,8 @@
                         @endforeach
                     </span>
                       <span><i class="far fa-comments"></i> <a href="#">12 Comments</a></span>
-                      <span class="d-block mt-2"><a href="blog-post.html" class="btn btn-xs btn-light text-1 text-uppercase">Read More</a></span>
+                      <span><i class="far fa-eye"></i> <a href="#">{{ $data->views }} Views</a></span>
+                      <span class="d-block mt-2"><a href="{{ route('single.blog.page', $data->slug) }}" class="btn btn-xs btn-light text-1 text-uppercase">Read More</a></span>
                    </div>
                 </div>
              </article>
@@ -63,7 +64,7 @@
 
 
         <!-- Pagination -->
-       {{ $all_data->links('Frontend.paginator') }}
+        {{ $all_data->links('Frontend.paginator') }}
     </div>
  </div>
 @endsection
