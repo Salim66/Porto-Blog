@@ -33,106 +33,102 @@
         </ul>
         <div class="tabs tabs-dark mb-4 pb-2">
             <ul class="nav nav-tabs">
-                <li class="nav-item"><a class="nav-link show active text-1 font-weight-bold text-uppercase" href="#popularPosts" data-bs-toggle="tab">Popular</a></li>
-                <li class="nav-item"><a class="nav-link text-1 font-weight-bold text-uppercase" href="#recentPosts" data-bs-toggle="tab">Recent</a></li>
+                <li class="nav-item"><button class="nav-link show active text-1 font-weight-bold text-uppercase" data-filter=".popular">Popular</button></li>
+                <li class="nav-item"><button class="nav-link text-1 font-weight-bold text-uppercase" data-filter=".recent">Recent</button></li>
             </ul>
             <div class="tab-content">
-                <div class="tab-pane active" id="popularPosts">
+                <div class="tab-pane popular active" id="popularPosts">
                     <ul class="simple-post-list">
+
+                        @php
+
+                            $posts = App\Models\Post::where('views', '>=', 5)->take(3)->get();
+
+                        @endphp
+                        @foreach($posts as $data)
+                            @php
+                            $featured_info = json_decode($data->featured);
+                            @endphp
                         <li>
                             <div class="post-image">
                                 <div class="img-thumbnail img-thumbnail-no-borders d-block">
                                     <a href="blog-post.html">
-                                        <img src="img/blog/square/blog-11.jpg" width="50" height="50" alt="">
+                                        @if($featured_info->post_type == 'Image')
+                                        <img style="height: 40px; width: 40px;" src="{{ URL::to('') }}/uploads/posts/{{ $featured_info->post_image }}" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
+                                       @endif
+
+                                       @if($featured_info->post_type == 'Gallery')
+                                        <img style="height: 40px; width: 40px;" src="{{ URL::to('') }}/uploads/posts/{{ $featured_info->post_gallery[1] }}" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
+                                       @endif
+
+
+                                       @if($featured_info->post_type == 'Video')
+                                        <iframe style="height: 40px; width: 40px;" src="{{ $featured_info->post_video }}" frameborder="0"></iframe>
+                                       @endif
+
+
+                                       @if($featured_info->post_type == 'Audio')
+                                        <iframe style="height: 40px; width: 40px;" src="{{ $featured_info->post_audio }}" frameborder="0"></iframe>
+                                       @endif
                                     </a>
                                 </div>
                             </div>
                             <div class="post-info">
-                                <a href="blog-post.html">Nullam Vitae Nibh Un Odiosters</a>
+                                <a href="blog-post.html">{{ Str::words($data->title, 3, '...') }}</a>
                                 <div class="post-meta">
                                      Nov 10, 2021
+                                     {{ date('M d, Y', strtotime($data->created_at)) }}
                                 </div>
                             </div>
                         </li>
-                        <li>
-                            <div class="post-image">
-                                <div class="img-thumbnail img-thumbnail-no-borders d-block">
-                                    <a href="blog-post.html">
-                                        <img src="img/blog/square/blog-24.jpg" width="50" height="50" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="post-info">
-                                <a href="blog-post.html">Vitae Nibh Un Odiosters</a>
-                                <div class="post-meta">
-                                     Nov 10, 2021
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="post-image">
-                                <div class="img-thumbnail img-thumbnail-no-borders d-block">
-                                    <a href="blog-post.html">
-                                        <img src="img/blog/square/blog-42.jpg" width="50" height="50" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="post-info">
-                                <a href="blog-post.html">Odiosters Nullam Vitae</a>
-                                <div class="post-meta">
-                                     Nov 10, 2021
-                                </div>
-                            </div>
-                        </li>
+                        @endforeach
+
                     </ul>
                 </div>
-                <div class="tab-pane" id="recentPosts">
+                <div class="tab-pane recent" id="recentPosts">
                     <ul class="simple-post-list">
-                        <li>
-                            <div class="post-image">
-                                <div class="img-thumbnail img-thumbnail-no-borders d-block">
-                                    <a href="blog-post.html">
-                                        <img src="img/blog/square/blog-24.jpg" width="50" height="50" alt="">
-                                    </a>
-                                </div>
+                        @php
+
+                        $posts = App\Models\Post::take(3)->latest()->get();
+
+                    @endphp
+                    @foreach($posts as $data)
+                        @php
+                        $featured_info = json_decode($data->featured);
+                        @endphp
+                    <li>
+                        <div class="post-image">
+                            <div class="img-thumbnail img-thumbnail-no-borders d-block">
+                                <a href="blog-post.html">
+                                    @if($featured_info->post_type == 'Image')
+                                    <img style="height: 40px; width: 40px;" src="{{ URL::to('') }}/uploads/posts/{{ $featured_info->post_image }}" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
+                                   @endif
+
+                                   @if($featured_info->post_type == 'Gallery')
+                                    <img style="height: 40px; width: 40px;" src="{{ URL::to('') }}/uploads/posts/{{ $featured_info->post_gallery[1] }}" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
+                                   @endif
+
+
+                                   @if($featured_info->post_type == 'Video')
+                                    <iframe style="height: 40px; width: 40px;" src="{{ $featured_info->post_video }}" frameborder="0"></iframe>
+                                   @endif
+
+
+                                   @if($featured_info->post_type == 'Audio')
+                                    <iframe style="height: 40px; width: 40px;" src="{{ $featured_info->post_audio }}" frameborder="0"></iframe>
+                                   @endif
+                                </a>
                             </div>
-                            <div class="post-info">
-                                <a href="blog-post.html">Vitae Nibh Un Odiosters</a>
-                                <div class="post-meta">
-                                     Nov 10, 2021
-                                </div>
+                        </div>
+                        <div class="post-info">
+                            <a href="blog-post.html">{{ Str::words($data->title, 3, '...') }}</a>
+                            <div class="post-meta">
+                                 Nov 10, 2021
+                                 {{ date('M d, Y', strtotime($data->created_at)) }}
                             </div>
-                        </li>
-                        <li>
-                            <div class="post-image">
-                                <div class="img-thumbnail img-thumbnail-no-borders d-block">
-                                    <a href="blog-post.html">
-                                        <img src="img/blog/square/blog-42.jpg" width="50" height="50" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="post-info">
-                                <a href="blog-post.html">Odiosters Nullam Vitae</a>
-                                <div class="post-meta">
-                                     Nov 10, 2021
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="post-image">
-                                <div class="img-thumbnail img-thumbnail-no-borders d-block">
-                                    <a href="blog-post.html">
-                                        <img src="img/blog/square/blog-11.jpg" width="50" height="50" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="post-info">
-                                <a href="blog-post.html">Nullam Vitae Nibh Un Odiosters</a>
-                                <div class="post-meta">
-                                     Nov 10, 2021
-                                </div>
-                            </div>
-                        </li>
+                        </div>
+                    </li>
+                    @endforeach
                     </ul>
                 </div>
             </div>
