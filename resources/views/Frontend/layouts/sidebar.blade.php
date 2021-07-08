@@ -21,7 +21,7 @@
 
                         <ul>
                             @foreach($category->categories as $sub_category)
-                            <li class="nav-item"><a class="nav-link" href="#">{{ $sub_category->name }}</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('categroy.wise.blog', $sub_category->slug) }}">{{ $sub_category->name }}</a></li>
                             @endforeach
                         </ul>
 
@@ -146,11 +146,18 @@
         <div class="instagram-feed" data-type="nomargins" class="mb-4 pb-1"></div>
         <h5 class="font-weight-semi-bold pt-4 mb-2">Tags</h5>
         <div class="mb-3 pb-1">
-            <a href="#"><span class="badge badge-dark badge-sm rounded-pill text-uppercase px-2 py-1 me-1">design</span></a>
-            <a href="#"><span class="badge badge-dark badge-sm rounded-pill text-uppercase px-2 py-1 me-1">brands</span></a>
-            <a href="#"><span class="badge badge-dark badge-sm rounded-pill text-uppercase px-2 py-1 me-1">video</span></a>
-            <a href="#"><span class="badge badge-dark badge-sm rounded-pill text-uppercase px-2 py-1 me-1">business</span></a>
-            <a href="#"><span class="badge badge-dark badge-sm rounded-pill text-uppercase px-2 py-1 me-1">travel</span></a>
+            @php
+
+                $tags = App\Models\Tag::withCount('posts')->where('status', true)->where('trash', false)->latest()->get();
+                // dd($categories);
+            @endphp
+            @foreach($tags as $tag)
+                @if($tag->posts_count > 0)
+                    <a href="{{ route('tag.wise.blog', $tag->slug) }}"><span class="badge badge-dark badge-sm rounded-pill text-uppercase px-2 py-1 me-1">{{ $tag->name }} ({{ $tag->posts_count }})</span></a>
+                @endif
+            @endforeach
+
+
         </div>
         <h5 class="font-weight-semi-bold pt-4">Find us on Facebook</h5>
         <div class="fb-page" data-href="https://www.facebook.com/OklerThemes/" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true"><blockquote cite="https://www.facebook.com/OklerThemes/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/OklerThemes/">Okler Themes</a></blockquote></div>
