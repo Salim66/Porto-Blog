@@ -1,9 +1,10 @@
 
 <div class="col-lg-3 order-lg-2">
     <aside class="sidebar">
-        <form action="https://www.okler.net/previews/porto/9.0.0/page-search-results.html" method="get">
+        <form action="{{ route('search.post') }}" method="POST">
+            @csrf
             <div class="input-group mb-3 pb-1">
-                <input class="form-control text-1" placeholder="Search..." name="s" id="s" type="text">
+                <input class="form-control text-1" placeholder="Search..." name="search" id="s" type="text">
                 <button type="submit" class="btn btn-dark text-1 p-2"><i class="fas fa-search m-2"></i></button>
             </div>
         </form>
@@ -76,7 +77,6 @@
                             <div class="post-info">
                                 <a href="blog-post.html">{{ Str::words($data->title, 3, '...') }}</a>
                                 <div class="post-meta">
-                                     Nov 10, 2021
                                      {{ date('M d, Y', strtotime($data->created_at)) }}
                                 </div>
                             </div>
@@ -123,7 +123,6 @@
                         <div class="post-info">
                             <a href="blog-post.html">{{ Str::words($data->title, 3, '...') }}</a>
                             <div class="post-meta">
-                                 Nov 10, 2021
                                  {{ date('M d, Y', strtotime($data->created_at)) }}
                             </div>
                         </div>

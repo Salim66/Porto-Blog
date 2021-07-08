@@ -73,4 +73,16 @@ class FrontendController extends Controller
            'tag' => $tag
        ]);
     }
+
+    /**
+     * Post search by search panel
+     */
+    public function postSearch(Request $request){
+       $search = $request->search;
+       $all_data = Post::where('title', 'LIKE', '%'.$search.'%')->orWhere('content', 'LIKE', '%'.$search.'%')->paginate(5);
+       return view('Frontend.search', [
+           'all_data' => $all_data,
+           'search' => $search,
+       ]);
+    }
 }
