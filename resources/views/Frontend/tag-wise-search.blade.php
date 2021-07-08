@@ -1,5 +1,7 @@
 @extends('Frontend.layouts.master')
 
+@section('title', $tag->name)
+@section('breadcamb', 'Tag')
 
 @section('main-content')
 <div class="col-lg-9 order-lg-1">

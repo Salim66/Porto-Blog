@@ -1,5 +1,7 @@
 @extends('Frontend.layouts.master')
 
+@section('title', $data->title)
+@section('breadcamb', 'Single Blog')
 
 @section('main-content')
 <div class="col-lg-9 order-lg-1">
@@ -26,7 +28,7 @@
 
 
                    @if($featured_info->post_type == 'Audio')
-                    <iframe style="height: auto; width: 100%;" src="{{ $featured_info->post_audio }}" frameborder="0"></iframe>
+                    <iframe style="height: 380px; width: 100%;" src="{{ $featured_info->post_audio }}" frameborder="0"></iframe>
                    @endif
                 </a>
             </div>

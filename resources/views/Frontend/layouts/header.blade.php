@@ -5,7 +5,7 @@
                 <div class="header-column header-column-border-right flex-grow-0">
                     <div class="header-row pe-4">
                         <div class="header-logo">
-                            <a href="index.html">
+                            <a href="{{ url('/') }}">
                                 <img alt="Porto" width="100" height="48" data-sticky-width="82" data-sticky-height="40" src="{{ URL::to('') }}/img/logo-default-slim.png">
                             </a>
                         </div>

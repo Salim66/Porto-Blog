@@ -1,5 +1,6 @@
 @extends('Frontend.layouts.master')
 
+@section('title', 'Blog Page')
 
 @section('main-content')
 <div class="col-lg-9 order-lg-1">
