@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 
 class FrontendController extends Controller
 {
@@ -56,6 +57,9 @@ class FrontendController extends Controller
      * Category wise blog search
      */
     public function categoryWiseBlogSearch($slug){
-        return $slug;
+       $category = Category::where('slug', $slug)->first();
+       return view('Frontend.category-wise-search', [
+           'category' => $category
+       ]);
     }
 }

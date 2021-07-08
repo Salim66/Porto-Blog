@@ -6,7 +6,7 @@
     <div class="blog-posts">
        <div class="row px-3">
 
-        @foreach($all_data as $data)
+        @foreach($category->posts as $data)
             @php
             $featured_info = json_decode($data->featured);
             @endphp
@@ -65,8 +65,7 @@
        </div>
 
 
-        <!-- Pagination -->
-        {{ $all_data->links('Frontend.paginator') }}
+
     </div>
  </div>
 @endsection
