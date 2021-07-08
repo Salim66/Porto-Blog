@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Models\Tag;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Category;
 
 class FrontendController extends Controller
 {
@@ -60,6 +61,16 @@ class FrontendController extends Controller
        $category = Category::where('slug', $slug)->first();
        return view('Frontend.category-wise-search', [
            'category' => $category
+       ]);
+    }
+
+    /**
+     * Tag wise blog search
+     */
+    public function tagWiseBlogSearch($slug){
+       $tag = Tag::where('slug', $slug)->first();
+       return view('Frontend.tag-wise-search', [
+           'tag' => $tag
        ]);
     }
 }

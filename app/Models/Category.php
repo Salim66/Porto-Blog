@@ -11,6 +11,11 @@ class Category extends Model
 
     protected $guarded = [];
 
+    // get child category
+    public function categories(){
+        return $this->hasMany('App\Models\Category', 'parent_id');
+    }
+
 
     // get category wise post
     public function posts(){

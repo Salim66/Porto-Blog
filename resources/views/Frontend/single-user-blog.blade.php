@@ -50,7 +50,7 @@
 
                       <span><i class="fas fa-tags"></i>
                         @foreach($data->tags as $tag)
-                        <a href="#">{{ $tag->name }}</a>,
+                        <a href="{{ route('tag.wise.blog', $tag->slug) }}">{{ $tag->name }}</a>,
                         @endforeach
                        </span>
                       <span><i class="far fa-comments"></i> <a href="#">12 Comments</a></span>

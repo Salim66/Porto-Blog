@@ -8,19 +8,27 @@
         </form>
         <h5 class="font-weight-semi-bold pt-4">Categories</h5>
         <ul class="nav nav-list flex-column mb-5">
-            <li class="nav-item"><a class="nav-link" href="#">Design (2)</a></li>
-            <li class="nav-item">
-                <a class="nav-link active" href="#">Photos (4)</a>
-                <ul>
-                    <li class="nav-item"><a class="nav-link" href="#">Animals</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="#">Business</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Sports</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">People</a></li>
-                </ul>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="#">Videos (3)</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Lifestyle (2)</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Technology (1)</a></li>
+
+            @php
+
+                $categories = App\Models\Category::withCount('posts')->where('status', true)->where('trash', false)->where('parent_id', 0)->latest()->get();
+                // dd($categories);
+            @endphp
+            @foreach($categories as $category)
+                @if($category->posts_count > 0)
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ route('categroy.wise.blog', $category->slug) }}">{{ $category->name }} ({{ $category->posts_count }})</a>
+
+                        <ul>
+                            @foreach($category->categories as $sub_category)
+                            <li class="nav-item"><a class="nav-link" href="#">{{ $sub_category->name }}</a></li>
+                            @endforeach
+                        </ul>
+
+                    </li>
+                @endif
+            @endforeach
+
         </ul>
         <div class="tabs tabs-dark mb-4 pb-2">
             <ul class="nav nav-tabs">

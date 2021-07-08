@@ -6,7 +6,7 @@
     <div class="blog-posts">
        <div class="row px-3">
 
-        @foreach($category->posts as $data)
+        @foreach($tag->posts as $data)
             @php
             $featured_info = json_decode($data->featured);
             @endphp
