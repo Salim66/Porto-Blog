@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class FrontendController extends Controller
 {
@@ -38,5 +39,23 @@ class FrontendController extends Controller
         $old_view = $data->views;
         $data->views = $old_view + 1;
         $data->update();
+    }
+
+    /**
+     * Single user blog post
+     */
+    public function singleUserBlog($slug){
+        $user = User::where('slug', $slug)->first();
+        $all_data = Post::where('user_id', $user->id)->where('status', true)->where('trash', false)->latest()->paginate(5);
+        return view('Frontend.single-user-blog', [
+            'all_data' => $all_data
+        ]);
+    }
+
+    /**
+     * Category wise blog search
+     */
+    public function categoryWiseBlogSearch($slug){
+        return $slug;
     }
 }

@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 // Routes for frontend
 Route::get('/', 'App\Http\Controllers\Frontend\FrontendController@index')->name('blog.index');
 Route::get('/single-blog/{slug}', 'App\Http\Controllers\Frontend\FrontendController@singleBlog')->name('single.blog.page');
+Route::get('/author/{slug}', 'App\Http\Controllers\Frontend\FrontendController@singleUserBlog')->name('single.user.blog');
+Route::get('/category/{slug}', 'App\Http\Controllers\Frontend\FrontendController@categoryWiseBlogSearch')->name('categroy.wise.blog');
 
 
 

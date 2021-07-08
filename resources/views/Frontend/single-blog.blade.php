@@ -41,17 +41,18 @@
                 <h2 class="font-weight-semi-bold"><a href="{{ route('single.blog.page', $data->slug) }}">{{ $data->title }}</a></h2>
 
                 <div class="post-meta">
-                    <span><i class="far fa-user"></i> By <a href="#">{{ $data->user->name }}</a> </span>
-                    <span><i class="far fa-folder"></i>
-
+                    <span><i class="far fa-user"></i> By <a href="{{ route('single.user.blog', $data->user->slug) }}">{{ $data->user->name }}</a> </span>
+                    <span><i class="fab fa-cuttlefish"></i>
                         @foreach($data->categories as $category)
                         <a href="#">{{ $category->name }}</a>,
                         @endforeach
+                      </span>
 
+                      <span><i class="fas fa-tags"></i>
                         @foreach($data->tags as $tag)
-                        <a href="#">{{ $tag->name }}</a>
+                        <a href="#">{{ $tag->name }}</a>,
                         @endforeach
-                        </span>
+                       </span>
                     <span><i class="far fa-comments"></i> <a href="#">12 Comments</a></span>
                     <span><i class="far fa-eye"></i> <a href="#">{{ $data->views }} Views</a></span>
                 </div>

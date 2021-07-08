@@ -44,7 +44,7 @@
                       <span><i class="far fa-user"></i> By <a href="{{ route('single.user.blog', $data->user->slug) }}">{{ $data->user->name }}</a> </span>
                       <span><i class="fab fa-cuttlefish"></i>
                         @foreach($data->categories as $category)
-                        <a href="{{ route('categroy.wise.blog', $category->slug) }}">{{ $category->name }}</a>,
+                        <a href="#">{{ $category->name }}</a>,
                         @endforeach
                       </span>
 
