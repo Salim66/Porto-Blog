@@ -53,7 +53,7 @@
                         <li>
                             <div class="post-image">
                                 <div class="img-thumbnail img-thumbnail-no-borders d-block">
-                                    <a href="blog-post.html">
+                                    <a href="{{ route('single.blog.page', $data->slug) }}">
                                         @if($featured_info->post_type == 'Image')
                                         <img style="height: 40px; width: 40px;" src="{{ URL::to('') }}/uploads/posts/{{ $featured_info->post_image }}" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
                                        @endif
@@ -75,7 +75,7 @@
                                 </div>
                             </div>
                             <div class="post-info">
-                                <a href="blog-post.html">{{ Str::words($data->title, 3, '...') }}</a>
+                                <a href="{{ route('single.blog.page', $data->slug) }}">{{ Str::words($data->title, 3, '...') }}</a>
                                 <div class="post-meta">
                                      {{ date('M d, Y', strtotime($data->created_at)) }}
                                 </div>
@@ -99,7 +99,7 @@
                     <li>
                         <div class="post-image">
                             <div class="img-thumbnail img-thumbnail-no-borders d-block">
-                                <a href="blog-post.html">
+                                <a href="{{ route('single.blog.page', $data->slug) }}">
                                     @if($featured_info->post_type == 'Image')
                                     <img style="height: 40px; width: 40px;" src="{{ URL::to('') }}/uploads/posts/{{ $featured_info->post_image }}" class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0" alt="" />
                                    @endif
@@ -121,7 +121,7 @@
                             </div>
                         </div>
                         <div class="post-info">
-                            <a href="blog-post.html">{{ Str::words($data->title, 3, '...') }}</a>
+                            <a href="{{ route('single.blog.page', $data->slug) }}">{{ Str::words($data->title, 3, '...') }}</a>
                             <div class="post-meta">
                                  {{ date('M d, Y', strtotime($data->created_at)) }}
                             </div>

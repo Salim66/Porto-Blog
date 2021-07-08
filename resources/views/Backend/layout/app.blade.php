@@ -4,11 +4,11 @@
   @include('Backend.layout.head')
   <body class="background-container">
     <!-- Loader starts-->
-    {{-- <div class="loader-wrapper">
+    <div class="loader-wrapper">
       <div class="typewriter">
         <h1>New Era Admin Loading..</h1>
       </div>
-    </div> --}}
+    </div>
     <!-- Loader ends-->
     <!-- page-wrapper Start-->
     <div class="page-wrapper">

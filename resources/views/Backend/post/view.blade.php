@@ -109,14 +109,14 @@
   <!-- Container-fluid Ends-->
   <!--Post Edit Modal-->
   <div id="edit_post" class="modal fade" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-dialog modal-dialog-centered modal-lg zoomIn animated">
           <div class="modal-content">
               <div class="modal-title py-3">
                   <h5 class="d-inline float-left ml-3">Edit Post</h5>
                   <button class="close d-inline float-right mr-3" data-dismiss="modal">&times;</button>
               </div>
               <div class="modal-body">
-                <form class="needs-validation" id="post_edit" novalidate="">
+                <form class="needs-validation animate-widget" id="post_edit" novalidate="">
                     <div class="form-row">
 
                         <input type="hidden" name="id" class="edit_id">
@@ -192,7 +192,7 @@
 
 {{--    Post Preview Modal--}}
 <div id="post_details_modal" class="modal fade" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-dialog modal-dialog-centered modal-xl zoomIn animated">
         <div class="modal-content">
             <div class="modal-header">
                 <h2 class="m-auto">Single Post Information</h2>

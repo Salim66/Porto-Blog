@@ -1070,11 +1070,20 @@
                     contentType: false,
                     processData: false,
                     success: function (response) {
-                        console.log(response);
-                        $(".p_type").val("");
-                        $(".p_cat").val("");
-                        $(".p_tag").val("");
-                        $(".p_title").val("");
+                        $("#post_add")[0].reset();
+                        $(".js-example-placeholder-multiple")
+                            .val(null)
+                            .trigger("change");
+                        for (instance in CKEDITOR.instances) {
+                            CKEDITOR.instances[instance].updateElement();
+                            CKEDITOR.instances[instance].setData("");
+                        }
+                        $("#post_image").val(null);
+                        $("#post_image_g").val(null);
+                        // console.log(response);
+                        // $(".p_cat").val("");
+                        // $(".p_tag").val("");
+                        // $(".p_title").val("");
 
                         notifyFun(response.success);
                     },
@@ -1452,6 +1461,16 @@
                     },
                 });
             }
+        });
+
+        // Drofify js
+        $(".dropify").dropify({
+            messages: {
+                default: "Drag and drop a file here or click",
+                replace: "Drag and drop or click to replace",
+                remove: "Remove",
+                error: "Ooops, something wrong happended.",
+            },
         });
     });
 })(jQuery);

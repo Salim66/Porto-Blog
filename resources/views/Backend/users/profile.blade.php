@@ -85,7 +85,7 @@
   <br>
  <!-- Container-fluid Ends-->
  <div id="edit_user_prifile" class="modal fade">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-dialog modal-dialog-centered modal-lg zoomIn animated">
         <div class="modal-content">
             <div class="modal-title py-3">
                 <h5 class="d-inline float-left ml-3">Edit Profile</h5>

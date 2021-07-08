@@ -63,7 +63,7 @@
 </div>
   <!-- Container-fluid Ends-->
   <div id="edit_category" class="modal fade">
-      <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-dialog modal-dialog-centered zoomIn animated">
           <div class="modal-content">
               <div class="modal-title py-3">
                   <h5 class="d-inline float-left ml-3">Edit Category</h5>

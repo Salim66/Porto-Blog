@@ -56,24 +56,22 @@
                     <div class="form-group col-md-12 post_image">
                         <img id="post_image_load" style="width: 400px;" src="" class="d-block" alt="">
                         <label for="post_image"><img style="width: 100px; cursor: pointer;" src="{{ URL::to('/') }}/backend/assets/images/image-file.png" alt=""></label>
-                        <input type="file" name="post_image" class="form-control d-none" id="post_image">
+                        <input type="file" name="post_image" class="form-control d-none dropify" id="post_image">
                     </div>
                     <div class="form-group col-md-12 post_image_g">
                         <div class="post_gallery_image"></div>
                         <br>
                         <br>
                         <label for="post_image_g"><img style="width: 100px; cursor: pointer;" src="{{ URL::to('/') }}/backend/assets/images/image-file.png" alt=""></label>
-                        <input type="file" name="post_gallery_image[]" class="form-control d-none" id="post_image_g" multiple>
+                        <input type="file" name="post_gallery_image[]" class="form-control d-none dropify" id="post_image_g" multiple>
                     </div>
                     <div class="form-group col-md-12 post_image_a">
                         <label for="">Post Audio Link</label>
                         <input type="text" name="post_audio" class="form-control">
-                        <font style="color: red;">{{ ($errors->has('post_audio'))? $errors->first('post_audio') : '' }}</font>
                     </div>
                     <div class="form-group col-md-12 post_image_v">
                         <label for="">Post Video Link</label>
                         <input type="text" name="post_video" class="form-control">
-                        <font style="color: red;">{{ ($errors->has('post_video'))? $errors->first('post_video') : '' }}</font>
                     </div>
                     <div class="col-md-12 mb-3">
                       <textarea name="content" id="content" rows="2" class="content p_content form-control"></textarea>

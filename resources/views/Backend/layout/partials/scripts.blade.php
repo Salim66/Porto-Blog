@@ -50,6 +50,8 @@
 <script src="{{ asset('backend/assets/')}}/js/select2/select2.full.min.js"></script>
 <script src="{{ asset('backend/assets/')}}/js/select2/select2-custom.js"></script>
 <script src="//cdn.ckeditor.com/4.16.1/full/ckeditor.js"></script>
+<script src="{{ asset('backend/assets/')}}/js/modal-animated.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js" integrity="sha512-8QFTrG0oeOiyWo/VM9Y8kgxdlCryqhIxVeRpWSezdRRAvarxVtwLnGroJgnVW9/XBRduxO/z1GblzPrMQoeuew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!-- Plugins JS Ends-->
 <!-- Theme js-->
 <script src="{{ asset('backend/assets/')}}/js/script.js"></script>
