@@ -88,6 +88,9 @@
                     <p><strong class="name"><a href="#" class="text-4 pb-2 pt-2 d-block">John Doe</a></strong></p>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim ornare nisi, vitae mattis nulla ante id dui. </p>
                 </div>
+
+
+
                 <div id="comments" class="post-block mt-5 post-comments">
                     <h4 class="mb-3">Comments (3)</h4>
 
@@ -189,12 +192,16 @@
 
                 </div>
 
+
+
+
+
                 <div class="post-block mt-5 post-leave-comment">
                     <h4 class="mb-3">Leave a comment</h4>
 
-                    <form class="contact-form p-4 rounded bg-color-grey" action="https://www.okler.net/previews/porto/9.0.0/php/contact-form.php" method="POST">
+                    <form class="contact-form p-4 rounded bg-color-grey" action="" method="POST">
                         <div class="p-2">
-                            <div class="row">
+                            {{-- <div class="row">
                                 <div class="form-group col-lg-6">
                                     <label class="form-label required font-weight-bold text-dark">Full Name</label>
                                     <input type="text" value="" data-msg-required="Please enter your name." maxlength="100" class="form-control" name="name" required>
@@ -203,11 +210,11 @@
                                     <label class="form-label required font-weight-bold text-dark">Email Address</label>
                                     <input type="email" value="" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control" name="email" required>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="row">
                                 <div class="form-group col">
                                     <label class="form-label required font-weight-bold text-dark">Comment</label>
-                                    <textarea maxlength="5000" data-msg-required="Please enter your message." rows="8" class="form-control" name="message" required></textarea>
+                                    <textarea maxlength="5000" data-msg-required="Please enter your comment." rows="8" class="form-control" name="text" required></textarea>
                                 </div>
                             </div>
                             <div class="row">

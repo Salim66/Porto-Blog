@@ -23,6 +23,10 @@ Route::get('/tag/{slug}', 'App\Http\Controllers\Frontend\FrontendController@tagW
 Route::post('/search', 'App\Http\Controllers\Frontend\FrontendController@postSearch')->name('search.post');
 
 
+// Routes for comment
+Route::post('/comment/store', 'App\Http\Controllers\Frontend\CommentController@commentStore')->name('comment.store');
+
+
 
 // Route::get('/', function () {
 //     return view('welcome');
