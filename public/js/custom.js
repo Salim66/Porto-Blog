@@ -9,11 +9,14 @@
                         "content"
                     ),
                 },
+
                 method: "POST",
                 url: "/comment/store",
                 data: new FormData(this),
                 processData: false,
                 contentType: false,
+                dataType: "json",
+
                 success: function (response) {
                     console.log(response);
                     showComment();
@@ -21,15 +24,111 @@
             });
         });
 
+        // Show all commnets
         function showComment() {
+            let id = $("#post_id").val();
+
             $.ajax({
-                url: "/comment/all_data",
+                url: "/comment/all_data/" + id,
                 success: function (response) {
-                    // console.log(response);
-                    $("#showComments").html(response);
+                    console.log(response);
+                    $("#showComments").empty();
+
+                    for (data of response.comment) {
+                        if (data.comment_id == null) {
+                            let date = new Date(data.created_at);
+                            console.log(date);
+                            let element =
+                                " <li>\n" +
+                                    '             <div class="comment">\n' +
+                                    '                 <div class="img-thumbnail img-thumbnail-no-borders d-none d-sm-block">\n' +
+                                    '                     <img class="avatar" alt="" src="/uploads/users/' +
+                                    data.user.photo +
+                                    '">\n' +
+                                    "                 </div>\n" +
+                                    '                 <div class="comment-block">\n' +
+                                    '                     <div class="comment-arrow"></div>\n' +
+                                    '                     <span class="comment-by">\n' +
+                                    "                         <strong>" +
+                                    data.user.name +
+                                    "</strong>\n" +
+                                    '                         <span class="float-right">\n' +
+                                    '                             <span>'; if(response.auth == true) { element +=  '<a href="#" c_id="' +
+                                    data.id +
+                                    '" class="comment-reply reply-box-btn" id="reply_box_btn"><i class="fas fa-reply"></i> Reply</a>' } element += '</span>\n' +
+                                    "                         </span>\n" +
+                                    "                     </span>\n" +
+                                    '                     <p>"' +
+                                    data.text +
+                                    '"</p>\n' +
+                                    '                     <span class="date float-right">"' +
+                                    date.toDateString() +
+                                    '"</span>\n' +
+                                    "                 </div>\n" +
+                                    "             </div>\n" +
+                                    "\n" +
+                                    "\n" +
+                                    "\n" +
+                                    '<ul  class="comments reply">\n';
+                            for(reply_data of response.comment_reply){
+                                if(reply_data.comment_id == data.id) {
+                                let ply_data = new Date(reply_data.created_at);
+                                element += '<li>\n' +
+                                    '<div style="display: flex; background-color: #eee;" className="comment">\n' +
+                                        '<div style="background-color: #fff;" className="img-thumbnail img-thumbnail-no-borders d-none d-sm-block">\n' +
+                                            '<img style="width: 50px; width: 50px" className="avatar" alt="" src="/uploads/users/'+reply_data.user.photo+'"/>\n' +
+                                        '</div>\n' +
+                                        '<div style="margin-left: 50px;" className="comment-block">\n' +
+                                            '<div className="comment-arrow"></div>\n' +
+                                              '<span className="comment-by">\n' +
+                                                '<strong>'+reply_data.user.name+'</strong>\n' +
+                                                '</span>\n' +
+                                              '</span>\n' +
+                                            '<p>'+reply_data.text+'</p>\n' +
+                                            '<span className="date float-right">'+ply_data.toDateString()+'</span>\n' +
+                                        '</div>\n' +
+                                    '</div>\n' +
+                                '</li>\n';
+                                }
+                            } element += "\n" +
+                                    "\n" +
+                                    "\n" +
+                                    '                 <form class="contact-form p-4 rounded bg-color-grey comment_reply reply-box reply-box-' +
+                                    data.id +
+                                    '" id="comment_reply_store" action="" method="POST">\n' +
+                                    "                 <div>\n" +
+                                    '                     <div class="row">\n' +
+                                    '                         <div class="form-group col">\n' +
+                                    '                             <input type="hidden" name="post_id" id="post_id" value="' +
+                                    data.post_id +
+                                    '">\n' +
+                                    '                             <input type="hidden" name="comment_id" id="comment_id" value="' +
+                                    data.id +
+                                    '">\n' +
+                                    '                             <label class="form-label required font-weight-bold text-dark">Comment</label>\n' +
+                                    '                             <textarea maxlength="5000" data-msg-required="Please enter your comment." rows="1" class="form-control" id="text" name="text" required></textarea>\n' +
+                                    "                         </div>\n" +
+                                    "                     </div>\n" +
+                                    '                     <div class="row">\n' +
+                                    '                         <div class="form-group col mb-0">\n' +
+                                    '                             <input type="submit" value="Reply" class="btn btn-primary btn--sm btn-modern" data-loading-text="Loading...">\n' +
+                                    "                         </div>\n" +
+                                    "                     </div>\n" +
+                                    "                     </div>\n" +
+                                    "                 </form>\n" +
+                                    "\n" +
+                                    "\n" +
+                                    "\n" +
+                                    "             </ul>\n" +
+                                    "         </li>";
+
+                            $("#showComments").append(element);
+
+                        }
+                    }
                 },
             });
-        }
+        } // Show all commnets
 
         showComment();
 

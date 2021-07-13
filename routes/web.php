@@ -25,7 +25,7 @@ Route::post('/search', 'App\Http\Controllers\Frontend\FrontendController@postSea
 
 // Routes for comment
 Route::post('/comment/store', 'App\Http\Controllers\Frontend\CommentController@commentStore')->name('comment.store');
-Route::get('/comment/all_data', 'App\Http\Controllers\Frontend\CommentController@commentShowAll')->name('comment.show.all');
+Route::get('/comment/all_data/{id}', 'App\Http\Controllers\Frontend\CommentController@commentShowAll')->name('comment.show.all');
 Route::post('/comment/reply/store', 'App\Http\Controllers\Frontend\CommentController@commentReplyStore')->name('comment.reply.store');
 
 
@@ -57,6 +57,7 @@ Route::middleware(['auth'])->group(function () {
     //Users
     Route::prefix('users')->group(function () {
         Route::resource('/', 'App\Http\Controllers\Backend\UserController');
+        Route::get('/show-all-users', 'App\Http\Controllers\Backend\UserController@showAllUsers');
         Route::post('/admin-add', 'App\Http\Controllers\Backend\UserController@add');
         Route::get('/admin-edit-data/{id}', 'App\Http\Controllers\Backend\UserController@editUser');
         Route::post('/admin-edit-store', 'App\Http\Controllers\Backend\UserController@updateUser');

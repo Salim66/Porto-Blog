@@ -23,37 +23,41 @@
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="user_table">
 
-                                    @foreach($all_data as $data)
-                                    <tr>
-                                        <td>
-                                            <img style="width: 50px; height: 50px; border-radius: 50%; border: 1px solid #9900ff" src="{{ URL::to('') }}/uploads/users/{{ $data->photo }}" alt="User Image" onerror="this.src='uploads/users/avatar3.png'">
-                                        </td>
-                                        <td>{{ $data->name }}</td>
-                                        <td>{{ $data->user_type }}</td>
-                                        <td>
 
-                                            <div class="media-body text-center switch-sm">
-                                                <label class="switch">
-                                                <input type="checkbox" class="user_status_update" data_id="{{ $data->id }}" @if($data->status == true) checked="" @endif><span class="switch-state"></span>
-                                                </label>
-                                            </div>
 
-                                        </td>
-                                        <td>
-                                            <div class="media-body text-center switch-sm">
-                                                <label class="switch">
-                                                <input type="checkbox" class="user_trash_update" data_id="{{ $data->id }}" @if($data->trash == false) checked="" @endif><span class="switch-state"></span>
-                                                </label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <a title="Edit User" edit_id="{{ $data->id }}" class="btn btn-info-gradien btn-pill edit_user"><i class="fas fa-user-edit text-white"></i></a>
 
-                                        </td>
-                                    </tr>
-                                    @endforeach
+
+{{--                                    @foreach($all_data as $data)--}}
+{{--                                    <tr>--}}
+{{--                                        <td>--}}
+{{--                                            <img style="width: 50px; height: 50px; border-radius: 50%; border: 1px solid #9900ff" src="{{ URL::to('') }}/uploads/users/{{ $data->photo }}" alt="User Image" onerror="this.src='uploads/users/avatar3.png'">--}}
+{{--                                        </td>--}}
+{{--                                        <td>{{ $data->name }}</td>--}}
+{{--                                        <td>{{ $data->user_type }}</td>--}}
+{{--                                        <td>--}}
+
+{{--                                            <div class="media-body text-center switch-sm">--}}
+{{--                                                <label class="switch">--}}
+{{--                                                <input type="checkbox" class="user_status_update" data_id="{{ $data->id }}" @if($data->status == true) checked="" @endif><span class="switch-state"></span>--}}
+{{--                                                </label>--}}
+{{--                                            </div>--}}
+
+{{--                                        </td>--}}
+{{--                                        <td>--}}
+{{--                                            <div class="media-body text-center switch-sm">--}}
+{{--                                                <label class="switch">--}}
+{{--                                                <input type="checkbox" class="user_trash_update" data_id="{{ $data->id }}" @if($data->trash == false) checked="" @endif><span class="switch-state"></span>--}}
+{{--                                                </label>--}}
+{{--                                            </div>--}}
+{{--                                        </td>--}}
+{{--                                        <td>--}}
+{{--                                            <a title="Edit User" edit_id="{{ $data->id }}" class="btn btn-info-gradien btn-pill edit_user"><i class="fas fa-user-edit text-white"></i></a>--}}
+
+{{--                                        </td>--}}
+{{--                                    </tr>--}}
+{{--                                    @endforeach--}}
 
                                 </tbody>
                             </table>
@@ -132,3 +136,6 @@
 <br>
 
 @endsection
+
+
+

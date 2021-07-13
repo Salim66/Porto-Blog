@@ -91,16 +91,14 @@
 
 
 
-                <div id="comments" class="post-block mt-5 post-comments">
+                <div id="comments" class="post-block mt-5 post-comments showComments">
                     <h4 class="mb-3">Comments (3)</h4>
 
-                    @php
-                        $comments = App\Models\Comment::latest()->get();
-
-                        // dd($comments);
-                    @endphp
-
+                    <input type="hidden" name="post_id" id="post_id" value="{{ $data->id }}">
                     <ul class="comments" id="showComments">
+
+
+
 
 
                     </ul>
@@ -114,22 +112,28 @@
                 <div class="post-block mt-5 post-leave-comment">
                     <h4 class="mb-3">Leave a comment</h4>
 
-                    <form class="contact-form p-4 rounded bg-color-grey" id="comment_store" action="" method="POST">
-                        <div class="p-2">
-                            <div class="row">
-                                <div class="form-group col">
-                                    <input type="hidden" name="post_id" id="post_id" value="{{ $data->id }}">
-                                    <label class="form-label required font-weight-bold text-dark">Comment</label>
-                                    <textarea maxlength="5000" data-msg-required="Please enter your comment." rows="8" class="form-control" id="text" name="text" required></textarea>
+                    @guest
+
+                        <p>Please <a href="{{ route('user.login') }}">login</a> first before place a comments</p>
+
+                    @else
+                        <form class="contact-form p-4 rounded bg-color-grey" id="comment_store" action="" method="POST">
+                            <div class="p-2">
+                                <div class="row">
+                                    <div class="form-group col">
+                                        <input type="hidden" name="post_id" id="post_id" value="{{ $data->id }}">
+                                        <label class="form-label required font-weight-bold text-dark">Comment</label>
+                                        <textarea maxlength="5000" data-msg-required="Please enter your comment." rows="8" class="form-control" id="comment_text" name="text" required></textarea>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col mb-0">
+                                        <input type="submit" value="Post Comment" class="btn btn-primary btn-modern" data-loading-text="Loading...">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="form-group col mb-0">
-                                    <input type="submit" value="Post Comment" class="btn btn-primary btn-modern" data-loading-text="Loading...">
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+                        </form>
+                    @endguest
                 </div>
 
             </div>
@@ -139,3 +143,4 @@
 </div>
 
 @endsection
+

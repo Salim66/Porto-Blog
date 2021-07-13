@@ -16,10 +16,15 @@ class UserController extends Controller
      */
     public function index()
     {
+        return view('Backend.users.list');
+    }
+
+    /**
+     * show all users by ajax request
+     */
+    public function showAllUsers(){
         $all_data = User::where('trash', false)->latest()->get();
-        return view('Backend.users.list', [
-            'all_data' => $all_data
-        ]);
+        return response()->json($all_data);
     }
 
     /**

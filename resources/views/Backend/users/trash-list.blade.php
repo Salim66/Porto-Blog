@@ -23,7 +23,8 @@
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="user_trash_list">
+
 
                                     @foreach($all_data as $data)
                                     <tr>

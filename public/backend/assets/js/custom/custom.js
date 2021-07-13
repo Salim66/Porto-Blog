@@ -7,8 +7,8 @@
         CKEDITOR.replace("content");
 
         //============== Delete Script ==============
-        // delete by switch alert
 
+        // delete by switch alert
         $("#delete").on("click", function (e) {
             e.preventDefault();
             let form = $(this).closest("form");
@@ -33,6 +33,7 @@
                 }
             });
         });
+
 
         //============notify js =============
         function notifyFun(success) {
@@ -104,8 +105,74 @@
             });
         });
 
+        //user table show
+        function showUser() {
+            $.ajax({
+                url: "/users/show-all-users",
+                method: "GET",
+                success: function (response) {
+                    $("#user_table").empty();
+                    console.log(response);
+                    for (data of response) {
+                        let element =
+                            "<tr>\n" +
+                            "    <td>\n" +
+                            '        <img style="width: 50px; height: 50px; border-radius: 50%; border: 1px solid #9900ff" src="/uploads/users/' +
+                            data.photo +
+                            '" alt="User Image" onerror="this.src=\'uploads/users/avatar3.png\'">\n' +
+                            "    </td>\n" +
+                            '    <td>"' +
+                            data.name +
+                            '"</td>\n' +
+                            '    <td>"' +
+                            data.user_type +
+                            '"</td>\n' +
+                            "    <td>\n" +
+                            "\n" +
+                            '        <div class="media-body text-center switch-sm">\n' +
+                            '            <label class="switch">\n' +
+                            '                <input type="checkbox" class="user_status_update" data_id="' +
+                            data.id +
+                            '"';
+                        if (data.status == 1) {
+                            element += "checked";
+                        }
+                        element +=
+                            ' ><span class="switch-state"></span>\n' +
+                            "            </label>\n" +
+                            "        </div>\n" +
+                            "\n" +
+                            "    </td>\n" +
+                            "    <td>\n" +
+                            '        <div class="media-body text-center switch-sm">\n' +
+                            '            <label class="switch">\n' +
+                            '                <input type="checkbox" class="user_trash_update" data_id="' +
+                            data.id +
+                            '"';
+                        if (data.trash == false) {
+                            element += "checked";
+                        }
+                        element +=
+                            '><span class="switch-state"></span>\n' +
+                            "            </label>\n" +
+                            "        </div>\n" +
+                            "    </td>\n" +
+                            "    <td>\n" +
+                            '        <a title="Edit User" edit_id="' +
+                            data.status +
+                            '" class="btn btn-info-gradien btn-pill edit_user"><i class="fas fa-user-edit text-white"></i></a>\n' +
+                            "\n" +
+                            "    </td>\n" +
+                            "</tr>";
+                        $("#user_table").append(element);
+                    }
+                },
+            });
+        }
+        showUser();
+
         // user edit data show modal admin purpose
-        $(".edit_user").click(function (e) {
+        $(document).on("click", ".edit_user", function (e) {
             e.preventDefault();
             let edit_id = $(this).attr("edit_id");
 
@@ -124,7 +191,7 @@
         });
 
         // user edit data store admin purpose
-        $("#uase_edit").on("submit", function (e) {
+        $(document).on("submit", "#uase_edit", function (e) {
             e.preventDefault();
             let name = $(".f_name").val();
             let email = $(".f_email").val();
@@ -148,6 +215,8 @@
                 },
                 success: function (response) {
                     // console.log(response);
+                    showUser();
+
                     $(".f_name").val("");
                     $(".f_email").val("");
                     $(".user_type").val("");
@@ -158,7 +227,7 @@
         });
 
         // User Status update
-        $(".user_status_update").change(function () {
+        $(document).on("change", ".user_status_update", function () {
             // e.preventDefault();
             let id = $(this).attr("data_id");
 
@@ -176,7 +245,8 @@
                     success: function (data) {
                         console.log(data);
 
-                        notifyFun(response.success);
+                        notifyFun(data.success);
+                        showUser();
                     },
                 });
             } else {
@@ -192,27 +262,81 @@
                     success: function (data) {
                         console.log(data);
 
-                        notifyFun(response.success);
+                        notifyFun(data.success);
+                        showUser();
                     },
                 });
             }
         });
 
         // User trash list show
-        $(document).on("click", ".user_trash_list", function (e) {
-            // e.preventDefault();
-
+        function showUserTrash(){
             $.ajax({
                 url: "/users/trash-list",
                 type: "GET",
-                success: function (data) {
-                    console.log(data);
+                success: function (response) {
+                    console.log(response);
+                    for (data of response) {
+                        let element =
+                            "<tr>\n" +
+                            "    <td>\n" +
+                            '        <img style="width: 50px; height: 50px; border-radius: 50%; border: 1px solid #9900ff" src="/uploads/users/' +
+                            data.photo +
+                            '" alt="User Image" onerror="this.src=\'uploads/users/avatar3.png\'">\n' +
+                            "    </td>\n" +
+                            '    <td>"' +
+                            data.name +
+                            '"</td>\n' +
+                            '    <td>"' +
+                            data.user_type +
+                            '"</td>\n' +
+                            "    <td>\n" +
+                            "\n" +
+                            '        <div class="media-body text-center switch-sm">\n' +
+                            '            <label class="switch">\n' +
+                            '                <input type="checkbox" class="user_status_update" data_id="' +
+                            data.id +
+                            '"';
+                        if (data.status == 1) {
+                            element += "checked";
+                        }
+                        element +=
+                            ' ><span class="switch-state"></span>\n' +
+                            "            </label>\n" +
+                            "        </div>\n" +
+                            "\n" +
+                            "    </td>\n" +
+                            "    <td>\n" +
+                            '        <div class="media-body text-center switch-sm">\n' +
+                            '            <label class="switch">\n' +
+                            '                <input type="checkbox" class="user_trash_update" data_id="' +
+                            data.id +
+                            '"';
+                        if (data.trash == true) {
+                            element += "checked";
+                        }
+                        element +=
+                            '><span class="switch-state"></span>\n' +
+                            "            </label>\n" +
+                            "        </div>\n" +
+                            "    </td>\n" +
+                            "    <td>\n" +
+                            '     <form style="display: inline;" action="" method="POST">\n' +
+                            '      <button title="User Delete" delete_id="' +
+                            data.id +
+                            '" type="submit" id="delete_all" class="btn btn-danger-gradien btn-pill"><i class="fas fa-trash text-white"></i></button>\n' +
+                            "     </form>\n" +
+                            "\n" +
+                            "    </td>\n" +
+                            "</tr>";
+                        $("#user_trash_list").append(element);
+                    }
                 },
             });
-        });
+        }
 
         // User Trash update
-        $(".user_trash_update").change(function () {
+        $(document).on("change", ".user_trash_update", function () {
             // e.preventDefault();
             let id = $(this).attr("data_id");
 
@@ -228,9 +352,10 @@
                     url: "/users/admin-trash-update",
                     data: { id: id, trash: 0 }, // reverse is stattus becasse false is checked
                     success: function (data) {
-                        console.log(data);
+                        // console.log(data);
 
-                        notifyFun(response.success);
+                        showUser();
+                        notifyFun(data.success);
                     },
                 });
             } else {
@@ -244,16 +369,17 @@
                     url: "/users/admin-trash-update",
                     data: { id: id, trash: 1 }, // reverse is stattus becasse false is checked
                     success: function (data) {
-                        console.log(data);
+                        // console.log(data);
 
-                        notifyFun(response.success);
+                        showUser();
+                        notifyFun(data.success);
                     },
                 });
             }
         });
 
         // User Trash page update
-        $(".user_trash_update_1").change(function () {
+        $(document).on("change", ".user_trash_update_1", function () {
             // e.preventDefault();
             let id = $(this).attr("data_id");
 
@@ -269,9 +395,9 @@
                     url: "/users/admin-trash-update",
                     data: { id: id, trash: 1 }, // reverse is trash becasse true is checked
                     success: function (data) {
-                        console.log(data);
-
-                        notifyFun(response.success);
+                        // console.log(data);
+                        showUser();
+                        notifyFun(data.success);
                     },
                 });
             } else {
@@ -285,9 +411,9 @@
                     url: "/users/admin-trash-update",
                     data: { id: id, trash: 0 }, // reverse is trash becasse true is checked
                     success: function (data) {
-                        console.log(data);
-
-                        notifyFun(response.success);
+                        // console.log(data);
+                        showUser();
+                        notifyFun(data.success);
                     },
                 });
             }
