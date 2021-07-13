@@ -63,6 +63,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/admin-edit-store', 'App\Http\Controllers\Backend\UserController@updateUser');
         Route::post('/admin-status-update', 'App\Http\Controllers\Backend\UserController@updateUserStatus');
         Route::get('/trash-list', 'App\Http\Controllers\Backend\UserController@listUserTrash')->name('users.trash');
+        Route::get('/trash-list/by-ajax', 'App\Http\Controllers\Backend\UserController@listUserTrashByCallAJax')->name('users.trash.by-ajax');
         Route::post('/admin-trash-update', 'App\Http\Controllers\Backend\UserController@updateUserTrash');
         Route::delete('/delete/{id}', 'App\Http\Controllers\Backend\UserController@destroy')->name('users.destroy');
     });

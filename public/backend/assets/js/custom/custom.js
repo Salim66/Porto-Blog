@@ -112,8 +112,11 @@
                 method: "GET",
                 success: function (response) {
                     $("#user_table").empty();
-                    console.log(response);
-                    for (data of response) {
+                    // console.log(response);
+                    // sidebar total trash show
+                    $('#total_user_trash_count').html('('+response.count+')');
+
+                    for (data of response.all_data) {
                         let element =
                             "<tr>\n" +
                             "    <td>\n" +
@@ -272,17 +275,21 @@
         // User trash list show
         function showUserTrash(){
             $.ajax({
-                url: "/users/trash-list",
+                url: "/users/trash-list/by-ajax",
                 type: "GET",
                 success: function (response) {
-                    console.log(response);
+                    $("#user_trash_list").empty();
+                    // console.log(response);
+                    // sidebar total trash show
+                    $('#total_user_trash_count').html('('+response.length+')');
+
                     for (data of response) {
                         let element =
                             "<tr>\n" +
                             "    <td>\n" +
                             '        <img style="width: 50px; height: 50px; border-radius: 50%; border: 1px solid #9900ff" src="/uploads/users/' +
                             data.photo +
-                            '" alt="User Image" onerror="this.src=\'uploads/users/avatar3.png\'">\n' +
+                            '" alt="User Image" onerror="this.src=\'/uploads/users/avatar3.png\'">\n' +
                             "    </td>\n" +
                             '    <td>"' +
                             data.name +
@@ -309,7 +316,7 @@
                             "    <td>\n" +
                             '        <div class="media-body text-center switch-sm">\n' +
                             '            <label class="switch">\n' +
-                            '                <input type="checkbox" class="user_trash_update" data_id="' +
+                            '                <input type="checkbox" class="user_trash_update_1" data_id="' +
                             data.id +
                             '"';
                         if (data.trash == true) {
@@ -334,6 +341,7 @@
                 },
             });
         }
+        showUserTrash();
 
         // User Trash update
         $(document).on("change", ".user_trash_update", function () {
@@ -395,8 +403,8 @@
                     url: "/users/admin-trash-update",
                     data: { id: id, trash: 1 }, // reverse is trash becasse true is checked
                     success: function (data) {
-                        // console.log(data);
-                        showUser();
+                        // console.log(data.success);
+                        showUserTrash();
                         notifyFun(data.success);
                     },
                 });
@@ -411,8 +419,8 @@
                     url: "/users/admin-trash-update",
                     data: { id: id, trash: 0 }, // reverse is trash becasse true is checked
                     success: function (data) {
-                        // console.log(data);
-                        showUser();
+                        // console.log(data.success);
+                        showUserTrash();
                         notifyFun(data.success);
                     },
                 });

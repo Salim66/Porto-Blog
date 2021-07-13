@@ -24,7 +24,12 @@ class UserController extends Controller
      */
     public function showAllUsers(){
         $all_data = User::where('trash', false)->latest()->get();
-        return response()->json($all_data);
+        // trash count purpose this query
+        $count = User::where('trash', true)->count();
+        return response()->json([
+            'all_data' => $all_data,
+            'count'    => $count,
+        ]);
     }
 
     /**
@@ -157,10 +162,16 @@ class UserController extends Controller
      * User trash list
      */
     public function listUserTrash(){
+//        $all_data = User::where('trash', 1)->latest()->get();
+        return view('backend.users.trash-list');
+    }
+
+    /**
+     * user trash list response by ajax
+     */
+    public function listUserTrashByCallAJax(){
         $all_data = User::where('trash', 1)->latest()->get();
-        return view('backend.users.trash-list', [
-            'all_data' => $all_data
-        ]);
+        return response()->json($all_data);
     }
 
     /**
