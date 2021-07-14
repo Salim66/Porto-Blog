@@ -107,8 +107,50 @@
                         success: function(response){
                             // console.log(response);
 
-                            showUserTrash();
                             categoryTrashTable();
+                            notifyFun(response.success);
+                        }
+
+                    });
+                    Swal.fire(
+                        "Deleted!",
+                        "Your file has been deleted.",
+                        "success"
+                    );
+                }
+            });
+        });
+
+        // tag delete by ajax
+        $(document).on("click", '#tag_delete_ajax', function (e) {
+            e.preventDefault();
+            // let form = $(this).closest("form");
+            let id = $(this).attr("delete_id");
+            // alert(id);
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to delete this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        headers: {
+                            "X-CSRF-TOKEN": $('meta[name="csrf_token"]').attr(
+                                "content"
+                            ),
+                        },
+                        method: 'POST',
+                        url: '/tags/delete',
+                        data: {id: id},
+                        success: function(response){
+                            // console.log(response);
+
+                            TagTrashTable();
                             notifyFun(response.success);
                         }
 
@@ -1223,7 +1265,7 @@
         });
 
         // Edit tag model show with data
-        $(".edit_tag").click(function (e) {
+        $(document).on('click', ".edit_tag", function (e) {
             e.preventDefault();
             let edit_id = $(this).attr("edit_id");
 
@@ -1292,6 +1334,8 @@
                         $(".t_name").val("");
 
                         notifyFun(response.success);
+                        TagTable();
+                        $("#edit_tag").modal("hide");
                     },
                 });
             }
@@ -1383,8 +1427,52 @@
             }
         });
 
+        // Tag Trash show
+        function TagTrashTable(){
+            $.ajax({
+                url: "/tags/trash/by-ajax",
+                method: "GET",
+                success: function (response) {
+                    $("#tag_trash_table").empty();
+                    console.log(response);
+                    // sidebar total trash show
+                    $('#total_tag_trash_count').html('('+response.length+')');
+
+                    for (data of response) {
+                        let element = '<tr>\n' +
+                            '                                        <td>'+data.name+'</td>\n' +
+                            '                                        <td>\n' +
+                            '\n' +
+                            '                                            <div class="media-body text-center switch-sm">\n' +
+                            '                                                <label class="switch">\n' +
+                            '                                                <input type="checkbox" class="tag_status_update" data_id="'+data.id+'"';  if(data.status == true) { element +='checked'; } element +='><span class="switch-state"></span>\n' +
+                            '                                                </label>\n' +
+                            '                                            </div>\n' +
+                            '\n' +
+                            '                                        </td>\n' +
+                            '                                        <td>\n' +
+                            '                                            <div class="media-body text-center switch-sm">\n' +
+                            '                                                <label class="switch">\n' +
+                            '                                                <input type="checkbox" class="tag_trash_update_1" data_id="'+data.id+'"';  if(data.trash == true) { element +='checked'; } element +='><span class="switch-state"></span>\n' +
+                            '                                                </label>\n' +
+                            '                                            </div>\n' +
+                            '                                        </td>\n' +
+                            '                                        <td>\n' +
+                            '                                            <form style="display: inline;" action="" method="POST">\n' +
+                            '                                                <button delete_id="'+data.id+'" type="submit" id="tag_delete_ajax" class="btn btn-danger-gradien btn-pill"><i class="fas fa-trash text-white"></i></button>\n' +
+                            '                                            </form>\n' +
+                            '\n' +
+                            '                                        </td>\n' +
+                            '                                    </tr>';
+                        $("#tag_trash_table").append(element);
+                    }
+                },
+            });
+        }
+        TagTrashTable();
+
         // tag Trash page update
-        $(".tag_trash_update_1").change(function () {
+        $(document).on('change', ".tag_trash_update_1", function () {
             // e.preventDefault();
             let id = $(this).attr("data_id");
 
@@ -1400,7 +1488,9 @@
                     url: "/tags/trash-update",
                     data: { id: id, trash: 1 }, // reverse is trash becasse true is checked
                     success: function (response) {
-                        // console.log(response);
+                        //
+
+                        TagTrashTable();
                         notifyFun(response.success);
                     },
                 });
@@ -1416,6 +1506,8 @@
                     data: { id: id, trash: 0 }, // reverse is trash becasse true is checked
                     success: function (response) {
                         // console.log(response);
+
+                        TagTrashTable();
                         notifyFun(response.success);
                     },
                 });

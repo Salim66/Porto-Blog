@@ -107,10 +107,16 @@ class TagController extends Controller
      * Tag trash list
      */
     public function trashList(){
+//        $all_data = Tag::where('trash', 1)->latest()->get();
+        return view('backend.tag.trash-list');
+    }
+
+    /**
+     * Tag trash list by ajax
+     */
+    public function trashListByAjax(){
         $all_data = Tag::where('trash', 1)->latest()->get();
-        return view('backend.tag.trash-list', [
-            'all_data' => $all_data
-        ]);
+        return response()->json($all_data);
     }
 
 
@@ -136,16 +142,38 @@ class TagController extends Controller
      /**
       * Tag destroy
       */
-      public function destroy($id){
+//      public function destroy($id){
+//          $data = Tag::find($id);
+//
+//            if($data != null){
+//                $data->delete();
+//
+//                return redirect()->back()->with('success', 'Tag delete successfully ):');
+//            }else {
+//                return redirect()->back()->with('error', 'Something is wrong! plase try again!');
+//
+//            }
+//      }
+
+
+     /**
+      * Tag destroy by ajax request
+      */
+      public function deleteByAjax(Request $request){
+          $id = $request->id;
+//          return $id;
           $data = Tag::find($id);
 
-            if($data != null){
-                $data->delete();
+          if($data != null){
+              $data->delete();
 
-                return redirect()->back()->with('success', 'Tag delete successfully ):');
-            }else {
-                return redirect()->back()->with('error', 'Something is wrong! plase try again!');
-
-            }
+              return response()->json([
+                  'success' => 'Tag delete successfully ): '
+              ]);
+          }else {
+              return response()->json([
+                  'error' => 'Something is wrong! plase try again! '
+              ]);
+          }
       }
 }

@@ -103,8 +103,10 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/update', 'App\Http\Controllers\Backend\TagController@update')->name('tags.update');
         Route::post('/status-update', 'App\Http\Controllers\Backend\TagController@statusUpdate')->name('tags.status.update');
         Route::get('/trash', 'App\Http\Controllers\Backend\TagController@trashList')->name('tags.trash');
+        Route::get('/trash/by-ajax', 'App\Http\Controllers\Backend\TagController@trashListByAjax')->name('tags.trash.by-ajax');
         Route::post('/trash-update', 'App\Http\Controllers\Backend\TagController@trashUpdate')->name('tags.trash.update');
-        Route::delete('/delete/{id}', 'App\Http\Controllers\Backend\TagController@destroy')->name('tags.destroy');
+//        Route::delete('/delete/{id}', 'App\Http\Controllers\Backend\TagController@destroy')->name('tags.destroy');
+        Route::post('/delete', 'App\Http\Controllers\Backend\TagController@deleteByAjax')->name('tags.delete.by-ajax');
     });
 
     Route::prefix('posts')->group(function () {
