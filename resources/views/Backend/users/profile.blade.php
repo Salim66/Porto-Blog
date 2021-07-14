@@ -158,9 +158,12 @@
                       </div>
 
 
-                  <button class="btn btn-primary" type="submit">
-                    Update profile
-                  </button>
+                      <button class="btn btn-primary" type="submit">
+                          Update profile
+                      </button>
+                      <button class="close ml-auto" type="button" data-dismiss="modal">
+                          &times;
+                      </button>
                 </form>
             </div>
             <div></div>

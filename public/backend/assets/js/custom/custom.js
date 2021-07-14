@@ -478,6 +478,8 @@
                 type: "GET",
                 success: function(response){
                     // console.log(response);
+                    //duplicate entity remove
+                    $('#user_profile_load_by_ajax').empty();
                     let date = new Date(response.created_at);
 
                     let element = '           <div class="card hovercard text-center">\n' +
@@ -648,6 +650,7 @@
                 processData: false,
                 contentType: false,
                 success: function (response) {
+                    userProfile();
                     notifyFun(response.success);
                 },
             });
