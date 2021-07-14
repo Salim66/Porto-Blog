@@ -196,16 +196,38 @@ class UserController extends Controller
     /**
       * User destroy
       */
-      public function destroy($id){
-        $data = User::find($id);
+//      public function destroy($id){
+//        $data = User::find($id);
+//
+//          if($data != null){
+//              $data->delete();
+//
+//              return redirect()->back()->with('success', 'User delete successfully ):');
+//          }else {
+//              return redirect()->back()->with('error', 'Something is wrong! plase try again!');
+//
+//          }
+//    }
+
+
+    /**
+      * User destroy
+      */
+      public function deleteByAjax(Request $request){
+          $id = $request->id;
+//          return $id;
+          $data = User::find($id);
 
           if($data != null){
               $data->delete();
 
-              return redirect()->back()->with('success', 'User delete successfully ):');
+              return response()->json([
+                  'success' => 'User delete successfully ): '
+              ]);
           }else {
-              return redirect()->back()->with('error', 'Something is wrong! plase try again!');
-
+              return response()->json([
+                  'error' => 'Something is wrong! plase try again! '
+              ]);
           }
     }
 

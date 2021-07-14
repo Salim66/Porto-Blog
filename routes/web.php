@@ -65,7 +65,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/trash-list', 'App\Http\Controllers\Backend\UserController@listUserTrash')->name('users.trash');
         Route::get('/trash-list/by-ajax', 'App\Http\Controllers\Backend\UserController@listUserTrashByCallAJax')->name('users.trash.by-ajax');
         Route::post('/admin-trash-update', 'App\Http\Controllers\Backend\UserController@updateUserTrash');
-        Route::delete('/delete/{id}', 'App\Http\Controllers\Backend\UserController@destroy')->name('users.destroy');
+//        Route::delete('/delete/{id}', 'App\Http\Controllers\Backend\UserController@destroy')->name('users.destroy');
+        Route::post('/delete', 'App\Http\Controllers\Backend\UserController@deleteByAjax')->name('users.delete.by-ajax');
     });
 
     // User profile

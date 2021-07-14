@@ -35,10 +35,11 @@
         });// delete by switch alert
 
         // delete by ajax
-        $("#delete").on("click", function (e) {
+        $(document).on("click", '#delete_ajax', function (e) {
             e.preventDefault();
-            let form = $(this).closest("form");
-            // let id = $(this).attr("delete_id");
+            // let form = $(this).closest("form");
+            let id = $(this).attr("delete_id");
+            // alert(id);
 
             Swal.fire({
                 title: "Are you sure?",
@@ -50,7 +51,23 @@
                 confirmButtonText: "Yes, delete it!",
             }).then((result) => {
                 if (result.isConfirmed) {
-                    form.submit();
+                    $.ajax({
+                        headers: {
+                            "X-CSRF-TOKEN": $('meta[name="csrf_token"]').attr(
+                                "content"
+                            ),
+                        },
+                        method: 'POST',
+                        url: '/users/delete',
+                        data: {id: id},
+                        success: function(response){
+                            // console.log(response);
+
+                            showUserTrash();
+                            notifyFun(response.success);
+                        }
+
+                    });
                     Swal.fire(
                         "Deleted!",
                         "Your file has been deleted.",
