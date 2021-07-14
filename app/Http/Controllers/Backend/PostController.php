@@ -15,9 +15,19 @@ class PostController extends Controller
      * Post list view
      */
     public function view(){
-        $all_data = Post::where('trash', false)->latest()->get();
-        return view('Backend.post.view', [
+//        $all_data = Post::where('trash', false)->latest()->get();
+        return view('Backend.post.view');
+    }
+
+    /**
+     * Post list view by ajax
+     */
+    public function viewDataByAjax(){
+        $all_data = Post::with('categories')->with('tags')->with('user')->where('trash', false)->latest()->get();
+        $count    = Post::where('trash', true)->count();
+        return response()->json([
             'all_data' => $all_data,
+            'count' => $count
         ]);
     }
 

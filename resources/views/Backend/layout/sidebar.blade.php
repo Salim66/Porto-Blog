@@ -54,7 +54,7 @@
             <li class="iconbar-header">Posts</li>
             <li><a href="{{ route('posts.view') }}">Post List</a></li>
             <li><a href="{{ route('posts.add') }}">Add Post</a></li>
-            <li><a href="{{ route('posts.trash') }}">Trash List <span class="text-danger">({{ $total_post_trash }})</span></a></li>
+            <li><a href="{{ route('posts.trash') }}">Trash List <span class="text-danger" id="total_post_trash_count"></span></a></li>
           </ul>
         </li>
       </ul>

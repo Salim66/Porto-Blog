@@ -111,6 +111,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('posts')->group(function () {
         Route::get('/view', 'App\Http\Controllers\Backend\PostController@view')->name('posts.view');
+        Route::get('/view/data', 'App\Http\Controllers\Backend\PostController@viewDataByAjax')->name('posts.view.data');
         Route::get('/add', 'App\Http\Controllers\Backend\PostController@add')->name('posts.add');
         Route::post('/store', 'App\Http\Controllers\Backend\PostController@store')->name('posts.store');
         Route::get('/edit/{id}', 'App\Http\Controllers\Backend\PostController@edit')->name('posts.edit');

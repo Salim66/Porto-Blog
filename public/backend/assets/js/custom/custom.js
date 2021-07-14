@@ -1434,7 +1434,7 @@
                 method: "GET",
                 success: function (response) {
                     $("#tag_trash_table").empty();
-                    console.log(response);
+                    // console.log(response);
                     // sidebar total trash show
                     $('#total_tag_trash_count').html('('+response.length+')');
 
@@ -1514,7 +1514,7 @@
             }
         });
 
-        //================== Post ==================
+        //================== Post ==================//
 
         function postType(post_type) {
             // select psot type
@@ -1571,6 +1571,85 @@
 
             $(".post_gallery_image").html(post_gellary_url);
         });
+
+        // show all Post Table
+        function postTable(){
+            $.ajax({
+                url: "/posts/view/data",
+                method: "GET",
+                success: function (response) {
+                    $("#post_table").empty();
+                    console.log(response);
+                    // sidebar total trash show
+                    $('#total_post_trash_count').html('('+response.count+')');
+
+                    for (data of response.all_data) {
+                        let featured_info = JSON.parse(data.featured);
+                        // console.log(featured_info);
+                        let element = '<tr>\n' +
+                            '                                        <td>\n' +
+                            '                                            '; if(featured_info.post_image != null) { element += '\n' +
+                            '                                            <img width="50"\n' +
+                            '                                                src="/uploads/posts/'+featured_info.post_image+'"\n' +
+                            '                                                alt="">\n' +
+                            '                                            ';} if(featured_info.post_gallery != null) { element += '\n' +
+                            '                                            <img width="50"\n' +
+                            '                                                src="/uploads/posts/'+featured_info.post_gallery[0]+'"\n' +
+                            '                                                alt="">\n' +
+                            '                                            '; }  if(featured_info.post_video != null) { element += '\n' +
+                            '                                            <iframe width="50" height="50" src="'+featured_info.post_video+'"\n' +
+                            '                                                frameborder="0"></iframe>\n' +
+                            '                                            '; } if(featured_info.post_audio != null) { element += '\n' +
+                            '                                            <iframe width="50" height="50" src="'+featured_info.post_audio+'"\n' +
+                            '                                                frameborder="0"></iframe>\n' +
+                            '                                            '; } element += '\n' +
+                            '                                        </td>\n' +
+                            '                                        <td>\n' +
+                            '                                            ';
+                                                                    for (category of data.categories) { element += '\n' +
+                                                                           category.name
+                                                                     }
+                                                                    element += '\n' +
+                            '                                        </td>\n' +
+                            '                                        <td>\n' +
+                            '                                            ';
+                                                                    for (tag of data.tags) { element += '\n' +
+                                                                           tag.name
+                                                                      }
+                                                                    element += '\n' +
+                            '                                        </td>\n' +
+                            '                                        <td>'+data.title.substring(0, 15) + "..."+'</td>\n' +
+                            '                                        <td>'+featured_info.post_type+'</td>\n' +
+                            '                                        <td>'+data.views+'</td>\n' +
+                            '                                        <td>'+data.user.name+'</td>\n' +
+                            '                                        <td>\n' +
+                            '\n' +
+                            '                                            <div class="media-body text-center switch-sm">\n' +
+                            '                                                <label class="switch">\n' +
+                            '                                                <input type="checkbox" class="post_status_update" data_id="'+data.id+'"';  if(data.status == true) { element +='checked'; } element += '><span class="switch-state"></span>\n' +
+                            '                                                </label>\n' +
+                            '                                            </div>\n' +
+                            '\n' +
+                            '                                        </td>\n' +
+                            '                                        <td>\n' +
+                            '                                            <div class="media-body text-center switch-sm">\n' +
+                            '                                                <label class="switch">\n' +
+                            '                                                <input type="checkbox" class="post_trash_update" data_id="'+data.id+'"';  if(data.trash == false) { element +='checked'; } element += '><span class="switch-state"></span>\n' +
+                            '                                                </label>\n' +
+                            '                                            </div>\n' +
+                            '                                        </td>\n' +
+                            '                                        <td>\n' +
+                            '                                            <a title="Preview" edit_id="'+data.id+'" class="btn btn-warning btn-sm preview_post d-inline"><i class="fas fa-eye text-white"></i></a>\n' +
+                            '                                            <a title="Edit Post" edit_id="'+data.id+'" class="btn btn-info btn-sm edit_post d-inline"><i class="fas fa-edit text-white"></i></a>\n' +
+                            '\n' +
+                            '                                        </td>\n' +
+                            '                                    </tr>';
+                        $("#post_table").append(element);
+                    }
+                },
+            });
+        }
+        postTable();
 
         // Post store
         $("#post_add").on("submit", function (e) {
@@ -1901,7 +1980,7 @@
         });
 
         // post Status update
-        $(".post_status_update").change(function () {
+        $(document).on('change', ".post_status_update", function () {
             // e.preventDefault();
             let id = $(this).attr("data_id");
 
@@ -1918,6 +1997,8 @@
                     data: { id: id, status: 1 },
                     success: function (response) {
                         // console.log(response);
+
+                        postTable();
                         notifyFun(response.success);
                     },
                 });
@@ -1933,6 +2014,8 @@
                     data: { id: id, status: 0 },
                     success: function (response) {
                         // console.log(response);
+
+                        postTable();
                         notifyFun(response.success);
                     },
                 });
@@ -1940,7 +2023,7 @@
         });
 
         // post add Trash update
-        $(".post_trash_update").change(function () {
+        $(document).on('change', ".post_trash_update",function () {
             // e.preventDefault();
             let id = $(this).attr("data_id");
 
@@ -1957,6 +2040,8 @@
                     data: { id: id, trash: 0 }, // reverse is stattus becasse false is checked
                     success: function (response) {
                         // console.log(response);
+
+                        postTable();
                         notifyFun(response.success);
                     },
                 });
@@ -1972,6 +2057,8 @@
                     data: { id: id, trash: 1 }, // reverse is stattus becasse false is checked
                     success: function (response) {
                         // console.log(response);
+
+                        postTable();
                         notifyFun(response.success);
                     },
                 });
@@ -2017,6 +2104,8 @@
             }
         });
 
+
+        //================= Drofify JS ==================//
         // Drofify js
         $(".dropify").dropify({
             messages: {

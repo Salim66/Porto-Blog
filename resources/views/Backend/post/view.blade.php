@@ -27,67 +27,68 @@
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="post_table">
 
-                                    @foreach($all_data as $data)
-                                    @php
-                                        $featured_info = json_decode($data->featured);
-                                    @endphp
-                                    <tr>
-                                        <td>
-                                            @if($featured_info -> post_image != NULL)
-                                            <img width="50"
-                                                src="{{ URL::to('/') }}/uploads/posts/{{ $featured_info -> post_image }}"
-                                                alt="">
-                                            @elseif($featured_info -> post_gallery != NULL)
-                                            <img width="50"
-                                                src="{{ URL::to('/') }}/uploads/posts/{{ $featured_info -> post_gallery[0] }}"
-                                                alt="">
-                                            @elseif($featured_info->post_video != NULL)
-                                            <iframe width="50" height="50" src="{{ $featured_info->post_video }}"
-                                                frameborder="0"></iframe>
-                                            @elseif($featured_info->post_audio != NULL)
-                                            <iframe width="50" height="50" src="{{ $featured_info->post_audio }}"
-                                                frameborder="0"></iframe>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @foreach ($data->categories as $category)
-                                                {{ $category->name }}
-                                            @endforeach
-                                        </td>
-                                        <td>
-                                            @foreach ($data->tags as $tag)
-                                                {{ $tag->name }}
-                                            @endforeach
-                                        </td>
-                                        <td>{{ Str::words($data->title, 2, '...') }}</td>
-                                        <td>{{ $featured_info->post_type }}</td>
-                                        <td>{{ $data->views }}</td>
-                                        <td>{{ $data->user->name }}</td>
-                                        <td>
 
-                                            <div class="media-body text-center switch-sm">
-                                                <label class="switch">
-                                                <input type="checkbox" class="post_status_update" data_id="{{ $data->id }}" @if($data->status == true) checked="" @endif><span class="switch-state"></span>
-                                                </label>
-                                            </div>
+{{--                                    @foreach($all_data as $data)--}}
+{{--                                    @php--}}
+{{--                                        $featured_info = json_decode($data->featured);--}}
+{{--                                    @endphp--}}
+{{--                                    <tr>--}}
+{{--                                        <td>--}}
+{{--                                            @if($featured_info -> post_image != NULL)--}}
+{{--                                            <img width="50"--}}
+{{--                                                src="{{ URL::to('/') }}/uploads/posts/{{ $featured_info -> post_image }}"--}}
+{{--                                                alt="">--}}
+{{--                                            @elseif($featured_info -> post_gallery != NULL)--}}
+{{--                                            <img width="50"--}}
+{{--                                                src="{{ URL::to('/') }}/uploads/posts/{{ $featured_info -> post_gallery[0] }}"--}}
+{{--                                                alt="">--}}
+{{--                                            @elseif($featured_info->post_video != NULL)--}}
+{{--                                            <iframe width="50" height="50" src="{{ $featured_info->post_video }}"--}}
+{{--                                                frameborder="0"></iframe>--}}
+{{--                                            @elseif($featured_info->post_audio != NULL)--}}
+{{--                                            <iframe width="50" height="50" src="{{ $featured_info->post_audio }}"--}}
+{{--                                                frameborder="0"></iframe>--}}
+{{--                                            @endif--}}
+{{--                                        </td>--}}
+{{--                                        <td>--}}
+{{--                                            @foreach ($data->categories as $category)--}}
+{{--                                                {{ $category->name }}--}}
+{{--                                            @endforeach--}}
+{{--                                        </td>--}}
+{{--                                        <td>--}}
+{{--                                            @foreach ($data->tags as $tag)--}}
+{{--                                                {{ $tag->name }}--}}
+{{--                                            @endforeach--}}
+{{--                                        </td>--}}
+{{--                                        <td>{{ Str::words($data->title, 2, '...') }}</td>--}}
+{{--                                        <td>{{ $featured_info->post_type }}</td>--}}
+{{--                                        <td>{{ $data->views }}</td>--}}
+{{--                                        <td>{{ $data->user->name }}</td>--}}
+{{--                                        <td>--}}
 
-                                        </td>
-                                        <td>
-                                            <div class="media-body text-center switch-sm">
-                                                <label class="switch">
-                                                <input type="checkbox" class="post_trash_update" data_id="{{ $data->id }}" @if($data->trash == false) checked="" @endif><span class="switch-state"></span>
-                                                </label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <a title="Preview" edit_id="{{ $data->id }}" class="btn btn-warning btn-sm preview_post d-inline"><i class="fas fa-eye text-white"></i></a>
-                                            <a title="Edit Post" edit_id="{{ $data->id }}" class="btn btn-info btn-sm edit_post d-inline"><i class="fas fa-edit text-white"></i></a>
+{{--                                            <div class="media-body text-center switch-sm">--}}
+{{--                                                <label class="switch">--}}
+{{--                                                <input type="checkbox" class="post_status_update" data_id="{{ $data->id }}" @if($data->status == true) checked="" @endif><span class="switch-state"></span>--}}
+{{--                                                </label>--}}
+{{--                                            </div>--}}
 
-                                        </td>
-                                    </tr>
-                                    @endforeach
+{{--                                        </td>--}}
+{{--                                        <td>--}}
+{{--                                            <div class="media-body text-center switch-sm">--}}
+{{--                                                <label class="switch">--}}
+{{--                                                <input type="checkbox" class="post_trash_update" data_id="{{ $data->id }}" @if($data->trash == false) checked="" @endif><span class="switch-state"></span>--}}
+{{--                                                </label>--}}
+{{--                                            </div>--}}
+{{--                                        </td>--}}
+{{--                                        <td>--}}
+{{--                                            <a title="Preview" edit_id="{{ $data->id }}" class="btn btn-warning btn-sm preview_post d-inline"><i class="fas fa-eye text-white"></i></a>--}}
+{{--                                            <a title="Edit Post" edit_id="{{ $data->id }}" class="btn btn-info btn-sm edit_post d-inline"><i class="fas fa-edit text-white"></i></a>--}}
+
+{{--                                        </td>--}}
+{{--                                    </tr>--}}
+{{--                                    @endforeach--}}
 
                                 </tbody>
                             </table>
