@@ -1768,7 +1768,7 @@
         });
 
         // Edit post model show with data
-        $(".edit_post").click(function (e) {
+        $(document).on('click', ".edit_post", function (e) {
             e.preventDefault();
             let edit_id = $(this).attr("edit_id");
 
@@ -1827,7 +1827,7 @@
             if (title == "" || title == null) {
                 $.notify(
                     {
-                        message: "Post title is reqired!",
+                        message: "Post title is required!",
                     },
                     {
                         type: "warning",
@@ -1873,7 +1873,9 @@
                     success: function (response) {
                         console.log(response);
 
+                        postTable();
                         notifyFun(response.success);
+                        $("#edit_post").modal("hide");
                     },
                 });
             }
