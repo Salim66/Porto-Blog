@@ -32,6 +32,32 @@
                     );
                 }
             });
+        });// delete by switch alert
+
+        // delete by ajax
+        $("#delete").on("click", function (e) {
+            e.preventDefault();
+            let form = $(this).closest("form");
+            // let id = $(this).attr("delete_id");
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to delete this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                    Swal.fire(
+                        "Deleted!",
+                        "Your file has been deleted.",
+                        "success"
+                    );
+                }
+            });
         });
 
 
@@ -162,7 +188,7 @@
                             "    </td>\n" +
                             "    <td>\n" +
                             '        <a title="Edit User" edit_id="' +
-                            data.status +
+                            data.id +
                             '" class="btn btn-info-gradien btn-pill edit_user"><i class="fas fa-user-edit text-white"></i></a>\n' +
                             "\n" +
                             "    </td>\n" +
@@ -178,6 +204,7 @@
         $(document).on("click", ".edit_user", function (e) {
             e.preventDefault();
             let edit_id = $(this).attr("edit_id");
+            // alert(edit_id);
 
             $.ajax({
                 url: "/users/admin-edit-data/" + edit_id,
@@ -193,7 +220,7 @@
             });
         });
 
-        // user edit data store admin purpose
+        // user edit data store update admin purpose
         $(document).on("submit", "#uase_edit", function (e) {
             e.preventDefault();
             let name = $(".f_name").val();
@@ -331,7 +358,7 @@
                             '     <form style="display: inline;" action="" method="POST">\n' +
                             '      <button title="User Delete" delete_id="' +
                             data.id +
-                            '" type="submit" id="delete_all" class="btn btn-danger-gradien btn-pill"><i class="fas fa-trash text-white"></i></button>\n' +
+                            '" type="submit" id="delete_ajax" class="btn btn-danger-gradien btn-pill"><i class="fas fa-trash text-white"></i></button>\n' +
                             "     </form>\n" +
                             "\n" +
                             "    </td>\n" +
