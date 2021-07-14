@@ -313,10 +313,17 @@ class PostController extends Controller
      * Post trash list
      */
     public function trashList(){
-        $all_data = Post::where('trash', 1)->latest()->get();
-        return view('backend.post.trash-list', [
-            'all_data' => $all_data
-        ]);
+//        $all_data = Post::where('trash', 1)->latest()->get();
+        return view('backend.post.trash-list');
+    }
+
+
+     /**
+     * Post trash list by ajax response
+     */
+    public function trashListByAjax(){
+        $all_data = Post::with('categories')->with('tags')->with('user')->where('trash', true)->latest()->get();
+        return response()->json($all_data);
     }
 
 
@@ -342,8 +349,29 @@ class PostController extends Controller
      /**
       * Post destroy
       */
-      public function destroy($id){
-          $data = Post::find($id);
+//      public function destroy($id){
+//          $data = Post::find($id);
+//
+//            if($data != null){
+//
+//                $data->categories()->detach();
+//                $data->tags()->detach();
+//
+//                $data->delete();
+//
+//                return redirect()->back()->with('success', 'Post delete successfully ):');
+//            }else {
+//                return redirect()->back()->with('error', 'Something is wrong! plase try again!');
+//
+//            }
+//      }
+
+
+     /**
+      * Post destroy
+      */
+      public function deleteByAjax(Request $request){
+          $data = Post::find($request->id);
 
             if($data != null){
 
@@ -352,10 +380,13 @@ class PostController extends Controller
 
                 $data->delete();
 
-                return redirect()->back()->with('success', 'Post delete successfully ):');
+                return response()->json([
+                    'success' => 'Post delete successfully ): '
+                ]);
             }else {
-                return redirect()->back()->with('error', 'Something is wrong! plase try again!');
-
+                return response()->json([
+                    'error' => 'Something is wrong! plase try again! '
+                ]);
             }
       }
 }

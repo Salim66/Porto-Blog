@@ -119,8 +119,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/preview/{id}', 'App\Http\Controllers\Backend\PostController@preview')->name('posts.preview');
         Route::post('/status-update', 'App\Http\Controllers\Backend\PostController@statusUpdate')->name('posts.status.update');
         Route::get('/trash', 'App\Http\Controllers\Backend\PostController@trashList')->name('posts.trash');
+        Route::get('/trash/by-ajax', 'App\Http\Controllers\Backend\PostController@trashListByAjax')->name('posts.trash.by-ajax');
         Route::post('/trash-update', 'App\Http\Controllers\Backend\PostController@trashUpdate')->name('posts.trash.update');
-        Route::delete('/delete/{id}', 'App\Http\Controllers\Backend\PostController@destroy')->name('posts.destroy');
+//        Route::delete('/delete/{id}', 'App\Http\Controllers\Backend\PostController@destroy')->name('posts.destroy');
+        Route::post('/delete', 'App\Http\Controllers\Backend\PostController@deleteByAjax')->name('posts.delete.by-ajax');
     });
 
 
