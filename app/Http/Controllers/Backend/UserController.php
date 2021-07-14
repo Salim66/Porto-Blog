@@ -236,10 +236,16 @@ class UserController extends Controller
      * User Profile veiw
      */
     public function viewProfile(){
+//        $data = User::find(Auth::id());
+        return view('Backend.users.profile');
+    }
+
+    /**
+     * User profile data view by Ajax response
+     */
+    public function viewProfileDataByAjax(){
         $data = User::find(Auth::id());
-        return view('Backend.users.profile', [
-            'data' => $data
-        ]);
+        return response()->json($data);
     }
 
     /**

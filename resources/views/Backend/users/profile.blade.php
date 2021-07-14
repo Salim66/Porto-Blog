@@ -5,78 +5,80 @@
 <div class="page-body">
     <div class="container-fluid">
         <div class="row">
-        <!-- user profile first-style start-->
-        <div class="col-sm-12" style="margin-top: 100px;">
-            <div class="card hovercard text-center">
-              <div class="cardheader"></div>
-              <div class="user-image">
-                <div class="avatar"><img style="width: 120px; height: 120px; border-radius: 50%; border: 2px solid #9900ff;" class="shadow" src="{{ URL::to('') }}/uploads/users/{{ $data->photo }}" alt="User Image" onerror="this.src='{{ asset("/uploads/users/avatar3.png") }}'"></div>
-                <div class="icon-wrapper"><i class="icofont icofont-pencil-alt-5"></i></div>
-              </div>
-              <div class="info">
-                <div class="row">
-                  <div class="col-sm-6 col-lg-4 order-sm-1 order-xl-0">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="ttl-info text-left ml-5">
-                          <h6><i class="fa fa-envelope"></i>   Email</h6><span>{{ $data->email }}</span>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="ttl-info text-left ml-4">
-                          <h6><i class="fa fa-calendar"></i>   Created</h6><span>{{ date('d M, Y', strtotime($data->created_at)) }}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-12 col-lg-4 order-sm-0 order-xl-1">
-                    <div class="user-designation">
-                      <div class="title"><a target="_blank" href="#">{{ $data->name }}</a></div>
-                      <div class="desc mt-2">{{ $data->user_type }}</div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6 col-lg-4 order-sm-2 order-xl-2">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="ttl-info text-left">
-                          <h6><i class="fa fa-phone"></i>   Contact Us</h6><span>Bangladesh +88{{ $data->cell }}</span>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="ttl-info text-left">
-                          <h6><i class="fa fa-location-arrow"></i>   Location</h6><span>{{ $data->address }}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                    <a title="Edit Profile" edit_id="{{ $data->id }}" class="btn btn-info-gradien btn-pill edit_profile"><i class="fas fa-user-edit text-white"></i></a>
-                </div>
-                <hr>
-                <div class="social-media">
-                  <ul class="list-inline">
-                    <li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li class="list-inline-item"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                    <li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li class="list-inline-item"><a href="#"><i class="fa fa-instagram"></i></a></li>
-                    <li class="list-inline-item"><a href="#"><i class="fa fa-rss"></i></a></li>
-                  </ul>
-                </div>
-                <div class="follow">
-                  <div class="row">
-                    <div class="col-6 text-md-right border-right">
-                      <div class="follow-num counter">25869</div><span>Follower</span>
-                    </div>
-                    <div class="col-6 text-md-left">
-                      <div class="follow-num counter">659887</div><span>Following</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <!-- user profile first-style start-->
+            <div class="col-sm-12" style="margin-top: 100px;" id="user_profile_load_by_ajax">
+
+
+    {{--            <div class="card hovercard text-center">--}}
+    {{--              <div class="cardheader"></div>--}}
+    {{--              <div class="user-image">--}}
+    {{--                <div class="avatar"><img style="width: 120px; height: 120px; border-radius: 50%; border: 2px solid #9900ff;" class="shadow" src="{{ URL::to('') }}/uploads/users/{{ $data->photo }}" alt="User Image" onerror="this.src='{{ asset("/uploads/users/avatar3.png") }}'"></div>--}}
+    {{--                <div class="icon-wrapper"><i class="icofont icofont-pencil-alt-5"></i></div>--}}
+    {{--              </div>--}}
+    {{--              <div class="info">--}}
+    {{--                <div class="row">--}}
+    {{--                  <div class="col-sm-6 col-lg-4 order-sm-1 order-xl-0">--}}
+    {{--                    <div class="row">--}}
+    {{--                      <div class="col-md-6">--}}
+    {{--                        <div class="ttl-info text-left ml-5">--}}
+    {{--                          <h6><i class="fa fa-envelope"></i>   Email</h6><span>{{ $data->email }}</span>--}}
+    {{--                        </div>--}}
+    {{--                      </div>--}}
+    {{--                      <div class="col-md-6">--}}
+    {{--                        <div class="ttl-info text-left ml-4">--}}
+    {{--                          <h6><i class="fa fa-calendar"></i>   Created</h6><span>{{ date('d M, Y', strtotime($data->created_at)) }}</span>--}}
+    {{--                        </div>--}}
+    {{--                      </div>--}}
+    {{--                    </div>--}}
+    {{--                  </div>--}}
+    {{--                  <div class="col-sm-12 col-lg-4 order-sm-0 order-xl-1">--}}
+    {{--                    <div class="user-designation">--}}
+    {{--                      <div class="title"><a target="_blank" href="#">{{ $data->name }}</a></div>--}}
+    {{--                      <div class="desc mt-2">{{ $data->user_type }}</div>--}}
+    {{--                    </div>--}}
+    {{--                  </div>--}}
+    {{--                  <div class="col-sm-6 col-lg-4 order-sm-2 order-xl-2">--}}
+    {{--                    <div class="row">--}}
+    {{--                      <div class="col-md-6">--}}
+    {{--                        <div class="ttl-info text-left">--}}
+    {{--                          <h6><i class="fa fa-phone"></i>   Contact Us</h6><span>Bangladesh +88{{ $data->cell }}</span>--}}
+    {{--                        </div>--}}
+    {{--                      </div>--}}
+    {{--                      <div class="col-md-6">--}}
+    {{--                        <div class="ttl-info text-left">--}}
+    {{--                          <h6><i class="fa fa-location-arrow"></i>   Location</h6><span>{{ $data->address }}</span>--}}
+    {{--                        </div>--}}
+    {{--                      </div>--}}
+    {{--                    </div>--}}
+    {{--                  </div>--}}
+    {{--                </div>--}}
+    {{--                <div>--}}
+    {{--                    <a title="Edit Profile" edit_id="{{ $data->id }}" class="btn btn-info-gradien btn-pill edit_profile"><i class="fas fa-user-edit text-white"></i></a>--}}
+    {{--                </div>--}}
+    {{--                <hr>--}}
+    {{--                <div class="social-media">--}}
+    {{--                  <ul class="list-inline">--}}
+    {{--                    <li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li>--}}
+    {{--                    <li class="list-inline-item"><a href="#"><i class="fa fa-google-plus"></i></a></li>--}}
+    {{--                    <li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a></li>--}}
+    {{--                    <li class="list-inline-item"><a href="#"><i class="fa fa-instagram"></i></a></li>--}}
+    {{--                    <li class="list-inline-item"><a href="#"><i class="fa fa-rss"></i></a></li>--}}
+    {{--                  </ul>--}}
+    {{--                </div>--}}
+    {{--                <div class="follow">--}}
+    {{--                  <div class="row">--}}
+    {{--                    <div class="col-6 text-md-right border-right">--}}
+    {{--                      <div class="follow-num counter">25869</div><span>Follower</span>--}}
+    {{--                    </div>--}}
+    {{--                    <div class="col-6 text-md-left">--}}
+    {{--                      <div class="follow-num counter">659887</div><span>Following</span>--}}
+    {{--                    </div>--}}
+    {{--                  </div>--}}
+    {{--                </div>--}}
+    {{--              </div>--}}
+    {{--            </div>--}}
             </div>
-          </div>
-          <!-- user profile first-style end-->
+            <!-- user profile first-style end-->
         </div>
     </div>
 </div>

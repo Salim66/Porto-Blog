@@ -471,8 +471,93 @@
             }
         });
 
+        // user profile
+        function userProfile(){
+            $.ajax({
+                url: "/profile/view/data",
+                type: "GET",
+                success: function(response){
+                    // console.log(response);
+                    let date = new Date(response.created_at);
+
+                    let element = '           <div class="card hovercard text-center">\n' +
+                        '              <div class="cardheader"></div>\n' +
+                        '              <div class="user-image">\n' +
+                        '                <div class="avatar"><img style="width: 120px; height: 120px; border-radius: 50%; border: 2px solid #9900ff;" class="shadow" src="/uploads/users/' +
+                        response.photo +
+                        '" alt="User Image" onerror="this.src=\'/uploads/users/avatar3.png\'"></div>\n' +
+                        '                <div class="icon-wrapper"><i class="icofont icofont-pencil-alt-5"></i></div>\n' +
+                        '              </div>\n' +
+                        '              <div class="info">\n' +
+                        '                <div class="row">\n' +
+                        '                  <div class="col-sm-6 col-lg-4 order-sm-1 order-xl-0">\n' +
+                        '                    <div class="row">\n' +
+                        '                      <div class="col-md-6">\n' +
+                        '                        <div class="ttl-info text-left ml-5">\n' +
+                        '                          <h6><i class="fa fa-envelope"></i>   Email</h6><span>'+response.email+'</span>\n' +
+                        '                        </div>\n' +
+                        '                      </div>\n' +
+                        '                      <div class="col-md-6">\n' +
+                        '                        <div class="ttl-info text-left ml-4">\n' +
+                        '                          <h6><i class="fa fa-calendar"></i>   Created</h6><span>'+date.toDateString()+'</span>\n' +
+                        '                        </div>\n' +
+                        '                      </div>\n' +
+                        '                    </div>\n' +
+                        '                  </div>\n' +
+                        '                  <div class="col-sm-12 col-lg-4 order-sm-0 order-xl-1">\n' +
+                        '                    <div class="user-designation">\n' +
+                        '                      <div class="title"><a target="_blank" href="#">'+response.name+'</a></div>\n' +
+                        '                      <div class="desc mt-2">'+response.user_type+'</div>\n' +
+                        '                    </div>\n' +
+                        '                  </div>\n' +
+                        '                  <div class="col-sm-6 col-lg-4 order-sm-2 order-xl-2">\n' +
+                        '                    <div class="row">\n' +
+                        '                      <div class="col-md-6">\n' +
+                        '                        <div class="ttl-info text-left">\n' +
+                        '                          <h6><i class="fa fa-phone"></i>   Contact Us</h6><span>Bangladesh +88'+response.cell+'</span>\n' +
+                        '                        </div>\n' +
+                        '                      </div>\n' +
+                        '                      <div class="col-md-6">\n' +
+                        '                        <div class="ttl-info text-left">\n' +
+                        '                          <h6><i class="fa fa-location-arrow"></i>   Location</h6><span>'+response.address+'</span>\n' +
+                        '                        </div>\n' +
+                        '                      </div>\n' +
+                        '                    </div>\n' +
+                        '                  </div>\n' +
+                        '                </div>\n' +
+                        '                <div>\n' +
+                        '                    <a title="Edit Profile" edit_id="'+response.id+'" class="btn btn-info-gradien btn-pill edit_profile"><i class="fas fa-user-edit text-white"></i></a>\n' +
+                        '                </div>\n' +
+                        '                <hr>\n' +
+                        '                <div class="social-media">\n' +
+                        '                  <ul class="list-inline">\n' +
+                        '                    <li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li>\n' +
+                        '                    <li class="list-inline-item"><a href="#"><i class="fa fa-google-plus"></i></a></li>\n' +
+                        '                    <li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a></li>\n' +
+                        '                    <li class="list-inline-item"><a href="#"><i class="fa fa-instagram"></i></a></li>\n' +
+                        '                    <li class="list-inline-item"><a href="#"><i class="fa fa-rss"></i></a></li>\n' +
+                        '                  </ul>\n' +
+                        '                </div>\n' +
+                        '                <div class="follow">\n' +
+                        '                  <div class="row">\n' +
+                        '                    <div class="col-6 text-md-right border-right">\n' +
+                        '                      <div class="follow-num counter">25869</div><span>Follower</span>\n' +
+                        '                    </div>\n' +
+                        '                    <div class="col-6 text-md-left">\n' +
+                        '                      <div class="follow-num counter">659887</div><span>Following</span>\n' +
+                        '                    </div>\n' +
+                        '                  </div>\n' +
+                        '                </div>\n' +
+                        '              </div>\n' +
+                        '            </div>';
+                    $('#user_profile_load_by_ajax').append(element);
+                }
+            });
+        }
+        userProfile();
+
         // user profile edit
-        $(".edit_profile").click(function (e) {
+        $(document).on('click', ".edit_profile", function (e) {
             e.preventDefault();
             let edit_id = $(this).attr("edit_id");
 
