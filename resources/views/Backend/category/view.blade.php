@@ -22,34 +22,34 @@
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="category_table">
 
-                                    @foreach($all_data as $data)
-                                    <tr>
-                                        <td>{{ $data->parent_id }}</td>
-                                        <td>{{ $data->name }}</td>
-                                        <td>
+{{--                                    @foreach($all_data as $data)--}}
+{{--                                    <tr>--}}
+{{--                                        <td>{{ $data->parent_id }}</td>--}}
+{{--                                        <td>{{ $data->name }}</td>--}}
+{{--                                        <td>--}}
 
-                                            <div class="media-body text-center switch-sm">
-                                                <label class="switch">
-                                                <input type="checkbox" class="category_status_update" data_id="{{ $data->id }}" @if($data->status == true) checked="" @endif><span class="switch-state"></span>
-                                                </label>
-                                            </div>
+{{--                                            <div class="media-body text-center switch-sm">--}}
+{{--                                                <label class="switch">--}}
+{{--                                                <input type="checkbox" class="category_status_update" data_id="{{ $data->id }}" @if($data->status == true) checked="" @endif><span class="switch-state"></span>--}}
+{{--                                                </label>--}}
+{{--                                            </div>--}}
 
-                                        </td>
-                                        <td>
-                                            <div class="media-body text-center switch-sm">
-                                                <label class="switch">
-                                                <input type="checkbox" class="category_trash_update" data_id="{{ $data->id }}" @if($data->trash == false) checked="" @endif><span class="switch-state"></span>
-                                                </label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <a title="Edit Category" edit_id="{{ $data->id }}" class="btn btn-info-gradien btn-pill edit_category"><i class="fas fa-edit text-white"></i></a>
+{{--                                        </td>--}}
+{{--                                        <td>--}}
+{{--                                            <div class="media-body text-center switch-sm">--}}
+{{--                                                <label class="switch">--}}
+{{--                                                <input type="checkbox" class="category_trash_update" data_id="{{ $data->id }}" @if($data->trash == false) checked="" @endif><span class="switch-state"></span>--}}
+{{--                                                </label>--}}
+{{--                                            </div>--}}
+{{--                                        </td>--}}
+{{--                                        <td>--}}
+{{--                                            <a title="Edit Category" edit_id="{{ $data->id }}" class="btn btn-info-gradien btn-pill edit_category"><i class="fas fa-edit text-white"></i></a>--}}
 
-                                        </td>
-                                    </tr>
-                                    @endforeach
+{{--                                        </td>--}}
+{{--                                    </tr>--}}
+{{--                                    @endforeach--}}
 
                                 </tbody>
                             </table>

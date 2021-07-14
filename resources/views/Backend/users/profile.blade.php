@@ -94,7 +94,7 @@
                 <button class="close d-inline float-right mr-3" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-              <form action="" method="POST" class="needs-validation" id="uase_profile_edit" novalidate="" enctype="multipart/form-data">
+              <form action="" method="POST" class="needs-validation" id="user_profile_edit" novalidate="" enctype="multipart/form-data">
                   <div class="form-row">
                     <div class="col-md-6 mb-3">
                         <label for="validationCustom01">User Type</label>

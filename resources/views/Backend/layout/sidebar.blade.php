@@ -1,7 +1,7 @@
 @php
 
     //$total_user_trash = App\Models\User::where('trash', true)->get()->count();
-    $total_category_trash = App\Models\Category::where('trash', true)->get()->count();
+    //$total_category_trash = App\Models\Category::where('trash', true)->get()->count();
     $total_tag_trash = App\Models\Tag::where('trash', true)->get()->count();
     $total_post_trash = App\Models\Post::where('trash', true)->get()->count();
 
@@ -38,7 +38,7 @@
             <li class="iconbar-header">Categories</li>
             <li><a href="{{ route('categories.view') }}">Category List</a></li>
             <li><a href="{{ route('categories.add') }}">Add Category</a></li>
-            <li><a href="{{ route('categories.trash') }}">Trash List <span class="text-danger">({{ $total_category_trash }})</span></a></li>
+            <li><a href="{{ route('categories.trash') }}">Trash List <span class="text-danger"  id="total_category_trash_count"></span></a></li>
           </ul>
         </li>
         <li><a class="bar-icons" href="javascript:void(0)"><i class="fas fa-tags"></i><span>Tags</span></a>

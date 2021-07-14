@@ -211,7 +211,7 @@ class UserController extends Controller
 
 
     /**
-      * User destroy
+      * User destroy by ajax
       */
       public function deleteByAjax(Request $request){
           $id = $request->id;

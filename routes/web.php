@@ -81,14 +81,17 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('categories')->group(function () {
         Route::get('/view', 'App\Http\Controllers\Backend\CategoryController@view')->name('categories.view');
+        Route::get('/view/data', 'App\Http\Controllers\Backend\CategoryController@viewDataByAjax')->name('categories.view.data');
         Route::get('/add', 'App\Http\Controllers\Backend\CategoryController@add')->name('categories.add');
         Route::post('/store', 'App\Http\Controllers\Backend\CategoryController@store')->name('categories.store');
         Route::get('/edit/{id}', 'App\Http\Controllers\Backend\CategoryController@edit')->name('categories.edit');
         Route::post('/update', 'App\Http\Controllers\Backend\CategoryController@update')->name('categories.update');
         Route::post('/status-update', 'App\Http\Controllers\Backend\CategoryController@statusUpdate')->name('categorires.status.update');
         Route::get('/trash', 'App\Http\Controllers\Backend\CategoryController@trashList')->name('categories.trash');
+        Route::get('/trash/by-ajax', 'App\Http\Controllers\Backend\CategoryController@trashListByAjax')->name('categories.trash.by-ajax');
         Route::post('/trash-update', 'App\Http\Controllers\Backend\CategoryController@trashUpdate')->name('categories.trash.update');
-        Route::delete('/delete/{id}', 'App\Http\Controllers\Backend\CategoryController@destroy')->name('categories.destroy');
+//        Route::delete('/delete/{id}', 'App\Http\Controllers\Backend\CategoryController@destroy')->name('categories.destroy');
+        Route::post('/delete', 'App\Http\Controllers\Backend\CategoryController@deleteByAjax')->name('categories.delete.by-ajax');
     });
 
     Route::prefix('tags')->group(function () {

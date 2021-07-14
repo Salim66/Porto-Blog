@@ -22,40 +22,40 @@
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="category_trash_list_table">
 
-                                    @foreach($all_data as $data)
-                                    <tr>
-                                        <td>{{ $data->parent_id }}</td>
-                                        <td>{{ $data->name }}</td>
-                                        <td>
+{{--                                    @foreach($all_data as $data)--}}
+{{--                                    <tr>--}}
+{{--                                        <td>{{ $data->parent_id }}</td>--}}
+{{--                                        <td>{{ $data->name }}</td>--}}
+{{--                                        <td>--}}
 
-                                            <div class="media-body text-center switch-sm">
-                                                <label class="switch">
-                                                <input type="checkbox" class="category_status_update" data_id="{{ $data->id }}" @if($data->status == true) checked="" @endif><span class="switch-state"></span>
-                                                </label>
-                                            </div>
+{{--                                            <div class="media-body text-center switch-sm">--}}
+{{--                                                <label class="switch">--}}
+{{--                                                <input type="checkbox" class="category_status_update" data_id="{{ $data->id }}" @if($data->status == true) checked="" @endif><span class="switch-state"></span>--}}
+{{--                                                </label>--}}
+{{--                                            </div>--}}
 
-                                        </td>
-                                        <td>
-                                            <div class="media-body text-center switch-sm">
-                                                <label class="switch">
-                                                <input type="checkbox" class="category_trash_update_1" data_id="{{ $data->id }}" @if($data->trash == true) checked="" @endif><span class="switch-state"></span>
-                                                </label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            {{-- <a title="Delete Category" delete_id="{{ $data->id }}" class="btn btn-danger-gradien btn-pill delete_category"><i class="fas fa-trash text-white"></i></a> --}}
+{{--                                        </td>--}}
+{{--                                        <td>--}}
+{{--                                            <div class="media-body text-center switch-sm">--}}
+{{--                                                <label class="switch">--}}
+{{--                                                <input type="checkbox" class="category_trash_update_1" data_id="{{ $data->id }}" @if($data->trash == true) checked="" @endif><span class="switch-state"></span>--}}
+{{--                                                </label>--}}
+{{--                                            </div>--}}
+{{--                                        </td>--}}
+{{--                                        <td>--}}
+{{--                                            --}}{{-- <a title="Delete Category" delete_id="{{ $data->id }}" class="btn btn-danger-gradien btn-pill delete_category"><i class="fas fa-trash text-white"></i></a> --}}
 
-                                            <form style="display: inline;" action="{{ route('categories.destroy', $data->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button delete_id="{{ $data->id }}" type="submit" id="delete" class="btn btn-danger-gradien btn-pill"><i class="fas fa-trash text-white"></i></button>
-                                            </form>
+{{--                                            <form style="display: inline;" action="{{ route('categories.destroy', $data->id) }}" method="POST">--}}
+{{--                                                @csrf--}}
+{{--                                                @method('DELETE')--}}
+{{--                                                <button delete_id="{{ $data->id }}" type="submit" id="delete" class="btn btn-danger-gradien btn-pill"><i class="fas fa-trash text-white"></i></button>--}}
+{{--                                            </form>--}}
 
-                                        </td>
-                                    </tr>
-                                    @endforeach
+{{--                                        </td>--}}
+{{--                                    </tr>--}}
+{{--                                    @endforeach--}}
 
                                 </tbody>
                             </table>

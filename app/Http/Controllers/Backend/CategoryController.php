@@ -9,12 +9,24 @@ use App\Http\Controllers\Controller;
 class CategoryController extends Controller
 {
     /**
-     * Category list view
+     * Category list table view
      */
     public function view(){
         $all_data = Category::where('trash', false)->latest()->get();
         return view('Backend.category.view', [
             'all_data' => $all_data
+        ]);
+    }
+
+    /**
+     * Category list table data view
+     */
+    public function viewDataByAjax(){
+        $all_data = Category::where('trash', false)->latest()->get();
+        $count = Category::where('trash', true)->count();
+        return response()->json([
+            'all_data' => $all_data,
+            'count' => $count
         ]);
     }
 
@@ -99,13 +111,19 @@ class CategoryController extends Controller
 
 
     /**
-     * Category trash list
+     * Category trash list page load
      */
     public function trashList(){
+//        $all_data = Category::where('trash', 1)->latest()->get();
+        return view('backend.category.trash-list');
+    }
+
+    /**
+     * Category trash list data by ajax response
+     */
+    public function trashListByAjax(){
         $all_data = Category::where('trash', 1)->latest()->get();
-        return view('backend.category.trash-list', [
-            'all_data' => $all_data
-        ]);
+        return response()->json($all_data);
     }
 
 
@@ -131,16 +149,38 @@ class CategoryController extends Controller
      /**
       * Category destroy
       */
-      public function destroy($id){
-          $data = Category::find($id);
+//      public function destroy($id){
+//          $data = Category::find($id);
+//
+//            if($data != null){
+//                $data->delete();
+//
+//                return redirect()->back()->with('success', 'Category delete successfully ):');
+//            }else {
+//                return redirect()->back()->with('error', 'Something is wrong! plase try again!');
+//
+//            }
+//      }
 
-            if($data != null){
-                $data->delete();
 
-                return redirect()->back()->with('success', 'Category delete successfully ):');
-            }else {
-                return redirect()->back()->with('error', 'Something is wrong! plase try again!');
+    /**
+     * Category destroy by ajax
+     */
+    public function deleteByAjax(Request $request){
+        $id = $request->id;
+//          return $id;
+        $data = Category::find($id);
 
-            }
-      }
+        if($data != null){
+            $data->delete();
+
+            return response()->json([
+                'success' => 'Category delete successfully ): '
+            ]);
+        }else {
+            return response()->json([
+                'error' => 'Something is wrong! plase try again! '
+            ]);
+        }
+    }
 }

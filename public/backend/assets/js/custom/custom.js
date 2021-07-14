@@ -34,7 +34,7 @@
             });
         });// delete by switch alert
 
-        // delete by ajax
+        // user delete by ajax
         $(document).on("click", '#delete_ajax', function (e) {
             e.preventDefault();
             // let form = $(this).closest("form");
@@ -64,6 +64,51 @@
                             // console.log(response);
 
                             showUserTrash();
+                            categoryTrashTable();
+                            notifyFun(response.success);
+                        }
+
+                    });
+                    Swal.fire(
+                        "Deleted!",
+                        "Your file has been deleted.",
+                        "success"
+                    );
+                }
+            });
+        });
+
+        // category delete by ajax
+        $(document).on("click", '#category_delete_ajax', function (e) {
+            e.preventDefault();
+            // let form = $(this).closest("form");
+            let id = $(this).attr("delete_id");
+            // alert(id);
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to delete this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        headers: {
+                            "X-CSRF-TOKEN": $('meta[name="csrf_token"]').attr(
+                                "content"
+                            ),
+                        },
+                        method: 'POST',
+                        url: '/categories/delete',
+                        data: {id: id},
+                        success: function(response){
+                            // console.log(response);
+
+                            showUserTrash();
+                            categoryTrashTable();
                             notifyFun(response.success);
                         }
 
@@ -615,7 +660,7 @@
         });
 
         // user profile update
-        $("#uase_profile_edit").on("submit", function (e) {
+        $("#user_profile_edit").on("submit", function (e) {
             e.preventDefault();
             let name = $(".f_name").val();
             let email = $(".f_email").val();
@@ -721,6 +766,49 @@
         });
 
         //================ Category =================
+
+        // Category table show by ajax
+        function categoryTable(){
+            $.ajax({
+                url: "/categories/view/data",
+                method: "GET",
+                success: function (response) {
+                    $("#category_table").empty();
+                    // console.log(response);
+                    // sidebar total trash show
+                    $('#total_category_trash_count').html('('+response.count+')');
+
+                    for (data of response.all_data) {
+                        let element = '<tr>\n' +
+                            '                                        <td>'+data.parent_id+'</td>\n' +
+                            '                                        <td>'+data.name+'</td>\n' +
+                            '                                        <td>\n' +
+                            '\n' +
+                            '                                            <div class="media-body text-center switch-sm">\n' +
+                            '                                                <label class="switch">\n' +
+                            '                                                <input type="checkbox" class="category_status_update" data_id="'+data.id+'"'; if(data.status == true) { element +='checked'; }  element += '><span class="switch-state"></span>\n' +
+                            '                                                </label>\n' +
+                            '                                            </div>\n' +
+                            '\n' +
+                            '                                        </td>\n' +
+                            '                                        <td>\n' +
+                            '                                            <div class="media-body text-center switch-sm">\n' +
+                            '                                                <label class="switch">\n' +
+                            '                                                <input type="checkbox" class="category_trash_update" data_id="'+data.id+'"'; if(data.trash == false) { element += 'checked'; } element +='><span class="switch-state"></span>\n' +
+                            '                                                </label>\n' +
+                            '                                            </div>\n' +
+                            '                                        </td>\n' +
+                            '                                        <td>\n' +
+                            '                                            <a title="Edit Category" edit_id="'+data.id+'" class="btn btn-info-gradien btn-pill edit_category"><i class="fas fa-edit text-white"></i></a>\n' +
+                            '\n' +
+                            '                                        </td>\n' +
+                            '                                    </tr>';
+                        $("#category_table").append(element);
+                    }
+                },
+            });
+        }
+        categoryTable();
 
         // Category store
         $("#category_Add").on("submit", function (e) {
@@ -858,7 +946,7 @@
         });
 
         // category Status update
-        $(".category_status_update").change(function () {
+        $(document).on('change', ".category_status_update", function () {
             // e.preventDefault();
             let id = $(this).attr("data_id");
 
@@ -875,7 +963,7 @@
                     data: { id: id, status: 1 },
                     success: function (response) {
                         // console.log(response);
-
+                        categoryTable();
                         notifyFun(response.success);
                     },
                 });
@@ -891,6 +979,7 @@
                     data: { id: id, status: 0 },
                     success: function (response) {
                         // console.log(response);
+                        categoryTable();
                         notifyFun(response.success);
                     },
                 });
@@ -898,7 +987,7 @@
         });
 
         // category Trash update
-        $(".category_trash_update").change(function () {
+        $(document).on('change', ".category_trash_update", function () {
             // e.preventDefault();
             let id = $(this).attr("data_id");
 
@@ -915,6 +1004,8 @@
                     data: { id: id, trash: 0 }, // reverse is stattus becasse false is checked
                     success: function (response) {
                         // console.log(response);
+
+                        categoryTable();
                         notifyFun(response.success);
                     },
                 });
@@ -930,14 +1021,62 @@
                     data: { id: id, trash: 1 }, // reverse is stattus becasse false is checked
                     success: function (response) {
                         // console.log(response);
+
+                        categoryTable();
                         notifyFun(response.success);
                     },
                 });
             }
         });
 
+        // Category Trash Show
+        function categoryTrashTable(){
+            $.ajax({
+                url: "/categories/trash/by-ajax",
+                method: "GET",
+                success: function (response) {
+                    $('#category_trash_list_table').empty();
+                    console.log(response);
+                    // sidebar total trash show
+                    $('#total_category_trash_count').html('('+response.length+')');
+
+                    for(data of response) {
+                        let element = '<tr>\n' +
+                            '                                        <td>' + data.parent_id + '</td>\n' +
+                            '                                        <td>' + data.name + '</td>\n' +
+                            '                                        <td>\n' +
+                            '\n' +
+                            '                                            <div class="media-body text-center switch-sm">\n' +
+                            '                                                <label class="switch">\n' +
+                            '                                                <input type="checkbox" class="category_status_update" data_id="' + data.id + '"'; if(data.status == true) { element +='checked'; } element += ' ><span class="switch-state"></span>\n' +
+                            '                                                </label>\n' +
+                            '                                            </div>\n' +
+                            '\n' +
+                            '                                        </td>\n' +
+                            '                                        <td>\n' +
+                            '                                            <div class="media-body text-center switch-sm">\n' +
+                            '                                                <label class="switch">\n' +
+                            '                                                <input type="checkbox" class="category_trash_update_1" data_id="'+data.id+'"'; if(data.trash == true) { element +='checked'; } element += ' ><span class="switch-state"></span>\n' +
+                            '                                                </label>\n' +
+                            '                                            </div>\n' +
+                            '                                        </td>\n' +
+                            '                                        <td>\n' +
+                            '\n' +
+                            '                                            <form style="display: inline;" action="" method="POST">\n' +
+                            '                                                <button delete_id="'+data.id+'" type="submit" id="category_delete_ajax" class="btn btn-danger-gradien btn-pill"><i class="fas fa-trash text-white"></i></button>\n' +
+                            '                                            </form>\n' +
+                            '\n' +
+                            '                                        </td>\n' +
+                            '                                    </tr>';
+                        $('#category_trash_list_table').append(element);
+                    }
+                }
+            });
+        }
+        categoryTrashTable();
+
         // category Trash page update
-        $(".category_trash_update_1").change(function () {
+        $(document).on('change', ".category_trash_update_1", function () {
             // e.preventDefault();
             let id = $(this).attr("data_id");
 
@@ -954,6 +1093,8 @@
                     data: { id: id, trash: 1 }, // reverse is trash becasse true is checked
                     success: function (response) {
                         // console.log(response);
+
+                        categoryTrashTable();
                         notifyFun(response.success);
                     },
                 });
@@ -969,6 +1110,8 @@
                     data: { id: id, trash: 0 }, // reverse is trash becasse true is checked
                     success: function (response) {
                         // console.log(response);
+
+                        categoryTrashTable();
                         notifyFun(response.success);
                     },
                 });
