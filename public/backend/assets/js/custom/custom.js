@@ -868,7 +868,7 @@
         });
 
         // Edit category model show with data
-        $(".edit_category").click(function (e) {
+        $(document).on('click', ".edit_category", function (e) {
             e.preventDefault();
             let edit_id = $(this).attr("edit_id");
 
@@ -939,7 +939,9 @@
                         $(".c_name").val("");
                         $(".parent_id").val("");
 
+                        categoryTable();
                         notifyFun(response.success);
+                        $("#edit_category").modal("hide");
                     },
                 });
             }
