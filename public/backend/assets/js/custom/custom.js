@@ -314,6 +314,7 @@
                     $(".user_type").val("");
 
                     notifyFun(response.success);
+                    $("#edit_users").modal("hide");
                 },
             });
         });
@@ -603,6 +604,32 @@
         }
         userProfile();
 
+        //User image load
+        $(document).on("change", "#image_file", function (e) {
+            e.preventDefault();
+            let image_url = URL.createObjectURL(e.target.files[0]);
+            $("#user_photo").attr("src", image_url);
+        });
+
+        // // user edit data show modal admin purpose
+        // $(".edit_user").click(function (e) {
+        //     e.preventDefault();
+        //     let edit_id = $(this).attr("edit_id");
+        //
+        //     $.ajax({
+        //         url: "/users/admin-edit-data/" + edit_id,
+        //         type: "GET",
+        //         success: function (data) {
+        //             $(".f_name").val(data.name);
+        //             $(".f_email").val(data.email);
+        //             $(".user_type").val(data.user_type);
+        //             $(".id").val(data.id);
+        //
+        //             $("#edit_users").modal("show");
+        //         },
+        //     });
+        // });
+
         // user profile edit
         $(document).on('click', ".edit_profile", function (e) {
             e.preventDefault();
@@ -629,32 +656,6 @@
                     );
 
                     $("#edit_user_prifile").modal("show");
-                },
-            });
-        });
-
-        //User image load
-        $(document).on("change", "#image_file", function (e) {
-            e.preventDefault();
-            let image_url = URL.createObjectURL(e.target.files[0]);
-            $("#user_photo").attr("src", image_url);
-        });
-
-        // user edit data show modal admin purpose
-        $(".edit_user").click(function (e) {
-            e.preventDefault();
-            let edit_id = $(this).attr("edit_id");
-
-            $.ajax({
-                url: "/users/admin-edit-data/" + edit_id,
-                type: "GET",
-                success: function (data) {
-                    $(".f_name").val(data.name);
-                    $(".f_email").val(data.email);
-                    $(".user_type").val(data.user_type);
-                    $(".id").val(data.id);
-
-                    $("#edit_users").modal("show");
                 },
             });
         });
@@ -697,6 +698,7 @@
                 success: function (response) {
                     userProfile();
                     notifyFun(response.success);
+                    $("#edit_user_prifile").modal("hide");
                 },
             });
         });
@@ -1038,7 +1040,7 @@
                 method: "GET",
                 success: function (response) {
                     $('#category_trash_list_table').empty();
-                    console.log(response);
+                    // console.log(response);
                     // sidebar total trash show
                     $('#total_category_trash_count').html('('+response.length+')');
 
@@ -1121,6 +1123,48 @@
         });
 
         //================ Tag =================
+
+        // show all Tag Table
+        function TagTable(){
+            $.ajax({
+                url: "/tags/view/data",
+                method: "GET",
+                success: function (response) {
+                    $("#tag_table").empty();
+                    console.log(response);
+                    // sidebar total trash show
+                    $('#total_tag_trash_count').html('('+response.count+')');
+
+                    for (data of response.all_data) {
+                        let element = '<tr>\n' +
+                            '                                        <td>'+data.name+'</td>\n' +
+                            '                                        <td>\n' +
+                            '\n' +
+                            '                                            <div class="media-body text-center switch-sm">\n' +
+                            '                                                <label class="switch">\n' +
+                            '                                                <input type="checkbox" class="tag_status_update" data_id="'+data.id+'"';  if(data.status == true) {  element +='checked'; } element +='><span class="switch-state"></span>\n' +
+                            '                                                </label>\n' +
+                            '                                            </div>\n' +
+                            '\n' +
+                            '                                        </td>\n' +
+                            '                                        <td>\n' +
+                            '                                            <div class="media-body text-center switch-sm">\n' +
+                            '                                                <label class="switch">\n' +
+                            '                                                <input type="checkbox" class="tag_trash_update" data_id="'+data.id+'"';  if(data.trash == false) { element +='checked'; } element +='><span class="switch-state"></span>\n' +
+                            '                                                </label>\n' +
+                            '                                            </div>\n' +
+                            '                                        </td>\n' +
+                            '                                        <td>\n' +
+                            '                                            <a title="Edit Tag" edit_id="'+data.id+'" class="btn btn-info-gradien btn-pill edit_tag"><i class="fas fa-edit text-white"></i></a>\n' +
+                            '\n' +
+                            '                                        </td>\n' +
+                            '                                    </tr>';
+                        $("#tag_table").append(element);
+                    }
+                },
+            });
+        }
+        TagTable();
 
         // Tag store
         $("#tag_add").on("submit", function (e) {
@@ -1254,7 +1298,7 @@
         });
 
         // tag Status update
-        $(".tag_status_update").change(function () {
+        $(document).on('change', ".tag_status_update", function () {
             // e.preventDefault();
             let id = $(this).attr("data_id");
 
@@ -1272,6 +1316,7 @@
                     success: function (response) {
                         // console.log(response);
 
+                        TagTable();
                         notifyFun(response.success);
                     },
                 });
@@ -1287,6 +1332,8 @@
                     data: { id: id, status: 0 },
                     success: function (response) {
                         // console.log(response);
+
+                        TagTable();
                         notifyFun(response.success);
                     },
                 });
@@ -1294,7 +1341,7 @@
         });
 
         // tag Trash update
-        $(".tag_trash_update").change(function () {
+        $(document).on('change', ".tag_trash_update",function () {
             // e.preventDefault();
             let id = $(this).attr("data_id");
 
@@ -1311,6 +1358,8 @@
                     data: { id: id, trash: 0 }, // reverse is stattus becasse false is checked
                     success: function (response) {
                         // console.log(response);
+
+                        TagTable();
                         notifyFun(response.success);
                     },
                 });
@@ -1326,6 +1375,8 @@
                     data: { id: id, trash: 1 }, // reverse is stattus becasse false is checked
                     success: function (response) {
                         // console.log(response);
+
+                        TagTable();
                         notifyFun(response.success);
                     },
                 });

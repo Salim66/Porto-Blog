@@ -12,9 +12,19 @@ class TagController extends Controller
      * Tag list view
      */
     public function view(){
+//        $all_data = Tag::where('trash', false)->latest()->get();
+        return view('Backend.tag.view');
+    }
+
+    /**
+     * Tag list view by ajax response
+     */
+    public function viewDataByAjax(){
         $all_data = Tag::where('trash', false)->latest()->get();
-        return view('Backend.tag.view', [
-            'all_data' => $all_data
+        $count = Tag::where('trash', true)->count();
+        return response()->json([
+            'all_data' => $all_data,
+            'count' => $count
         ]);
     }
 

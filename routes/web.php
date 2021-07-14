@@ -96,6 +96,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('tags')->group(function () {
         Route::get('/view', 'App\Http\Controllers\Backend\TagController@view')->name('tags.view');
+        Route::get('/view/data', 'App\Http\Controllers\Backend\TagController@viewDataByAjax')->name('tags.view.data');
         Route::get('/add', 'App\Http\Controllers\Backend\TagController@add')->name('tags.add');
         Route::post('/store', 'App\Http\Controllers\Backend\TagController@store')->name('tags.store');
         Route::get('/edit/{id}', 'App\Http\Controllers\Backend\TagController@edit')->name('tags.edit');
